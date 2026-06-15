@@ -1661,6 +1661,33 @@
             0%, 80%, 100% { transform: translateY(0); }
             40% { transform: translateY(-10px); }
         }
+        
+        /* ====== زر حذف الصديق ====== */
+        .btn-remove-friend {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            background: var(--danger);
+            color: #fff;
+            transition: var(--transition);
+            margin-right: 6px;
+        }
+        
+        .btn-remove-friend:active {
+            transform: scale(0.9);
+        }
+        
+        .friend-actions {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+        }
     </style>
 </head>
 <body>
@@ -1673,7 +1700,7 @@
 
 <!-- ====== شاشة الترحيب ====== -->
 <div class="welcome" id="welcome">
-    <div class="welcome-logo"><i class="fas fa-moon"></i></div>
+    <div class="welcome-logo">⚡</div>
     <h1>Libyano Chat</h1>
     <p>تواصل مع أصدقائك بسهولة وأمان في أي مكان</p>
     <div class="welcome-btns">
@@ -1704,7 +1731,7 @@
 <!-- ====== التطبيق الرئيسي ====== -->
 <div class="app" id="app">
     <header class="app-header">
-        <div class="hdr-l"><i class="fas fa-moon"></i><span>Libyano</span></div>
+        <div class="hdr-l"><i class="fas fa-bolt" style="color:var(--gold);"></i><span>Libyano</span></div>
         <div class="hdr-r">
             <span class="hdr-badge"><i class="fas fa-shield-alt"></i> آمن</span>
             <div class="hdr-avatar" id="headerAvatar" onclick="showPage('profile')">U</div>
@@ -1772,7 +1799,7 @@
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
     import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut, updateProfile } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
-    import { getDatabase, ref, set, update, get, push, onValue, onChildAdded } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-database.js";
+    import { getDatabase, ref, set, update, get, push, onValue, onChildAdded, remove } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-database.js";
 
     const firebaseConfig = {
         apiKey: "AIzaSyCsO5Og1ZbDd0yimjWSBKTW-3Q_BbuTeQg",
@@ -1794,7 +1821,6 @@
     let mediaRecorder = null, audioChunks = [];
     const blockedUsers = JSON.parse(localStorage.getItem('blockedUsers') || '{}');
 
-    // ====== دوال مساعدة ======
     function showLoading() { document.getElementById('loadingOverlay').style.display = 'flex'; }
     function hideLoading() { document.getElementById('loadingOverlay').style.display = 'none'; }
     
@@ -1809,10 +1835,7 @@
 
     function phoneToEmail(p) { return sanitizePhone(p) + '@libyanochat.com'; }
     
-    function esc(t) {
-        if (!t) return '';
-        const d = document.createElement('div'); d.textContent = t; return d.innerHTML;
-    }
+    function esc(t) { if (!t) return ''; const d = document.createElement('div'); d.textContent = t; return d.innerHTML; }
 
     function fileToB64(f) {
         return new Promise((res, rej) => {
@@ -1830,11 +1853,7 @@
         document.body.appendChild(t); setTimeout(() => t.remove(), 3000);
     }
 
-    function fmtTime(ts) {
-        if (!ts) return '';
-        return new Date(ts).toLocaleTimeString('ar-LY', { hour: '2-digit', minute: '2-digit' });
-    }
-
+    function fmtTime(ts) { if (!ts) return ''; return new Date(ts).toLocaleTimeString('ar-LY', { hour: '2-digit', minute: '2-digit' }); }
     function fmtDate(ts) {
         if (!ts) return '';
         const d = new Date(ts), today = new Date(), yesterday = new Date(today);
@@ -1894,7 +1913,6 @@
         } catch (e) { return phoneToEmail(phone); }
     }
 
-    // ====== دوال النوافذ ======
     window.openImageViewer = function(src) {
         document.getElementById('imageViewerImg').src = src;
         document.getElementById('imageViewer').classList.add('show');
@@ -1906,7 +1924,6 @@
     window.closeRadar = function() { document.getElementById('radarModal').classList.remove('show'); };
     window.closeStoryViewer = function() { document.getElementById('storyViewer').classList.remove('show'); currentStoryId = null; };
 
-    // ====== المصادقة ======
     let authMode = 'login';
     window.showAuth = function(m) { authMode = m; document.getElementById('welcome').classList.add('hidden'); document.getElementById('authScreen').classList.add('active'); switchAuthMode(m); };
     window.goBack = function() { document.getElementById('welcome').classList.remove('hidden'); document.getElementById('authScreen').classList.remove('active'); const msg = document.getElementById('authMsg'); if (msg) { msg.textContent = ''; msg.className = 'auth-msg'; } };
@@ -1995,7 +2012,6 @@
         }
     };
 
-    // ====== مراقبة المصادقة ======
     onAuthStateChanged(auth, async (user) => {
         if (user) {
             showLoading();
@@ -2051,7 +2067,6 @@
     const sp = localStorage.getItem('savedPhone'), sa = localStorage.getItem('savedPass');
     if (sp && sa && !auth.currentUser) setTimeout(() => { const idEl = document.getElementById('loginId'), passEl = document.getElementById('loginPass'); if (idEl) idEl.value = sp; if (passEl) passEl.value = sa; }, 500);
 
-    // ====== عرض الصفحات ======
     window.showPage = function(p) {
         document.querySelectorAll('.nav button').forEach(n => n.classList.toggle('active', n.dataset.page === p));
         if (!currentUser) return;
@@ -2065,7 +2080,6 @@
         }
     };
 
-    // ====== الملف الشخصي المحسن ======
     function renderProfile() {
         if (!currentUser) return;
         const page = document.getElementById('pageContent');
@@ -2105,7 +2119,6 @@
         i.click();
     };
 
-    // ====== الدردشة ======
     function renderChat() {
         const page = document.getElementById('pageContent'); if (!page) return;
         if (!currentChatId) { page.innerHTML = '<div style="text-align:center;color:var(--text2);padding:60px 20px;"><i class="fas fa-comments" style="font-size:2.5rem;display:block;margin-bottom:12px;color:var(--gold);"></i>اختر صديقاً من قائمة الأصدقاء لبدء المحادثة</div>'; return; }
@@ -2204,7 +2217,6 @@
 
     window.closeChat = function() { currentChatId = null; currentChatFriend = null; if (messageListener) { messageListener(); messageListener = null; } showPage('contacts'); };
 
-    // ====== الأصدقاء مع التحميل ======
     function renderContacts() {
         const page = document.getElementById('pageContent'); if (!page) return;
         page.innerHTML = `
@@ -2225,19 +2237,36 @@
             if (filter) { const q = filter.toLowerCase(); friends = friends.filter(f => (f.name || '').toLowerCase().includes(q)); }
             list.innerHTML = friends.length === 0 ? '<div style="text-align:center;padding:40px;">لا يوجد أصدقاء بعد</div>' : friends.map(f => `
                 <div class="friend">
-                    <div class="friend-info">
+                    <div class="friend-info" onclick="openChat('${f.uid}','${(f.name || '').replace(/'/g, "\\'")}','${f.photoBase64 || ''}','${f.avatar || ''}')">
                         <div class="friend-av">${f.photoBase64 ? `<img src="${f.photoBase64}">` : (f.avatar || f.name?.charAt(0) || 'U')}</div>
                         <div><div class="friend-name">${f.name}</div><div class="friend-status"><span class="dot ${f.status === 'online' ? 'on' : 'off'}"></span>${f.status === 'online' ? 'متصل' : 'آخر ظهور: ' + (f.lastSeen ? new Date(f.lastSeen).toLocaleDateString('ar') : '?')}</div></div>
                     </div>
-                    <button class="btn-chat" onclick="openChat('${f.uid}','${(f.name || '').replace(/'/g, "\\'")}','${f.photoBase64 || ''}','${f.avatar || ''}')"><i class="fas fa-comment-dots"></i></button>
+                    <div class="friend-actions">
+                        <button class="btn-chat" onclick="event.stopPropagation(); openChat('${f.uid}','${(f.name || '').replace(/'/g, "\\'")}','${f.photoBase64 || ''}','${f.avatar || ''}')"><i class="fas fa-comment-dots"></i></button>
+                        <button class="btn-remove-friend" onclick="event.stopPropagation(); removeFriend('${f.uid}')"><i class="fas fa-user-times"></i></button>
+                    </div>
                 </div>`).join('');
         } catch (e) { list.innerHTML = '<div style="text-align:center;color:var(--danger);">خطأ في تحميل الأصدقاء</div>'; }
     }
 
     window.searchFriends = () => loadFriends(document.getElementById('searchInput')?.value || '');
     window.openChat = function(uid, name, photo, avatar) { currentChatId = [currentUser.uid, uid].sort().join('_'); currentChatFriend = { uid, name, photoBase64: photo, avatar }; if (messageListener) { messageListener(); messageListener = null; } showPage('chat'); };
+    
+    window.removeFriend = async function(uid) {
+        if (!confirm('هل أنت متأكد من حذف هذا الصديق؟')) return;
+        showLoading();
+        try {
+            await remove(ref(db, `friends/${currentUser.uid}/${uid}`));
+            await remove(ref(db, `friends/${uid}/${currentUser.uid}`));
+            hideLoading();
+            toast('تم حذف الصديق بنجاح');
+            loadFriends();
+        } catch (e) {
+            hideLoading();
+            toast('فشل حذف الصديق');
+        }
+    };
 
-    // ====== الرادار ======
     function renderNearby() {
         document.getElementById('pageContent').innerHTML = `
             <button class="radar-btn" onclick="startRadar()"><i class="fas fa-satellite-dish"></i> بدء مسح الرادار</button>
@@ -2288,14 +2317,30 @@
         toast('تمت الإضافة بنجاح');
     };
 
-    // ====== الستوري ======
     function renderStories() {
         document.getElementById('pageContent').innerHTML = `
             <button class="story-add-btn" id="addStoryBtn"><i class="fas fa-plus-circle"></i> إضافة ستوري</button>
             <div class="story-list" id="storiesList"></div>`;
         document.getElementById('addStoryBtn').onclick = () => {
-            const i = document.createElement('input'); i.type = 'file'; i.accept = 'image/*';
-            i.onchange = async e => { if (e.target.files[0]) { await push(ref(db, 'stories'), { userId: currentUser.uid, userName: currentUser.name, userPhoto: currentUser.photoBase64 || '', imageBase64: await fileToB64(e.target.files[0]), caption: prompt('تعليق:') || '', timestamp: Date.now(), likes: {}, views: {}, replies: {} }); renderStories(); } };
+            const i = document.createElement('input'); i.type = 'file'; i.accept = 'image/*'; i.multiple = true;
+            i.onchange = async e => {
+                if (e.target.files.length > 0) {
+                    showLoading();
+                    for (const file of e.target.files) {
+                        const caption = prompt(`تعليق للصورة (${file.name}):`) || '';
+                        await push(ref(db, 'stories'), {
+                            userId: currentUser.uid, userName: currentUser.name,
+                            userPhoto: currentUser.photoBase64 || '',
+                            imageBase64: await fileToB64(file),
+                            caption: caption, timestamp: Date.now(),
+                            likes: {}, views: {}, replies: {}
+                        });
+                    }
+                    hideLoading();
+                    toast(`تم إضافة ${e.target.files.length} ستوري`);
+                    renderStories();
+                }
+            };
             i.click();
         };
         onValue(ref(db, 'stories'), snap => {
@@ -2348,7 +2393,6 @@
         input.value = ''; toast('تم إرسال الرد');
     };
 
-    // ====== الإعدادات المحسنة ======
     function renderSettings() {
         const page = document.getElementById('pageContent'); if (!page) return;
         const showOnline = localStorage.getItem('showOnline') !== 'false';
@@ -2420,7 +2464,6 @@
         showBlockedUsers();
     };
 
-    // ====== تهيئة الأزرار ======
     document.querySelectorAll('.nav button').forEach(b => {
         b.addEventListener('click', function() { showPage(this.dataset.page); });
     });
