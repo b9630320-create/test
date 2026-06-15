@@ -8,51 +8,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #080e0c;
-            --surface: #0d1613;
-            --surface2: #111c18;
-            --gold: #D4A017;
-            --gold-light: #F5E6B8;
-            --gold-dark: #b8860b;
-            --text: #e8e8e8;
-            --text-secondary: #9aa0a8;
-            --danger: #e74c3c;
-            --success: #2ecc71;
-            --warning: #f39c12;
-            --info: #3498db;
-            --purple: #9b59b6;
-            --border: rgba(212, 160, 23, 0.2);
-            --radius-lg: 20px;
-            --radius-md: 14px;
-            --radius-sm: 10px;
-            --shadow-sm: 0 4px 16px rgba(0,0,0,0.3);
-            --shadow-md: 0 8px 32px rgba(0,0,0,0.4);
-            --shadow-lg: 0 16px 48px rgba(0,0,0,0.6);
-            --transition: 0.3s cubic-bezier(0.4,0,0.2,1);
-            --safe-bottom: env(safe-area-inset-bottom, 0px);
+            --bg: #080e0c; --surface: #0d1613; --surface2: #111c18;
+            --gold: #D4A017; --gold-light: #F5E6B8; --gold-dark: #b8860b;
+            --text: #e8e8e8; --text-secondary: #9aa0a8;
+            --danger: #e74c3c; --success: #2ecc71; --warning: #f39c12;
+            --info: #3498db; --purple: #9b59b6;
+            --border: rgba(212,160,23,0.2); --radius-lg: 20px; --radius-md: 14px; --radius-sm: 10px;
+            --shadow: 0 8px 32px rgba(0,0,0,0.4); --shadow-lg: 0 16px 48px rgba(0,0,0,0.6);
+            --transition: 0.3s ease; --safe-bottom: env(safe-area-inset-bottom, 0px);
         }
-
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-
-        body {
-            font-family: 'Cairo', sans-serif;
-            background: var(--bg);
-            overflow: hidden;
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            width: 100%; height: 100%;
-            user-select: none;
-            -webkit-user-select: none;
-            -webkit-font-smoothing: antialiased;
-        }
+        body { font-family: 'Cairo', sans-serif; background: var(--bg); overflow: hidden; position: fixed; top: 0; left: 0; right: 0; bottom: 0; width: 100%; height: 100%; user-select: none; -webkit-user-select: none; -webkit-font-smoothing: antialiased; }
 
         /* ========== شاشة الترحيب ========== */
-        .welcome-screen {
-            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(160deg, #060e0b 0%, #0a1a12 40%, #0d1f16 100%);
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            z-index: 100; transition: 0.5s ease; gap: 16px; padding: 20px; overflow-y: auto;
-        }
+        .welcome-screen { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(160deg, #060e0b 0%, #0a1a12 40%, #0d1f16 100%); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 100; transition: 0.5s ease; gap: 16px; padding: 20px; }
         .welcome-screen.hidden { opacity: 0; pointer-events: none; transform: scale(1.1); }
         .welcome-logo { font-size: clamp(3.5rem, 10vw, 5.5rem); color: var(--gold); animation: floatAnim 3s ease-in-out infinite; filter: drop-shadow(0 0 35px rgba(212,160,23,0.4)); }
         @keyframes floatAnim { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-18px); } }
@@ -67,21 +36,16 @@
         .welcome-footer { color: var(--text-secondary); font-size: 0.75rem; margin-top: 8px; opacity: 0.7; }
 
         /* ========== المصادقة ========== */
-        .auth-screen {
-            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-            background: var(--bg); display: flex; flex-direction: column; align-items: center; justify-content: center;
-            z-index: 90; padding: 20px; transition: var(--transition);
-            opacity: 0; pointer-events: none; transform: translateY(30px); overflow-y: auto;
-        }
+        .auth-screen { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: var(--bg); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 90; padding: 20px; transition: var(--transition); opacity: 0; pointer-events: none; transform: translateY(30px); overflow-y: auto; }
         .auth-screen.active { opacity: 1; pointer-events: all; transform: translateY(0); }
         .auth-card { width: 100%; max-width: 420px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 32px 24px; box-shadow: var(--shadow-lg); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); }
         .auth-card h2 { text-align: center; color: var(--text); margin-bottom: 6px; font-size: 1.5rem; font-weight: 700; }
-        .auth-card .subtitle { text-align: center; color: var(--text-secondary); font-size: 0.8rem; margin-bottom: 24px; line-height: 1.5; }
+        .auth-card .subtitle { text-align: center; color: var(--text-secondary); font-size: 0.8rem; margin-bottom: 24px; }
         .auth-tabs { display: flex; background: var(--surface2); border-radius: 30px; margin-bottom: 24px; padding: 4px; }
         .auth-tab { flex: 1; padding: 11px; text-align: center; border-radius: 26px; cursor: pointer; color: var(--text-secondary); font-size: 0.85rem; font-weight: 500; transition: var(--transition); border: none; background: none; font-family: 'Cairo', sans-serif; }
         .auth-tab.active { background: var(--gold); color: #0a1410; font-weight: 700; box-shadow: 0 4px 15px rgba(212,160,23,0.2); }
         .input-group { margin-bottom: 14px; text-align: right; }
-        .input-group label { display: block; color: var(--text-secondary); font-size: 0.8rem; margin-bottom: 5px; font-weight: 500; }
+        .input-group label { display: block; color: var(--text-secondary); font-size: 0.8rem; margin-bottom: 5px; }
         .input-wrapper { position: relative; }
         .input-wrapper input, .input-wrapper select { width: 100%; padding: 13px 44px 13px 14px; background: var(--surface2); border: 1.5px solid var(--border); border-radius: var(--radius-md); color: var(--text); font-family: 'Cairo', sans-serif; font-size: 0.9rem; outline: none; transition: var(--transition); direction: ltr; text-align: left; }
         .input-wrapper select { direction: rtl; text-align: right; padding: 13px 14px; appearance: none; cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23D4A017' d='M6 8L1 3h10z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: left 14px center; }
@@ -89,10 +53,10 @@
         .input-wrapper .input-icon { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); color: var(--gold); pointer-events: none; font-size: 1rem; }
         .auth-submit { width: 100%; padding: 14px; background: linear-gradient(135deg, var(--gold), var(--gold-dark)); border: none; border-radius: 50px; color: #0a1410; font-family: 'Cairo', sans-serif; font-size: 1rem; font-weight: 700; cursor: pointer; transition: var(--transition); margin-top: 6px; display: flex; align-items: center; justify-content: center; gap: 8px; }
         .auth-submit:active { transform: scale(0.96); } .auth-submit:disabled { opacity: 0.5; cursor: not-allowed; }
-        .auth-error { color: var(--danger); font-size: 0.8rem; text-align: center; margin-top: 10px; min-height: 20px; line-height: 1.5; }
-        .auth-success { color: var(--success); font-size: 0.8rem; text-align: center; margin-top: 10px; min-height: 20px; line-height: 1.5; }
-        .auth-back { display: block; text-align: center; color: var(--text-secondary); margin-top: 12px; cursor: pointer; font-size: 0.82rem; background: none; border: none; font-family: 'Cairo', sans-serif; width: 100%; transition: var(--transition); }
-        .auth-forgot { display: block; text-align: center; color: var(--gold); margin-top: 12px; cursor: pointer; font-size: 0.82rem; background: none; border: none; font-family: 'Cairo', sans-serif; width: 100%; text-decoration: underline; transition: var(--transition); }
+        .auth-error { color: var(--danger); font-size: 0.8rem; text-align: center; margin-top: 10px; min-height: 20px; }
+        .auth-success { color: var(--success); font-size: 0.8rem; text-align: center; margin-top: 10px; min-height: 20px; }
+        .auth-back { display: block; text-align: center; color: var(--text-secondary); margin-top: 12px; cursor: pointer; font-size: 0.82rem; background: none; border: none; font-family: 'Cairo', sans-serif; width: 100%; }
+        .auth-forgot { display: block; text-align: center; color: var(--gold); margin-top: 12px; cursor: pointer; font-size: 0.82rem; background: none; border: none; font-family: 'Cairo', sans-serif; width: 100%; text-decoration: underline; }
 
         /* ========== التطبيق الرئيسي ========== */
         .app-container { width: 100%; height: 100%; background: var(--bg); display: flex; flex-direction: column; opacity: 0; pointer-events: none; transition: var(--transition); }
@@ -101,98 +65,86 @@
         .header-logo { font-size: 1.2rem; font-weight: 700; background: linear-gradient(135deg, var(--gold-light), var(--gold)); -webkit-background-clip: text; background-clip: text; color: transparent; display: flex; align-items: center; gap: 6px; }
         .header-logo i { color: var(--gold); -webkit-text-fill-color: var(--gold); font-size: 1rem; }
         .header-badge { background: rgba(46,204,113,0.15); padding: 3px 8px; border-radius: 20px; font-size: 0.58rem; color: var(--success); border: 1px solid rgba(46,204,113,0.25); }
-        .header-user { display: flex; align-items: center; gap: 8px; cursor: pointer; padding: 4px 12px 4px 4px; border-radius: 30px; background: rgba(255,255,255,0.03); transition: var(--transition); border: 1px solid transparent; }
+        .header-user { display: flex; align-items: center; gap: 8px; cursor: pointer; padding: 4px 12px 4px 4px; border-radius: 30px; background: rgba(255,255,255,0.03); transition: var(--transition); }
         .user-avatar { width: 38px; height: 38px; border-radius: 50%; background: linear-gradient(135deg, var(--gold), var(--gold-dark)); display: flex; align-items: center; justify-content: center; overflow: hidden; font-weight: 700; color: #0a1410; border: 2px solid rgba(212,160,23,0.4); font-size: 0.9rem; flex-shrink: 0; }
         .user-avatar img { width: 100%; height: 100%; object-fit: cover; }
         .user-name-header { color: var(--text); font-size: 0.8rem; font-weight: 500; max-width: 90px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
         .page-content { flex: 1; overflow-y: auto; padding: 12px; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; }
-        .page-content::-webkit-scrollbar { width: 3px; } .page-content::-webkit-scrollbar-track { background: transparent; } .page-content::-webkit-scrollbar-thumb { background: rgba(212,160,23,0.2); border-radius: 10px; }
+        .page-content::-webkit-scrollbar { width: 3px; } .page-content::-webkit-scrollbar-thumb { background: rgba(212,160,23,0.2); border-radius: 10px; }
 
-        /* ========== شريط التنقل ========== */
         .bottom-nav { background: rgba(8,18,14,0.98); border-top: 1px solid var(--border); display: flex; justify-content: space-around; align-items: center; padding: 4px 6px calc(8px + var(--safe-bottom)); backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px); z-index: 20; flex-shrink: 0; }
         .nav-item { display: flex; flex-direction: column; align-items: center; gap: 2px; background: none; border: none; color: var(--text-secondary); font-size: clamp(1rem, 3.5vw, 1.2rem); cursor: pointer; padding: 6px 10px; border-radius: 30px; transition: var(--transition); font-family: 'Cairo', sans-serif; position: relative; min-width: 48px; }
-        .nav-item span { font-size: clamp(0.5rem, 1.8vw, 0.6rem); font-weight: 500; }
+        .nav-item span { font-size: clamp(0.5rem, 1.8vw, 0.6rem); }
         .nav-item.active { color: var(--gold); background: rgba(212,160,23,0.1); }
-        .nav-item.active::before { content: ''; position: absolute; top: -4px; width: 16px; height: 2px; background: var(--gold); border-radius: 2px; box-shadow: 0 0 8px rgba(212,160,23,0.5); }
+        .nav-item.active::before { content: ''; position: absolute; top: -4px; width: 16px; height: 2px; background: var(--gold); border-radius: 2px; }
 
-        /* ========== صفحة المحادثة الخاصة ========== */
-        .private-chat-header { display: flex; align-items: center; gap: 12px; padding: 14px; background: var(--surface); border-radius: var(--radius-lg); margin-bottom: 12px; border: 1px solid var(--border); }
-        .private-chat-header .back-btn { width: 36px; height: 36px; border-radius: 50%; border: none; background: rgba(255,255,255,0.05); color: var(--text); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1rem; transition: var(--transition); }
-        .private-chat-header .back-btn:active { transform: scale(0.9); background: rgba(255,255,255,0.1); }
-        .chat-avatar-lg { width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, var(--gold), var(--gold-dark)); display: flex; align-items: center; justify-content: center; overflow: hidden; flex-shrink: 0; border: 2px solid rgba(212,160,23,0.4); font-weight: 700; color: #0a1410; font-size: 1.1rem; }
-        .chat-avatar-lg img { width: 100%; height: 100%; object-fit: cover; }
-        .chat-name { color: var(--text); font-weight: 600; font-size: 0.95rem; }
-        .chat-status { color: var(--text-secondary); font-size: 0.68rem; }
-        .chat-status.online-status { color: var(--success); }
+        /* ========== الدردشة الخاصة ========== */
+        .chat-private-header { display: flex; align-items: center; gap: 12px; padding: 14px; background: var(--surface); border-radius: var(--radius-lg); margin-bottom: 12px; border: 1px solid var(--border); }
+        .btn-back { width: 36px; height: 36px; border-radius: 50%; border: none; background: rgba(255,255,255,0.05); color: var(--text); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1rem; }
+        .btn-back:active { background: rgba(255,255,255,0.1); }
+        .chat-avatar { width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, var(--gold), var(--gold-dark)); display: flex; align-items: center; justify-content: center; overflow: hidden; flex-shrink: 0; border: 2px solid rgba(212,160,23,0.4); font-weight: 700; color: #0a1410; }
+        .chat-avatar img { width: 100%; height: 100%; object-fit: cover; }
         .messages-area { flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; margin-bottom: 12px; max-height: calc(100vh - 290px); padding: 4px; }
-        .msg-wrapper { display: flex; max-width: 82%; animation: msgIn 0.3s cubic-bezier(0.4,0,0.2,1); }
-        @keyframes msgIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+        .msg-wrapper { display: flex; max-width: 80%; animation: msgIn 0.3s ease; }
+        @keyframes msgIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         .msg-wrapper.sent { align-self: flex-end; } .msg-wrapper.received { align-self: flex-start; }
         .msg-bubble { padding: 10px 14px; border-radius: 20px; font-size: 0.85rem; line-height: 1.5; word-break: break-word; }
         .sent .msg-bubble { background: linear-gradient(135deg, var(--gold), var(--gold-dark)); color: #0a1410; border-bottom-right-radius: 4px; }
         .received .msg-bubble { background: var(--surface2); border: 1px solid var(--border); color: var(--text); border-bottom-left-radius: 4px; }
-        .msg-bubble img { max-width: 200px; border-radius: 12px; cursor: pointer; display: block; }
-        .msg-bubble audio { max-width: 200px; margin-top: 4px; height: 35px; }
+        .msg-bubble img { max-width: 180px; border-radius: 12px; cursor: pointer; display: block; }
+        .msg-bubble audio { max-width: 180px; margin-top: 4px; height: 32px; }
         .msg-time { font-size: 0.55rem; opacity: 0.7; margin-top: 4px; text-align: left; direction: ltr; }
         .msg-sender-name { font-size: 0.62rem; color: var(--gold); margin-bottom: 2px; font-weight: 600; }
-        .msg-date-separator { text-align: center; color: var(--text-secondary); font-size: 0.7rem; margin: 8px 0; padding: 4px 12px; background: rgba(255,255,255,0.03); border-radius: 15px; display: inline-block; align-self: center; }
         .chat-input-bar { display: flex; gap: 6px; align-items: center; background: var(--surface); border-radius: 50px; padding: 4px; border: 1px solid var(--border); }
         .chat-input-bar input { flex: 1; background: transparent; border: none; padding: 10px 16px; color: var(--text); font-family: 'Cairo', sans-serif; font-size: 0.88rem; outline: none; }
         .chat-input-bar button { width: 38px; height: 38px; border-radius: 50%; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: var(--transition); flex-shrink: 0; background: none; color: var(--gold); font-size: 1.1rem; }
         .chat-input-bar button:active { transform: scale(0.88); background: rgba(212,160,23,0.15); }
-        .btn-send { background: var(--gold) !important; color: #0a1410 !important; }
-        .recording-indicator { display: none; align-items: center; gap: 8px; padding: 8px 16px; background: var(--danger); border-radius: 20px; color: white; font-size: 0.8rem; animation: pulse 1s infinite; margin-bottom: 8px; }
-        @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
+        .btn-send-msg { background: var(--gold) !important; color: #0a1410 !important; }
+        .recording-indicator { display: none; align-items: center; gap: 8px; padding: 6px 14px; background: var(--danger); border-radius: 20px; color: white; font-size: 0.78rem; animation: pulse 1s infinite; margin-bottom: 8px; }
+        @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
         .recording-indicator.active { display: flex; }
 
-        /* ========== جهات الاتصال ========== */
+        /* ========== الاصدقاء ========== */
         .section-title { color: var(--gold); font-size: 1rem; margin-bottom: 12px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
-        .search-contacts-bar { display: flex; gap: 8px; margin-bottom: 12px; }
-        .search-contacts-bar input { flex: 1; padding: 10px 16px; background: var(--surface2); border: 1px solid var(--border); border-radius: 25px; color: var(--text); font-family: 'Cairo', sans-serif; font-size: 0.85rem; outline: none; }
-        .search-contacts-bar input:focus { border-color: var(--gold); }
-        .search-contacts-bar button { padding: 10px 16px; background: var(--gold); border: none; border-radius: 25px; color: #0a1410; font-family: 'Cairo', sans-serif; cursor: pointer; font-weight: 600; }
-        .contact-item { display: flex; align-items: center; justify-content: space-between; padding: 14px; background: var(--surface); border-radius: var(--radius-lg); margin-bottom: 8px; cursor: pointer; transition: var(--transition); border: 1px solid transparent; }
-        .contact-item:hover { border-color: var(--border); background: var(--surface2); }
-        .contact-item:active { transform: scale(0.97); }
-        .contact-info { display: flex; align-items: center; gap: 12px; flex: 1; }
+        .search-bar { display: flex; gap: 8px; margin-bottom: 12px; }
+        .search-bar input { flex: 1; padding: 10px 16px; background: var(--surface2); border: 1px solid var(--border); border-radius: 25px; color: var(--text); font-family: 'Cairo', sans-serif; font-size: 0.85rem; outline: none; }
+        .search-bar input:focus { border-color: var(--gold); }
+        .search-bar button { padding: 10px 16px; background: var(--gold); border: none; border-radius: 25px; color: #0a1410; font-family: 'Cairo', sans-serif; cursor: pointer; font-weight: 600; }
+        .contact-item { display: flex; align-items: center; justify-content: space-between; padding: 14px; background: var(--surface); border-radius: var(--radius-lg); margin-bottom: 8px; transition: var(--transition); border: 1px solid transparent; }
+        .contact-item:active { transform: scale(0.98); }
+        .contact-info { display: flex; align-items: center; gap: 12px; flex: 1; cursor: pointer; }
         .contact-avatar-sm { width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, var(--gold), var(--gold-dark)); display: flex; align-items: center; justify-content: center; overflow: hidden; flex-shrink: 0; border: 2px solid rgba(212,160,23,0.3); font-weight: 700; color: #0a1410; font-size: 0.9rem; }
         .contact-avatar-sm img { width: 100%; height: 100%; object-fit: cover; }
         .contact-name { color: var(--text); font-weight: 600; font-size: 0.88rem; }
-        .contact-status-text { font-size: 0.62rem; color: var(--text-secondary); }
+        .contact-status { font-size: 0.62rem; color: var(--text-secondary); }
         .status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-left: 4px; }
         .status-dot.online { background: var(--success); box-shadow: 0 0 8px rgba(46,204,113,0.6); } .status-dot.offline { background: #666; }
-        .contact-buttons { display: flex; gap: 6px; }
-        .btn-contact-chat { width: 38px; height: 38px; border-radius: 50%; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: var(--transition); font-size: 0.9rem; background: var(--gold); color: #0a1410; }
-        .btn-contact-chat:active { transform: scale(0.9); }
-        .unread-badge { background: var(--danger); color: white; padding: 2px 8px; border-radius: 12px; font-size: 0.6rem; font-weight: 700; }
+        .btn-chat { width: 40px; height: 40px; border-radius: 50%; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1rem; background: var(--gold); color: #0a1410; transition: var(--transition); }
+        .btn-chat:active { transform: scale(0.9); }
 
         /* ========== الرادار ========== */
-        .radar-btn { width: 100%; padding: 15px; border-radius: 50px; background: linear-gradient(135deg, var(--gold), var(--gold-dark)); border: none; color: #0a1410; font-family: 'Cairo', sans-serif; font-weight: 700; font-size: 1rem; cursor: pointer; margin-bottom: 16px; display: flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 8px 25px rgba(212,160,23,0.25); transition: var(--transition); }
+        .radar-btn { width: 100%; padding: 15px; border-radius: 50px; background: linear-gradient(135deg, var(--gold), var(--gold-dark)); border: none; color: #0a1410; font-family: 'Cairo', sans-serif; font-weight: 700; font-size: 1rem; cursor: pointer; margin-bottom: 16px; display: flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 8px 25px rgba(212,160,23,0.25); }
         .radar-info-text { color: var(--text-secondary); font-size: 0.75rem; text-align: center; margin-bottom: 14px; }
         .radar-user-card { display: flex; align-items: center; justify-content: space-between; padding: 12px; background: var(--surface); border-radius: var(--radius-md); margin-bottom: 6px; border: 1px solid var(--border); }
         .radar-user-info { display: flex; align-items: center; gap: 10px; }
-        .radar-user-avatar { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--gold), var(--gold-dark)); display: flex; align-items: center; justify-content: center; overflow: hidden; flex-shrink: 0; font-weight: 700; color: #0a1410; font-size: 0.8rem; }
+        .radar-user-avatar { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--gold), var(--gold-dark)); display: flex; align-items: center; justify-content: center; overflow: hidden; flex-shrink: 0; font-weight: 700; color: #0a1410; }
         .radar-user-avatar img { width: 100%; height: 100%; object-fit: cover; }
-        .radar-user-name { color: var(--text); font-weight: 600; font-size: 0.85rem; } .radar-user-distance { color: var(--success); font-size: 0.65rem; }
         .btn-add { background: var(--success); border: none; padding: 6px 14px; border-radius: 20px; color: white; font-family: 'Cairo', sans-serif; font-weight: 600; cursor: pointer; font-size: 0.72rem; } .btn-added { background: #555; pointer-events: none; }
 
         /* ========== الستوري ========== */
-        .story-add-btn { width: 100%; padding: 14px; border-radius: 50px; background: linear-gradient(135deg, var(--purple), #8e44ad); border: none; color: white; font-family: 'Cairo', sans-serif; font-weight: 700; cursor: pointer; margin-bottom: 16px; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 1rem; box-shadow: 0 8px 25px rgba(155,89,182,0.25); transition: var(--transition); }
+        .story-add-btn { width: 100%; padding: 14px; border-radius: 50px; background: linear-gradient(135deg, var(--purple), #8e44ad); border: none; color: white; font-family: 'Cairo', sans-serif; font-weight: 700; cursor: pointer; margin-bottom: 16px; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 1rem; }
         .story-card-item { display: flex; align-items: center; gap: 14px; padding: 14px; background: var(--surface); border-radius: var(--radius-lg); margin-bottom: 8px; cursor: pointer; transition: var(--transition); border: 1px solid transparent; }
         .story-card-item:hover { border-color: var(--border); background: var(--surface2); }
         .story-ring { width: 50px; height: 50px; border-radius: 50%; padding: 2px; background: linear-gradient(45deg, #f093fb, #f5576c, #fda085, #f6d365); flex-shrink: 0; }
         .story-ring-inner { width: 100%; height: 100%; border-radius: 50%; background: var(--surface2); display: flex; align-items: center; justify-content: center; overflow: hidden; }
         .story-ring-inner img { width: 100%; height: 100%; object-fit: cover; }
-        .story-card-content { flex: 1; } .story-card-content strong { color: var(--text); font-size: 0.88rem; } .story-card-content p { color: var(--text-secondary); font-size: 0.73rem; } .story-card-content small { color: var(--text-secondary); font-size: 0.63rem; }
 
         /* ========== نافذة الستوري ========== */
         .story-detail-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 200; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: var(--transition); padding: 20px; }
         .story-detail-overlay.show { opacity: 1; pointer-events: all; }
         .story-detail-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 24px; width: 90%; max-width: 400px; text-align: center; position: relative; box-shadow: var(--shadow-lg); }
         .story-detail-card img { max-width: 100%; max-height: 280px; border-radius: 12px; margin-bottom: 12px; }
-        .story-detail-card h3 { color: var(--text); margin-bottom: 4px; font-size: 1.05rem; } .story-detail-card p { color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 8px; }
-        .story-detail-stats { display: flex; justify-content: center; gap: 24px; margin: 12px 0; color: var(--text-secondary); font-size: 0.85rem; }
         .story-detail-close { position: absolute; top: 10px; right: 14px; color: var(--text-secondary); font-size: 1.4rem; cursor: pointer; background: none; border: none; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 50%; }
         .btn-like { background: var(--danger); border: none; padding: 10px 24px; border-radius: 30px; color: white; font-family: 'Cairo', sans-serif; cursor: pointer; font-size: 0.88rem; font-weight: 600; } .btn-liked { background: #555; }
 
@@ -201,13 +153,6 @@
         .profile-avatar-lg { width: 90px; height: 90px; border-radius: 50%; background: linear-gradient(135deg, var(--gold), var(--gold-dark)); display: flex; align-items: center; justify-content: center; overflow: hidden; margin: 0 auto 12px; border: 3px solid rgba(212,160,23,0.5); font-weight: 700; color: #0a1410; font-size: 2rem; cursor: pointer; position: relative; }
         .profile-avatar-lg img { width: 100%; height: 100%; object-fit: cover; }
         .profile-avatar-lg:hover::after { content: 'تغيير الصورة'; position: absolute; inset: 0; background: rgba(0,0,0,0.7); display: flex; align-items: center; justify-content: center; font-size: 0.7rem; color: white; border-radius: 50%; }
-        .profile-name { font-size: 1.3rem; font-weight: 700; color: var(--text); margin-bottom: 4px; }
-        .profile-email { color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 4px; }
-        .profile-phone { color: var(--gold); font-size: 0.9rem; font-weight: 500; direction: ltr; }
-        .profile-stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 16px 0; }
-        .profile-stat-item { text-align: center; padding: 12px 8px; background: var(--surface2); border-radius: var(--radius-sm); }
-        .profile-stat-value { font-size: 1.3rem; font-weight: 700; color: var(--gold); }
-        .profile-stat-label { font-size: 0.62rem; color: var(--text-secondary); }
         .profile-section { background: var(--surface); border-radius: var(--radius-lg); border: 1px solid var(--border); overflow: hidden; margin-bottom: 12px; }
         .profile-section-header { padding: 12px 16px; border-bottom: 1px solid var(--border); color: var(--gold); font-weight: 600; font-size: 0.82rem; }
         .profile-section-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; border-bottom: 1px solid rgba(255,255,255,0.02); }
@@ -217,7 +162,7 @@
 
         /* ========== الاعدادات ========== */
         .settings-block { background: var(--surface); border-radius: var(--radius-lg); overflow: hidden; margin-bottom: 16px; border: 1px solid var(--border); }
-        .settings-block-header { padding: 14px 16px; border-bottom: 1px solid var(--border); color: var(--gold); font-weight: 600; font-size: 0.82rem; display: flex; align-items: center; gap: 8px; }
+        .settings-block-header { padding: 14px 16px; border-bottom: 1px solid var(--border); color: var(--gold); font-weight: 600; font-size: 0.82rem; }
         .settings-row { display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; cursor: pointer; transition: var(--transition); }
         .settings-row-left { display: flex; align-items: center; gap: 12px; color: var(--text); font-size: 0.88rem; } .settings-row-left i { width: 20px; color: var(--gold); }
         .toggle { width: 48px; height: 26px; background: #444; border-radius: 30px; position: relative; cursor: pointer; transition: var(--transition); flex-shrink: 0; }
@@ -237,13 +182,11 @@
         .radar-center-dot { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 10px; height: 10px; background: var(--gold); border-radius: 50%; box-shadow: 0 0 20px rgba(212,160,23,0.8); z-index: 2; }
         .radar-point { position: absolute; width: 7px; height: 7px; background: var(--success); border-radius: 50%; box-shadow: 0 0 12px rgba(46,204,113,0.8); animation: radarBlink 1s infinite; cursor: pointer; }
         @keyframes radarBlink { 0%,100% { transform: scale(1); opacity: 1; } 50% { transform: scale(2.5); opacity: 0.2; } }
-        .radar-status-text { color: var(--gold); font-size: 0.85rem; font-weight: 500; margin-bottom: 12px; }
-        .radar-users-container { max-height: 220px; overflow-y: auto; width: 90%; max-width: 380px; padding: 0 4px; }
 
         .toast { position: fixed; top: 16px; left: 50%; transform: translateX(-50%); background: var(--surface); border: 1px solid var(--border); padding: 12px 24px; border-radius: 30px; color: var(--text); z-index: 300; font-size: 0.82rem; box-shadow: var(--shadow-lg); animation: toastIn 0.35s ease; }
         @keyframes toastIn { from { opacity: 0; transform: translateX(-50%) translateY(-20px); } to { opacity: 1; transform: translateX(-50%) translateY(0); } }
 
-        @media (max-width: 380px) { .welcome-title { font-size: 1.8rem; } .welcome-logo { font-size: 3.5rem; } .auth-card { padding: 24px 16px; } }
+        @media (max-width: 380px) { .welcome-title { font-size: 1.8rem; } .auth-card { padding: 24px 16px; } }
     </style>
 </head>
 <body>
@@ -291,7 +234,7 @@
     <div class="story-detail-card">
         <button class="story-detail-close" onclick="closeStoryDetail()">&times;</button>
         <img id="storyDetailImg" src="" alt=""><h3 id="storyDetailUser"></h3><p id="storyDetailCaption"></p>
-        <div class="story-detail-stats"><span><i class="fas fa-eye"></i> <span id="storyDetailViews">0</span></span><span><i class="fas fa-heart"></i> <span id="storyDetailLikes">0</span></span></div>
+        <div style="display:flex;justify-content:center;gap:24px;margin:12px 0;color:var(--text-secondary);font-size:0.85rem;"><span><i class="fas fa-eye"></i> <span id="storyDetailViews">0</span></span><span><i class="fas fa-heart"></i> <span id="storyDetailLikes">0</span></span></div>
         <button class="btn-like" id="storyLikeBtn" onclick="likeCurrentStory()"><i class="fas fa-heart"></i> اعجاب</button>
     </div>
 </div>
@@ -299,8 +242,8 @@
 <div class="modal-overlay" id="radarModal">
     <button class="modal-close" onclick="closeRadar()">&times;</button>
     <div class="radar-visual"><div class="radar-sweep-line"></div><div class="radar-center-dot"></div><div id="radarDots"></div></div>
-    <p class="radar-status-text" id="radarStatus">جار المسح...</p>
-    <div class="radar-users-container" id="radarUsersList"></div>
+    <p style="color:var(--gold);font-size:0.85rem;margin-bottom:12px;" id="radarStatus">جار المسح...</p>
+    <div style="max-height:220px;overflow-y:auto;width:90%;max-width:380px;" id="radarUsersList"></div>
 </div>
 
 <script type="module">
@@ -322,17 +265,10 @@
     const auth = getAuth(app);
     const db = getDatabase(app);
 
-    let currentUser = null;
-    let currentChatId = null;
-    let currentChatUserName = '';
-    let messageListener = null;
-    let currentStoryId = null;
-    let allStoriesCache = [];
-    let statusUpdateInterval = null;
-    let locationUpdateInterval = null;
-    let mediaRecorder = null;
-    let audioChunks = [];
-    let unreadCounts = {};
+    let currentUser = null, currentChatId = null, currentChatFriend = null;
+    let messageListener = null, currentStoryId = null, allStoriesCache = [];
+    let statusInterval = null, locationInterval = null;
+    let mediaRecorder = null, audioChunks = [];
     const blockedUsers = JSON.parse(localStorage.getItem('blockedUsers') || '{}');
 
     function sanitizePhone(p) { let c = (p || '').replace(/[\s\-\+\(\)]/g, ''); if (c.startsWith('00')) c = c.substring(2); if (c.startsWith('218')) c = '0' + c.substring(3); if (!c.startsWith('0') && c.length >= 9) c = '0' + c; return c; }
@@ -341,21 +277,20 @@
     function fileToBase64(f) { return new Promise((res, rej) => { const r = new FileReader(); r.onload = () => res(r.result); r.onerror = rej; r.readAsDataURL(f); }); }
     function showToast(msg) { const t = document.createElement('div'); t.className = 'toast'; t.textContent = msg; document.body.appendChild(t); setTimeout(() => t.remove(), 2800); }
     function formatTime(ts) { if (!ts) return ''; return new Date(ts).toLocaleTimeString('ar-LY', { hour: '2-digit', minute: '2-digit' }); }
-    function formatDate(ts) { if (!ts) return ''; const d = new Date(ts); const today = new Date(); if (d.toDateString() === today.toDateString()) return 'اليوم'; const yesterday = new Date(today); yesterday.setDate(yesterday.getDate()-1); if (d.toDateString() === yesterday.toDateString()) return 'امس'; return d.toLocaleDateString('ar-LY', { month:'short', day:'numeric' }); }
     function getDistance(lat1, lon1, lat2, lon2) { const R = 6371; const dLat = (lat2-lat1)*Math.PI/180; const dLon = (lon2-lon1)*Math.PI/180; const a = Math.sin(dLat/2)**2 + Math.cos(lat1*Math.PI/180)*Math.cos(lat2*Math.PI/180)*Math.sin(dLon/2)**2; return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); }
 
     // ============ المصادقة ============
     let authMode = 'login';
     window.showAuth = function(m) { authMode = m; document.getElementById('welcomeScreen').classList.add('hidden'); document.getElementById('authScreen').classList.add('active'); switchAuthMode(m); };
-    window.goBack = function() { document.getElementById('welcomeScreen').classList.remove('hidden'); document.getElementById('authScreen').classList.remove('active'); document.getElementById('authError').textContent = ''; document.getElementById('authSuccess').textContent = ''; };
+    window.goBack = function() { document.getElementById('welcomeScreen').classList.remove('hidden'); document.getElementById('authScreen').classList.remove('active'); document.getElementById('authError').textContent = ''; };
     window.switchAuthMode = function(m) {
         authMode = m;
         document.querySelectorAll('.auth-tab').forEach(t => t.classList.toggle('active', t.dataset.mode === m));
         document.getElementById('authTitle').textContent = m === 'login' ? 'تسجيل الدخول' : 'انشاء حساب جديد';
-        document.getElementById('authSubtitle').textContent = m === 'login' ? 'ادخل بياناتك للمتابعة' : 'انشئ حسابك واجب على اسئلة الامان';
+        document.getElementById('authSubtitle').textContent = m === 'login' ? 'ادخل بياناتك' : 'انشئ حسابك';
         document.getElementById('authSubmitBtn').innerHTML = m === 'login' ? '<i class="fas fa-sign-in-alt"></i> تسجيل الدخول' : '<i class="fas fa-user-plus"></i> انشاء حساب';
         document.getElementById('forgotBtn').style.display = m === 'login' ? 'block' : 'none';
-        document.getElementById('authError').textContent = ''; document.getElementById('authSuccess').textContent = '';
+        document.getElementById('authError').textContent = '';
         renderAuthFields();
     };
     function renderAuthFields() {
@@ -363,11 +298,11 @@
         c.innerHTML = authMode === 'login' ? `
             <div class="input-group"><label>رقم الهاتف او البريد</label><div class="input-wrapper"><i class="fas fa-user input-icon"></i><input type="text" id="loginId" placeholder="رقم الهاتف او البريد" dir="ltr"></div></div>
             <div class="input-group"><label>كلمة المرور</label><div class="input-wrapper"><i class="fas fa-lock input-icon"></i><input type="password" id="loginPass" placeholder="كلمة المرور" dir="ltr"></div></div>` : `
-            <div class="input-group"><label>الاسم الكامل</label><div class="input-wrapper"><i class="fas fa-user input-icon"></i><input type="text" id="regName" placeholder="اسمك الكريم"></div></div>
+            <div class="input-group"><label>الاسم الكامل</label><div class="input-wrapper"><i class="fas fa-user input-icon"></i><input type="text" id="regName" placeholder="اسمك"></div></div>
             <div class="input-group"><label>رقم الهاتف</label><div class="input-wrapper"><i class="fas fa-mobile-alt input-icon"></i><input type="tel" id="regPhone" placeholder="0912345678" dir="ltr"></div></div>
-            <div class="input-group"><label>كلمة المرور (6 احرف على الاقل)</label><div class="input-wrapper"><i class="fas fa-lock input-icon"></i><input type="password" id="regPass" placeholder="كلمة المرور" dir="ltr"></div></div>
-            <div class="input-group"><label>سؤال الامان</label><div class="input-wrapper"><select id="regQuestion"><option value="">اختر سؤالا...</option><option>ما اسم مدينتك المفضلة؟</option><option>ما اسم حيوانك الاليف؟</option><option>ما اسم مدرستك الابتدائية؟</option><option>ما هو طعامك المفضل؟</option><option>ما اسم افضل صديق لك؟</option><option>ما هو لونك المفضل؟</option><option>ما اسم والدتك؟</option></select></div></div>
-            <div class="input-group"><label>اجابة سؤال الامان</label><div class="input-wrapper"><i class="fas fa-shield-alt input-icon"></i><input type="text" id="regAnswer" placeholder="اجابتك"></div></div>`;
+            <div class="input-group"><label>كلمة المرور</label><div class="input-wrapper"><i class="fas fa-lock input-icon"></i><input type="password" id="regPass" placeholder="6 احرف" dir="ltr"></div></div>
+            <div class="input-group"><label>سؤال الامان</label><div class="input-wrapper"><select id="regQuestion"><option value="">اختر...</option><option>ما اسم مدينتك؟</option><option>اسم حيوانك الاليف؟</option><option>اسم مدرستك؟</option><option>طعامك المفضل؟</option></select></div></div>
+            <div class="input-group"><label>الاجابة</label><div class="input-wrapper"><i class="fas fa-shield-alt input-icon"></i><input type="text" id="regAnswer" placeholder="اجابتك"></div></div>`;
     }
     window.handleAuth = async function() {
         const errEl = document.getElementById('authError'), successEl = document.getElementById('authSuccess');
@@ -376,41 +311,31 @@
             if (authMode === 'register') {
                 const name = document.getElementById('regName').value.trim(), phone = sanitizePhone(document.getElementById('regPhone').value);
                 const pass = document.getElementById('regPass').value, question = document.getElementById('regQuestion').value, answer = document.getElementById('regAnswer').value.trim();
-                if (!name) throw new Error('الرجاء ادخال الاسم'); if (phone.length < 10) throw new Error('رقم هاتف غير صحيح');
-                if (pass.length < 6) throw new Error('كلمة المرور 6 احرف على الاقل'); if (!question) throw new Error('اختر سؤال الامان'); if (!answer) throw new Error('ادخل الاجابة');
+                if (!name || phone.length < 10 || pass.length < 6 || !question || !answer) throw new Error('تاكد من جميع الحقول');
                 try {
                     const cred = await createUserWithEmailAndPassword(auth, phoneToEmail(phone), pass);
                     await updateProfile(cred.user, { displayName: name });
                     await set(ref(db, `users/${cred.user.uid}/security`), { question, answer });
                     localStorage.setItem('savedPhone', phone); localStorage.setItem('savedPass', pass);
-                    successEl.textContent = 'تم انشاء الحساب بنجاح!';
-                } catch (createError) {
-                    if (createError.code === 'auth/email-already-in-use') {
-                        successEl.textContent = 'الرقم مسجل مسبقاً. جاري تسجيل الدخول...';
-                        setTimeout(async () => { try { await signInWithEmailAndPassword(auth, phoneToEmail(phone), pass); } catch (loginError) { errEl.textContent = 'كلمة المرور غير صحيحة.'; } }, 1500);
-                    } else { throw createError; }
+                    successEl.textContent = 'تم انشاء الحساب!';
+                } catch (ce) {
+                    if (ce.code === 'auth/email-already-in-use') { successEl.textContent = 'الرقم مسجل. جاري تسجيل الدخول...'; setTimeout(async () => { try { await signInWithEmailAndPassword(auth, phoneToEmail(phone), pass); } catch (le) { errEl.textContent = 'كلمة المرور غير صحيحة'; } }, 1500); }
+                    else throw ce;
                 }
             } else {
                 let id = document.getElementById('loginId').value.trim(); const pass = document.getElementById('loginPass').value;
                 if (!id || !pass) throw new Error('ادخل جميع البيانات');
                 if (!id.includes('@')) id = phoneToEmail(sanitizePhone(id));
                 await signInWithEmailAndPassword(auth, id, pass);
-                localStorage.setItem('savedPhone', id.includes('@phone') ? id.split('@')[0] : id);
-                localStorage.setItem('savedPass', pass);
+                localStorage.setItem('savedPhone', id.includes('@phone') ? id.split('@')[0] : id); localStorage.setItem('savedPass', pass);
             }
-        } catch (e) {
-            if (e.code === 'auth/invalid-credential') errEl.textContent = 'كلمة المرور غير صحيحة';
-            else if (e.code === 'auth/user-not-found') errEl.textContent = 'لا يوجد حساب';
-            else errEl.textContent = e.message || 'حدث خطأ';
-        } finally { btn.disabled = false; }
+        } catch (e) { errEl.textContent = e.message || 'حدث خطأ'; } finally { btn.disabled = false; }
     };
     window.signInWithGoogle = async function() { try { await signInWithPopup(auth, new GoogleAuthProvider()); } catch (e) { document.getElementById('authError').textContent = 'فشل تسجيل الدخول'; } };
     window.showForgotPassword = function() {
-        document.getElementById('authTitle').textContent = 'استعادة كلمة المرور'; document.getElementById('authSubtitle').textContent = 'ادخل رقم هاتفك';
-        document.getElementById('authTabs').style.display = 'none'; document.getElementById('forgotBtn').style.display = 'none';
+        document.getElementById('authTitle').textContent = 'استعادة كلمة المرور'; document.getElementById('authTabs').style.display = 'none'; document.getElementById('forgotBtn').style.display = 'none';
         document.getElementById('authFields').innerHTML = `<div class="input-group"><label>رقم الهاتف</label><div class="input-wrapper"><i class="fas fa-mobile-alt input-icon"></i><input type="tel" id="forgotPhone" placeholder="رقم هاتفك" dir="ltr"></div></div><div id="forgotQuestionArea"></div>`;
-        document.getElementById('authSubmitBtn').innerHTML = '<i class="fas fa-check"></i> تحقق';
-        document.getElementById('authSubmitBtn').onclick = handleForgotPassword;
+        document.getElementById('authSubmitBtn').innerHTML = '<i class="fas fa-check"></i> تحقق'; document.getElementById('authSubmitBtn').onclick = handleForgotPassword;
     };
     window.handleForgotPassword = async function() {
         const errEl = document.getElementById('authError'), successEl = document.getElementById('authSuccess');
@@ -421,7 +346,7 @@
         if (!area.querySelector('input')) {
             const snap = await get(ref(db, 'users')); const users = snap.val() || {}; let found = null, foundUid = null;
             for (let uid in users) { if (users[uid].phone === phone && users[uid].security?.question) { found = users[uid]; foundUid = uid; break; } }
-            if (!found) { errEl.textContent = 'لم يتم العثور على حساب'; return; }
+            if (!found) { errEl.textContent = 'لم يتم العثور'; return; }
             area.dataset.uid = foundUid; area.dataset.answer = found.security.answer;
             area.innerHTML = `<div class="input-group"><label>سؤال: <strong style="color:var(--gold);">${found.security.question}</strong></label><div class="input-wrapper"><i class="fas fa-shield-alt input-icon"></i><input type="text" id="forgotAnswer" placeholder="اجابتك"></div></div><div class="input-group"><label>كلمة مرور جديدة</label><div class="input-wrapper"><i class="fas fa-lock input-icon"></i><input type="password" id="forgotNewPass" placeholder="كلمة مرور جديدة" dir="ltr"></div></div>`;
             document.getElementById('authSubmitBtn').onclick = async () => {
@@ -438,154 +363,107 @@
         if (user) {
             const userRef = ref(db, `users/${user.uid}`); const snap = await get(userRef);
             const phoneFromEmail = user.email?.includes('@phone.libyano.app') ? user.email.split('@')[0] : '';
-            if (!snap.exists()) {
-                await set(userRef, { uid: user.uid, name: user.displayName || (phoneFromEmail ? 'مستخدم '+phoneFromEmail.slice(-4) : 'مستخدم'), email: user.email || '', phone: phoneFromEmail || '', avatar: (user.displayName||'م')[0].toUpperCase(), photoURL: user.photoURL || '', status: 'online', createdAt: Date.now(), lastSeen: Date.now(), blocked: false });
-            } else {
-                await update(userRef, { status: 'online', lastSeen: Date.now() });
-                if (phoneFromEmail && !snap.val().phone) await update(userRef, { phone: phoneFromEmail });
-            }
+            if (!snap.exists()) { await set(userRef, { uid: user.uid, name: user.displayName || (phoneFromEmail ? 'مستخدم '+phoneFromEmail.slice(-4) : 'مستخدم'), email: user.email || '', phone: phoneFromEmail || '', avatar: (user.displayName||'م')[0].toUpperCase(), photoURL: user.photoURL || '', status: 'online', createdAt: Date.now(), lastSeen: Date.now(), blocked: false }); }
+            else { await update(userRef, { status: 'online', lastSeen: Date.now() }); if (phoneFromEmail && !snap.val().phone) await update(userRef, { phone: phoneFromEmail }); }
             const uData = snap.exists() ? snap.val() : {};
             currentUser = { uid: user.uid, name: user.displayName || uData.name || 'مستخدم', email: user.email || '', phone: phoneFromEmail || uData.phone || '', avatar: uData.avatar || 'U', photoURL: user.photoURL || uData.photoURL || '', photoBase64: uData.photoBase64 || '' };
             document.getElementById('welcomeScreen').classList.add('hidden'); document.getElementById('authScreen').classList.remove('active'); document.getElementById('appContainer').classList.add('active');
             updateHeaderUI(); showPage('chat'); updateUserLocation();
-            statusUpdateInterval = setInterval(updateOnlineStatus, 30000);
-            locationUpdateInterval = setInterval(updateUserLocation, 60000);
+            statusInterval = setInterval(updateOnlineStatus, 30000); locationInterval = setInterval(updateUserLocation, 60000);
             document.addEventListener('visibilitychange', handleVisibilityChange);
-            listenForNewMessages();
         } else {
             document.getElementById('welcomeScreen').classList.remove('hidden'); document.getElementById('authScreen').classList.remove('active'); document.getElementById('appContainer').classList.remove('active');
             currentUser = null; currentChatId = null;
-            if (statusUpdateInterval) clearInterval(statusUpdateInterval);
-            if (locationUpdateInterval) clearInterval(locationUpdateInterval);
+            if (statusInterval) clearInterval(statusInterval); if (locationInterval) clearInterval(locationInterval);
             document.removeEventListener('visibilitychange', handleVisibilityChange);
             if (messageListener) { messageListener(); messageListener = null; }
         }
     });
-
     async function updateOnlineStatus() { if (currentUser) await update(ref(db, `users/${currentUser.uid}`), { status: 'online', lastSeen: Date.now() }); }
     async function handleVisibilityChange() { if (currentUser) { const st = document.visibilityState === 'visible' ? 'online' : 'offline'; await update(ref(db, `users/${currentUser.uid}`), { status: st, lastSeen: Date.now() }); } }
     async function updateUserLocation() { if (!navigator.geolocation || !currentUser) return; try { const pos = await new Promise((res, rej) => navigator.geolocation.getCurrentPosition(res, rej, { timeout: 5000, enableHighAccuracy: true })); await update(ref(db, `users/${currentUser.uid}/location`), { lat: pos.coords.latitude, lng: pos.coords.longitude, updated: Date.now(), accuracy: pos.coords.accuracy }); } catch (e) {} }
-    function updateHeaderUI() { document.getElementById('headerName').textContent = currentUser?.name?.split(' ')[0] || 'مستخدم'; document.getElementById('headerAvatar').innerHTML = currentUser?.photoBase64 ? `<img src="${currentUser.photoBase64}" alt="صورة">` : (currentUser?.avatar || 'U'); }
-
-    // ============ الاستماع للرسائل الجديدة (اشعارات) ============
-    function listenForNewMessages() {
-        if (!currentUser) return;
-        const friendsRef = ref(db, `friends/${currentUser.uid}`);
-        onValue(friendsRef, async (snap) => {
-            const friendIds = Object.keys(snap.val() || {}).filter(f => f !== currentUser.uid);
-            for (const fid of friendIds) {
-                const chatId = [currentUser.uid, fid].sort().join('_');
-                const msgsRef = ref(db, `messages/${chatId}`);
-                onValue(msgsRef, (msgSnap) => {
-                    if (!msgSnap.exists()) return;
-                    const msgs = [];
-                    msgSnap.forEach(c => msgs.push(c.val()));
-                    const newFromOthers = msgs.filter(m => m.senderId !== currentUser.uid && m.timestamp > Date.now() - 5000).length;
-                    if (newFromOthers > 0 && currentChatId !== chatId) {
-                        unreadCounts[fid] = (unreadCounts[fid] || 0) + newFromOthers;
-                        if (currentPage === 'contacts') renderContacts();
-                    }
-                });
-            }
-        });
-    }
+    function updateHeaderUI() { document.getElementById('headerName').textContent = currentUser?.name?.split(' ')[0] || 'مستخدم'; document.getElementById('headerAvatar').innerHTML = currentUser?.photoBase64 ? `<img src="${currentUser.photoBase64}">` : (currentUser?.avatar || 'U'); }
 
     async function handleLogout() {
-        try {
-            if (currentUser) { await update(ref(db, `users/${currentUser.uid}`), { status: 'offline', lastSeen: Date.now() }); }
-            await signOut(auth);
-            showToast('تم تسجيل الخروج بنجاح');
-        } catch (error) { showToast('فشل في تسجيل الخروج'); }
+        try { if (currentUser) await update(ref(db, `users/${currentUser.uid}`), { status: 'offline', lastSeen: Date.now() }); await signOut(auth); showToast('تم تسجيل الخروج'); }
+        catch (e) { showToast('فشل'); }
     }
-    window.addEventListener('beforeunload', () => { if (currentUser) { try { update(ref(db, `users/${currentUser.uid}`), { status: 'offline', lastSeen: Date.now() }); } catch(e) {} } });
+    window.addEventListener('beforeunload', () => { if (currentUser) try { update(ref(db, `users/${currentUser.uid}`), { status: 'offline', lastSeen: Date.now() }); } catch(e) {} });
+
+    const sp = localStorage.getItem('savedPhone'), sa = localStorage.getItem('savedPass');
+    if (sp && sa && !auth.currentUser) setTimeout(() => { if (document.getElementById('loginId')) { document.getElementById('loginId').value = sp.includes('@') ? sp : sp; document.getElementById('loginPass').value = sa; } }, 500);
 
     window.showPage = function(p) {
         document.querySelectorAll('.nav-item').forEach(n => n.classList.toggle('active', n.dataset.page === p));
-        currentPage = p;
-        if (p === 'chat') renderChat(); else if (p === 'contacts') renderContacts(); else if (p === 'nearby') renderNearby();
-        else if (p === 'stories') renderStories(); else if (p === 'settings') renderSettings(); else if (p === 'profile') renderProfile();
+        if (p === 'chat') renderChatPage();
+        else if (p === 'contacts') renderContactsPage();
+        else if (p === 'nearby') renderNearbyPage();
+        else if (p === 'stories') renderStoriesPage();
+        else if (p === 'settings') renderSettingsPage();
+        else if (p === 'profile') renderProfilePage();
     };
 
     // ============ الملف الشخصي ============
-    function renderProfile() {
+    function renderProfilePage() {
         if (!currentUser) return;
         document.getElementById('pageContent').innerHTML = `
             <div class="profile-header">
-                <div class="profile-avatar-lg" id="profileAvatar" onclick="changeProfilePhoto()">${currentUser.photoBase64 ? `<img src="${currentUser.photoBase64}" alt="صورة">` : (currentUser.avatar || 'U')}</div>
-                <div class="profile-name">${currentUser.name || 'مستخدم'}</div>
-                <div class="profile-email">${currentUser.email || 'غير متوفر'}</div>
-                <div class="profile-phone">${currentUser.phone || ''}</div>
-                <div class="profile-stats-row">
-                    <div class="profile-stat-item"><div class="profile-stat-value" id="pfFriends">-</div><div class="profile-stat-label">الاصدقاء</div></div>
-                    <div class="profile-stat-item"><div class="profile-stat-value" id="pfMsgs">-</div><div class="profile-stat-label">الرسائل</div></div>
-                    <div class="profile-stat-item"><div class="profile-stat-value" id="pfStories">-</div><div class="profile-stat-label">الستوريات</div></div>
-                </div>
+                <div class="profile-avatar-lg" onclick="changeProfilePhoto()">${currentUser.photoBase64 ? `<img src="${currentUser.photoBase64}">` : (currentUser.avatar || 'U')}</div>
+                <div style="font-size:1.3rem;font-weight:700;color:var(--text);">${currentUser.name}</div>
+                <div style="color:var(--text-secondary);font-size:0.85rem;">${currentUser.email || ''}</div>
+                <div style="color:var(--gold);direction:ltr;">${currentUser.phone || ''}</div>
             </div>
             <div class="profile-section">
                 <div class="profile-section-header"><i class="fas fa-info-circle"></i> معلومات الحساب</div>
-                <div class="profile-section-row"><span class="profile-section-label">الاسم</span><span class="profile-section-value">${currentUser.name || 'مستخدم'}</span></div>
-                <div class="profile-section-row"><span class="profile-section-label">الهاتف</span><span class="profile-section-value" dir="ltr">${currentUser.phone || 'غير متوفر'}</span></div>
-                <div class="profile-section-row"><span class="profile-section-label">البريد</span><span class="profile-section-value" dir="ltr">${currentUser.email || 'غير متوفر'}</span></div>
-                <div class="profile-section-row"><span class="profile-section-label">المعرف</span><span class="profile-section-value" style="font-size:0.7rem;">${currentUser.uid?.substring(0,18)}...</span></div>
+                <div class="profile-section-row"><span class="profile-section-label">الاسم</span><span class="profile-section-value">${currentUser.name}</span></div>
+                <div class="profile-section-row"><span class="profile-section-label">الهاتف</span><span class="profile-section-value" dir="ltr">${currentUser.phone || '-'}</span></div>
+                <div class="profile-section-row"><span class="profile-section-label">البريد</span><span class="profile-section-value" dir="ltr">${currentUser.email || '-'}</span></div>
+                <div class="profile-section-row"><span class="profile-section-label">المعرف</span><span class="profile-section-value" style="font-size:0.7rem;">${currentUser.uid.substring(0,18)}...</span></div>
             </div>
             <button class="btn-logout" onclick="handleLogout()"><i class="fas fa-sign-out-alt"></i> تسجيل الخروج</button>`;
-        setTimeout(async () => {
-            try {
-                const fs = await get(ref(db, `friends/${currentUser.uid}`));
-                document.getElementById('pfFriends').textContent = Object.keys(fs.val() || {}).filter(f => f !== currentUser.uid).length;
-                let mc = 0; const ms = await get(ref(db, 'messages')); if (ms.exists()) ms.forEach(c => c.forEach(m => { if (m.val().senderId === currentUser.uid) mc++; }));
-                document.getElementById('pfMsgs').textContent = mc;
-                let sc = 0; const ss = await get(ref(db, 'stories')); if (ss.exists()) ss.forEach(s => { if (s.val().userId === currentUser.uid) sc++; });
-                document.getElementById('pfStories').textContent = sc;
-            } catch(e) {}
-        }, 100);
     }
     window.changeProfilePhoto = function() {
         const i = document.createElement('input'); i.type = 'file'; i.accept = 'image/*';
-        i.onchange = async e => { if (e.target.files[0]) { const b64 = await fileToBase64(e.target.files[0]); await update(ref(db, `users/${currentUser.uid}`), { photoBase64: b64 }); currentUser.photoBase64 = b64; updateHeaderUI(); renderProfile(); showToast('تم تحديث الصورة'); } };
+        i.onchange = async e => { if (e.target.files[0]) { const b64 = await fileToBase64(e.target.files[0]); await update(ref(db, `users/${currentUser.uid}`), { photoBase64: b64 }); currentUser.photoBase64 = b64; updateHeaderUI(); renderProfilePage(); showToast('تم تحديث الصورة'); } };
         i.click();
     };
 
-    // ============ صفحة المحادثة الخاصة ============
-    function renderChat() {
+    // ============ صفحة الدردشة الرئيسية (تظهر المحادثة المفتوحة) ============
+    function renderChatPage() {
         if (!currentChatId) {
             document.getElementById('pageContent').innerHTML = '<div style="text-align:center;color:var(--text-secondary);padding:60px 20px;"><i class="fas fa-comments" style="font-size:3rem;display:block;margin-bottom:16px;color:var(--gold);"></i>اختر صديقا من قائمة الاصدقاء لبدء المحادثة</div>';
             return;
         }
-        const friendName = currentChatUserName || 'صديق';
+        const fn = currentChatFriend?.name || 'صديق';
+        const fav = currentChatFriend?.photoBase64 || currentChatFriend?.avatar || fn.charAt(0);
         document.getElementById('pageContent').innerHTML = `
-            <div class="private-chat-header">
-                <button class="back-btn" onclick="leavePrivateChat()"><i class="fas fa-arrow-right"></i></button>
-                <div class="chat-avatar-lg" id="chatAvatar">${friendName.charAt(0)}</div>
-                <div style="flex:1;"><div class="chat-name">${friendName}</div><div class="chat-status" id="chatStatus">...</div></div>
+            <div class="chat-private-header">
+                <button class="btn-back" onclick="closeChat()"><i class="fas fa-arrow-right"></i></button>
+                <div class="chat-avatar">${currentChatFriend?.photoBase64 ? `<img src="${currentChatFriend.photoBase64}">` : fav}</div>
+                <div style="flex:1;"><div style="color:var(--text);font-weight:600;">${fn}</div><div style="color:var(--text-secondary);font-size:0.68rem;" id="chatStatus">...</div></div>
             </div>
-            <div class="messages-area" id="messagesArea"><div style="text-align:center;color:var(--text-secondary);padding:30px;">بداية المحادثة</div></div>
+            <div class="messages-area" id="messagesArea"></div>
             <div class="recording-indicator" id="recordingIndicator"><i class="fas fa-microphone"></i> جاري التسجيل...</div>
             <div class="chat-input-bar">
                 <input type="text" id="msgInput" placeholder="اكتب رسالتك..." maxlength="1000">
-                <button id="btnImage" title="ارسال صورة"><i class="fas fa-image"></i></button>
-                <button id="btnVoice" title="تسجيل صوتي"><i class="fas fa-microphone"></i></button>
-                <button class="btn-send" id="btnSend" title="ارسال"><i class="fas fa-paper-plane"></i></button>
+                <button id="btnImage" title="صورة"><i class="fas fa-image"></i></button>
+                <button id="btnVoice" title="صوت"><i class="fas fa-microphone"></i></button>
+                <button class="btn-send-msg" id="btnSend"><i class="fas fa-paper-plane"></i></button>
             </div>`;
         document.getElementById('btnSend').onclick = sendMsg;
         document.getElementById('msgInput').onkeypress = e => { if (e.key === 'Enter') sendMsg(); };
-        document.getElementById('btnImage').onclick = sendImage;
-        document.getElementById('btnVoice').onclick = toggleVoiceRecording;
-        loadMsgs(currentChatId);
-        updateChatUserStatus();
+        document.getElementById('btnImage').onclick = sendImageMsg;
+        document.getElementById('btnVoice').onclick = toggleVoiceMsg;
+        loadMessages(currentChatId);
+        updateFriendStatus();
     }
 
-    function updateChatUserStatus() {
-        const otherUid = currentChatId?.replace(currentUser.uid, '').replace(/_/g, '');
-        if (!otherUid) return;
-        const statusRef = ref(db, `users/${otherUid}/status`);
-        onValue(statusRef, (snap) => {
-            const status = snap.val();
+    function updateFriendStatus() {
+        const oid = currentChatId?.replace(currentUser.uid, '').replace(/_/g, '');
+        if (!oid) return;
+        onValue(ref(db, `users/${oid}/status`), snap => {
             const el = document.getElementById('chatStatus');
-            if (el) {
-                el.textContent = status === 'online' ? 'متصل الان' : 'غير متصل';
-                el.className = 'chat-status' + (status === 'online' ? ' online-status' : '');
-            }
+            if (el) { el.textContent = snap.val() === 'online' ? 'متصل الان' : 'غير متصل'; el.style.color = snap.val() === 'online' ? 'var(--success)' : 'var(--text-secondary)'; }
         });
     }
 
@@ -593,32 +471,27 @@
         const inp = document.getElementById('msgInput'), txt = inp?.value.trim();
         if (!txt || !currentChatId) return;
         await push(ref(db, `messages/${currentChatId}`), { type: 'text', text: txt, senderId: currentUser.uid, senderName: currentUser.name, timestamp: Date.now() });
-        const oid = currentChatId.replace(currentUser.uid, '').replace(/_/g, '');
-        await set(ref(db, `friends/${currentUser.uid}/${oid}`), true);
-        await set(ref(db, `friends/${oid}/${currentUser.uid}`), true);
         inp.value = ''; inp.focus();
     }
 
-    function sendImage() {
+    function sendImageMsg() {
         const i = document.createElement('input'); i.type = 'file'; i.accept = 'image/*';
         i.onchange = async e => { if (e.target.files[0] && currentChatId) { await push(ref(db, `messages/${currentChatId}`), { type: 'image', imageBase64: await fileToBase64(e.target.files[0]), senderId: currentUser.uid, senderName: currentUser.name, timestamp: Date.now() }); } };
         i.click();
     }
 
-    function toggleVoiceRecording() {
+    function toggleVoiceMsg() {
         if (mediaRecorder && mediaRecorder.state === 'recording') {
-            mediaRecorder.stop();
-            document.getElementById('recordingIndicator').classList.remove('active');
+            mediaRecorder.stop(); document.getElementById('recordingIndicator').classList.remove('active');
             document.getElementById('btnVoice').style.color = 'var(--gold)';
         } else {
             navigator.mediaDevices.getUserMedia({ audio: true }).then(stream => {
-                mediaRecorder = new MediaRecorder(stream);
-                audioChunks = [];
+                mediaRecorder = new MediaRecorder(stream); audioChunks = [];
                 mediaRecorder.ondataavailable = e => audioChunks.push(e.data);
                 mediaRecorder.onstop = async () => {
                     const blob = new Blob(audioChunks, { type: 'audio/webm' });
                     const b64 = await new Promise(res => { const r = new FileReader(); r.onload = () => res(r.result); r.readAsDataURL(blob); });
-                    if (currentChatId) { await push(ref(db, `messages/${currentChatId}`), { type: 'voice', audioBase64: b64, senderId: currentUser.uid, senderName: currentUser.name, timestamp: Date.now() }); }
+                    if (currentChatId) await push(ref(db, `messages/${currentChatId}`), { type: 'voice', audioBase64: b64, senderId: currentUser.uid, senderName: currentUser.name, timestamp: Date.now() });
                 };
                 mediaRecorder.start();
                 document.getElementById('recordingIndicator').classList.add('active');
@@ -627,95 +500,69 @@
         }
     }
 
-    function loadMsgs(chatId) {
+    function loadMessages(chatId) {
         if (messageListener) messageListener();
         const area = document.getElementById('messagesArea'); if (!area) return;
-        const mref = ref(db, `messages/${chatId}`);
-        get(mref).then(snap => {
-            const ms = []; snap.forEach(c => ms.push({ id: c.key, ...c.val() }));
-            ms.sort((a, b) => (a.timestamp||0)-(b.timestamp||0));
-            area.innerHTML = '';
-            let lastDate = '';
-            ms.forEach(m => {
-                const msgDate = formatDate(m.timestamp);
-                if (msgDate !== lastDate) { lastDate = msgDate; const sep = document.createElement('div'); sep.className = 'msg-date-separator'; sep.textContent = msgDate; area.appendChild(sep); }
-                appendMsg(m, area);
-            });
+        get(ref(db, `messages/${chatId}`)).then(snap => {
+            const ms = []; snap.forEach(c => ms.push(c.val())); ms.sort((a, b) => (a.timestamp||0)-(b.timestamp||0));
+            area.innerHTML = ms.length === 0 ? '<div style="text-align:center;color:var(--text-secondary);padding:40px;">بداية المحادثة</div>' : '';
+            ms.forEach(m => appendMsg(m, area));
             area.scrollTop = area.scrollHeight;
-            if (currentChatId) { unreadCounts[currentChatId.replace(currentUser.uid,'').replace(/_/g,'')] = 0; }
         });
-        messageListener = onChildAdded(mref, snap => { appendMsg(snap.val(), area); area.scrollTop = area.scrollHeight; });
+        messageListener = onChildAdded(ref(db, `messages/${chatId}`), snap => { appendMsg(snap.val(), area); area.scrollTop = area.scrollHeight; });
     }
 
     function appendMsg(m, area) {
         const me = m.senderId === currentUser.uid;
-        const d = document.createElement('div');
-        d.className = `msg-wrapper ${me?'sent':'received'}`;
+        const d = document.createElement('div'); d.className = `msg-wrapper ${me?'sent':'received'}`;
         let content = '';
-        if (m.type === 'image') content = `<img src="${m.imageBase64}" onclick="window.open('${m.imageBase64}')" loading="lazy">`;
+        if (m.type === 'image') content = `<img src="${m.imageBase64}" onclick="window.open('${m.imageBase64}')">`;
         else if (m.type === 'voice') content = `<audio controls src="${m.audioBase64}"></audio>`;
         else content = escapeHTML(m.text||'');
         d.innerHTML = `<div class="msg-bubble">${!me?`<div class="msg-sender-name">${escapeHTML(m.senderName||'')}</div>`:''}${content}<div class="msg-time">${formatTime(m.timestamp)}</div></div>`;
         area.appendChild(d);
     }
 
-    window.leavePrivateChat = function() {
-        currentChatId = null;
-        currentChatUserName = '';
-        if (messageListener) { messageListener(); messageListener = null; }
-        showPage('contacts');
-    };
+    window.closeChat = function() { currentChatId = null; currentChatFriend = null; if (messageListener) { messageListener(); messageListener = null; } showPage('contacts'); };
 
-    // ============ جهات الاتصال مع بحث وزر محادثة ============
-    async function renderContacts() {
+    // ============ الاصدقاء مع زر المحادثة ============
+    async function renderContactsPage() {
         document.getElementById('pageContent').innerHTML = `
             <h3 class="section-title"><i class="fas fa-address-book"></i> جهات اتصالي</h3>
-            <div class="search-contacts-bar">
-                <input type="text" id="searchContactsInput" placeholder="بحث بالاسم، ID، رقم الهاتف...">
-                <button onclick="searchContacts()"><i class="fas fa-search"></i> بحث</button>
-            </div>
+            <div class="search-bar"><input type="text" id="searchInput" placeholder="بحث بالاسم..."><button onclick="searchFriends()"><i class="fas fa-search"></i> بحث</button></div>
             <div id="contactsList"><div style="text-align:center;padding:30px;">جاري التحميل...</div></div>`;
-        loadContactsList();
+        loadFriends();
     }
 
-    async function loadContactsList(filterText = '') {
+    async function loadFriends(filter = '') {
         const list = document.getElementById('contactsList'); if (!list) return;
         try {
-            const fs = await get(ref(db, `friends/${currentUser.uid}`)), fids = Object.keys(fs.val()||{}).filter(f => f !== currentUser.uid);
+            const fs = await get(ref(db, `friends/${currentUser.uid}`));
+            const fids = Object.keys(fs.val() || {}).filter(f => f !== currentUser.uid);
             const us = await get(ref(db, 'users')); const all = us.val() || {};
             let friends = fids.map(f => ({ uid: f, ...(all[f]||{}) })).filter(f => f.name && !blockedUsers[f.uid]);
-            if (filterText) { const q = filterText.toLowerCase(); friends = friends.filter(f => (f.name||'').toLowerCase().includes(q) || f.uid.toLowerCase().includes(q) || (f.phone||'').includes(q)); }
-            list.innerHTML = friends.length === 0 ? '<div style="text-align:center;padding:40px;">لا يوجد اصدقاء</div>' : friends.map(f => {
-                const unread = unreadCounts[f.uid] || 0;
-                return `
+            if (filter) { const q = filter.toLowerCase(); friends = friends.filter(f => (f.name||'').toLowerCase().includes(q)); }
+            list.innerHTML = friends.length === 0 ? '<div style="text-align:center;padding:40px;">لا يوجد اصدقاء</div>' : friends.map(f => `
                 <div class="contact-item">
-                    <div class="contact-info" style="flex:1;">
+                    <div class="contact-info">
                         <div class="contact-avatar-sm">${f.photoBase64?`<img src="${f.photoBase64}">`:(f.avatar||f.name?.charAt(0)||'U')}</div>
-                        <div>
-                            <div class="contact-name">${f.name} ${unread>0?`<span class="unread-badge">${unread}</span>`:''}</div>
-                            <div class="contact-status-text"><span class="status-dot ${f.status==='online'?'online':'offline'}"></span>${f.status==='online'?'متصل الان':'اخر ظهور: '+(f.lastSeen?new Date(f.lastSeen).toLocaleDateString('ar'):'غير معروف')}</div>
-                        </div>
+                        <div><div class="contact-name">${f.name}</div><div class="contact-status"><span class="status-dot ${f.status==='online'?'online':'offline'}"></span>${f.status==='online'?'متصل':'اخر ظهور: '+(f.lastSeen?new Date(f.lastSeen).toLocaleDateString('ar'):'?')}</div></div>
                     </div>
-                    <div class="contact-buttons">
-                        <button class="btn-contact-chat" onclick="event.stopPropagation(); openPrivateChat('${f.uid}','${(f.name||'مستخدم').replace(/'/g,"\\'")}')" title="فتح المحادثة"><i class="fas fa-comment-dots"></i></button>
-                    </div>
-                </div>`;
-            }).join('');
-        } catch (e) { list.innerHTML = '<div style="text-align:center;color:var(--danger);">خطا في التحميل</div>'; }
+                    <button class="btn-chat" onclick="openChat('${f.uid}','${(f.name||'').replace(/'/g,"\\'")}','${f.photoBase64||''}','${f.avatar||''}')" title="فتح المحادثة"><i class="fas fa-comment-dots"></i></button>
+                </div>`).join('');
+        } catch (e) { list.innerHTML = '<div style="text-align:center;color:var(--danger);">خطا</div>'; }
     }
+    window.searchFriends = () => loadFriends(document.getElementById('searchInput')?.value || '');
 
-    window.searchContacts = function() { loadContactsList(document.getElementById('searchContactsInput')?.value || ''); };
-
-    window.openPrivateChat = function(uid, name) {
+    window.openChat = function(uid, name, photo, avatar) {
         currentChatId = [currentUser.uid, uid].sort().join('_');
-        currentChatUserName = name;
-        unreadCounts[uid] = 0;
+        currentChatFriend = { name, photoBase64: photo, avatar };
         if (messageListener) { messageListener(); messageListener = null; }
         showPage('chat');
     };
 
     // ============ الرادار ============
-    function renderNearby() { document.getElementById('pageContent').innerHTML = `<button class="radar-btn" onclick="startRadar()"><i class="fas fa-satellite-dish"></i> بدء مسح الرادار</button><p class="radar-info-text">موقعك مشفر ولا يظهر لاحد</p><div id="nearbyResults"></div>`; }
+    function renderNearbyPage() { document.getElementById('pageContent').innerHTML = `<button class="radar-btn" onclick="startRadar()"><i class="fas fa-satellite-dish"></i> بدء مسح الرادار</button><p class="radar-info-text">موقعك مشفر ولا يظهر لاحد</p><div id="nearbyResults"></div>`; }
     window.startRadar = async function() {
         const modal = document.getElementById('radarModal'); modal.classList.add('show');
         document.getElementById('radarDots').innerHTML = ''; document.getElementById('radarUsersList').innerHTML = ''; document.getElementById('radarStatus').textContent = 'جار تحديد موقعك...';
@@ -728,24 +575,24 @@
             near.sort((a, b) => a.distance - b.distance);
             near.forEach((u, i) => { const ang = (i*137.508)%360, r = 40+Math.min(u.distance/5,80); const dot = document.createElement('div'); dot.className = 'radar-point'; dot.style.left = (130+Math.cos(ang*Math.PI/180)*r)+'px'; dot.style.top = (130+Math.sin(ang*Math.PI/180)*r)+'px'; document.getElementById('radarDots').appendChild(dot); });
             document.getElementById('radarStatus').textContent = `تم العثور على ${near.length} مستخدم`;
-            near.forEach(u => { const c = document.createElement('div'); c.className = 'radar-user-card'; c.innerHTML = `<div class="radar-user-info"><div class="radar-user-avatar">${u.photo?`<img src="${u.photo}">`:(u.name?.charAt(0)||'U')}</div><div><div class="radar-user-name">${u.name}</div><div class="radar-user-distance">${u.distance<1?(u.distance*1000).toFixed(0)+' م':u.distance.toFixed(1)+' كم'}</div></div></div><button class="btn-add" onclick="addFriendFromRadar('${u.uid}',this)">اضافة</button>`; document.getElementById('radarUsersList').appendChild(c); });
+            near.forEach(u => { const c = document.createElement('div'); c.className = 'radar-user-card'; c.innerHTML = `<div class="radar-user-info"><div class="radar-user-avatar">${u.photo?`<img src="${u.photo}">`:(u.name?.charAt(0)||'U')}</div><div><div style="color:var(--text);font-weight:600;">${u.name}</div><div style="color:var(--success);font-size:0.65rem;">${u.distance<1?(u.distance*1000).toFixed(0)+' م':u.distance.toFixed(1)+' كم'}</div></div></div><button class="btn-add" onclick="addFriendFromRadar('${u.uid}',this)">اضافة</button>`; document.getElementById('radarUsersList').appendChild(c); });
         } catch (e) { document.getElementById('radarStatus').textContent = 'فشل تحديد الموقع'; }
     };
     window.addFriendFromRadar = async function(uid, btn) { await set(ref(db, `friends/${currentUser.uid}/${uid}`), true); await set(ref(db, `friends/${uid}/${currentUser.uid}`), true); btn.textContent = 'تم'; btn.classList.add('btn-added'); btn.disabled = true; showToast('تمت الاضافة'); };
     window.closeRadar = function() { document.getElementById('radarModal').classList.remove('show'); };
 
     // ============ الستوري ============
-    function renderStories() {
+    function renderStoriesPage() {
         document.getElementById('pageContent').innerHTML = `<button class="story-add-btn" id="addStoryBtn"><i class="fas fa-plus-circle"></i> اضافة ستوري</button><div id="storiesList"></div>`;
-        document.getElementById('addStoryBtn').onclick = () => { const i = document.createElement('input'); i.type = 'file'; i.accept = 'image/*'; i.onchange = async e => { if (e.target.files[0]) { await push(ref(db, 'stories'), { userId: currentUser.uid, userName: currentUser.name, userPhoto: currentUser.photoBase64||'', imageBase64: await fileToBase64(e.target.files[0]), caption: prompt('تعليق:')||'', timestamp: Date.now(), likes: {}, views: {} }); renderStories(); } }; i.click(); };
-        onValue(ref(db, 'stories'), snap => { const ss = []; snap.forEach(c => ss.push({ id: c.key, ...c.val() })); allStoriesCache = ss.filter(s => Date.now()-(s.timestamp||0)<86400000).reverse(); const list = document.getElementById('storiesList'); if (!list) return; list.innerHTML = allStoriesCache.length===0?'<div style="text-align:center;padding:40px;">لا توجد ستوريات</div>':allStoriesCache.map(s => `<div class="story-card-item" onclick="openStoryDetail('${s.id}')"><div class="story-ring"><div class="story-ring-inner">${s.userPhoto?`<img src="${s.userPhoto}">`:'U'}</div></div><div class="story-card-content"><strong>${s.userName}</strong><p>${s.caption||'بدون تعليق'}</p><small>${formatTime(s.timestamp)}</small></div><i class="fas fa-eye" style="color:var(--gold);"></i></div>`).join(''); });
+        document.getElementById('addStoryBtn').onclick = () => { const i = document.createElement('input'); i.type = 'file'; i.accept = 'image/*'; i.onchange = async e => { if (e.target.files[0]) { await push(ref(db, 'stories'), { userId: currentUser.uid, userName: currentUser.name, userPhoto: currentUser.photoBase64||'', imageBase64: await fileToBase64(e.target.files[0]), caption: prompt('تعليق:')||'', timestamp: Date.now(), likes: {}, views: {} }); renderStoriesPage(); } }; i.click(); };
+        onValue(ref(db, 'stories'), snap => { const ss = []; snap.forEach(c => ss.push({ id: c.key, ...c.val() })); allStoriesCache = ss.filter(s => Date.now()-(s.timestamp||0)<86400000).reverse(); const list = document.getElementById('storiesList'); if (!list) return; list.innerHTML = allStoriesCache.length===0?'<div style="text-align:center;padding:40px;">لا توجد ستوريات</div>':allStoriesCache.map(s => `<div class="story-card-item" onclick="openStoryDetail('${s.id}')"><div class="story-ring"><div class="story-ring-inner">${s.userPhoto?`<img src="${s.userPhoto}">`:'U'}</div></div><div style="flex:1;"><strong style="color:var(--text);">${s.userName}</strong><p style="color:var(--text-secondary);font-size:0.73rem;">${s.caption||''}</p><small style="color:var(--text-secondary);">${formatTime(s.timestamp)}</small></div><i class="fas fa-eye" style="color:var(--gold);"></i></div>`).join(''); });
     }
     window.openStoryDetail = function(id) { const s = allStoriesCache.find(x => x.id===id); if (!s) return; currentStoryId = id; document.getElementById('storyDetailImg').src = s.imageBase64||''; document.getElementById('storyDetailUser').textContent = s.userName||''; document.getElementById('storyDetailCaption').textContent = s.caption||''; document.getElementById('storyDetailViews').textContent = Object.keys(s.views||{}).length; document.getElementById('storyDetailLikes').textContent = Object.keys(s.likes||{}).length; const lb = document.getElementById('storyLikeBtn'); if (s.likes&&s.likes[currentUser.uid]) { lb.innerHTML = 'تم الاعجاب'; lb.classList.add('btn-liked'); } else { lb.innerHTML = 'اعجاب'; lb.classList.remove('btn-liked'); } document.getElementById('storyDetail').classList.add('show'); update(ref(db, `stories/${id}/views/${currentUser.uid}`), true); };
     window.closeStoryDetail = function() { document.getElementById('storyDetail').classList.remove('show'); currentStoryId = null; };
     window.likeCurrentStory = async function() { if (!currentStoryId) return; const s = allStoriesCache.find(x => x.id===currentStoryId); if (!s) return; const likes = s.likes||{}; likes[currentUser.uid] ? delete likes[currentUser.uid] : likes[currentUser.uid]=true; await update(ref(db, `stories/${currentStoryId}/likes`), likes); openStoryDetail(currentStoryId); };
 
     // ============ الاعدادات ============
-    function renderSettings() {
+    function renderSettingsPage() {
         const onl = localStorage.getItem('user_online')!=='false', notif = localStorage.getItem('notifications')!=='false';
         document.getElementById('pageContent').innerHTML = `
             <div class="settings-block"><div class="settings-block-header"><i class="fas fa-user"></i> حسابي</div><div class="settings-row" id="profileRow"><div class="settings-row-left"><i class="fas fa-id-card"></i> الملف الشخصي</div><i class="fas fa-chevron-left" style="color:var(--text-secondary);"></i></div></div>
@@ -758,7 +605,7 @@
         document.getElementById('toggleNotif').onclick = function() { this.classList.toggle('on'); localStorage.setItem('notifications', this.classList.contains('on')); };
         document.getElementById('logoutBtn').onclick = handleLogout;
     }
-    window.unblockUser = function(uid) { delete blockedUsers[uid]; localStorage.setItem('blockedUsers', JSON.stringify(blockedUsers)); renderSettings(); showToast('تم فك الحظر'); };
+    window.unblockUser = function(uid) { delete blockedUsers[uid]; localStorage.setItem('blockedUsers', JSON.stringify(blockedUsers)); renderSettingsPage(); showToast('تم فك الحظر'); };
 
     document.querySelectorAll('.nav-item').forEach(b => b.onclick = () => showPage(b.dataset.page));
     document.getElementById('profileBtn').onclick = () => showPage('profile');
