@@ -2,14 +2,13 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <!-- تم إضافة maximum-scale=1.0 لمنع التكبير غير المقصود على الموبايل -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Libyano Chat - ليبانو شات</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --app-height: 100dvh; /* استخدام dvh للهواتف الحديثة */
+            --app-height: 100dvh;
             --bg: #080e0c; --surface: #0d1613; --surface2: #111c18;
             --gold: #D4A017; --gold-light: #F5E6B8; --gold-dark: #b8860b;
             --text: #e8e8e8; --text2: #9aa0a8; --danger: #e74c3c;
@@ -20,7 +19,6 @@
             --safe-area-bottom: env(safe-area-inset-bottom, 0px);
         }
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        /* تحسين عرض الخط على الويب */
         html, body {
             font-family: 'Cairo', sans-serif;
             background: var(--bg);
@@ -101,12 +99,11 @@
         }
         .app.active { opacity: 1; pointer-events: all; }
         
-        /* تحسين الهيدر */
         .app-header { 
             background: rgba(8,18,14,0.98); border-bottom: 1px solid var(--border); 
             padding: 8px 12px; display: flex; align-items: center; justify-content: space-between; 
             backdrop-filter: blur(30px); z-index: 20; flex-shrink: 0; 
-            height: auto; min-height: 50px; /* ارتفاع متناسب مع الهواتف */
+            height: auto; min-height: 50px;
         }
         .hdr-l { display: flex; align-items: center; gap: 8px; }
         .hdr-l i { color: var(--gold); font-size: 1.2rem; }
@@ -135,7 +132,7 @@
             display: flex; justify-content: space-around; align-items: center;
             padding: 8px 4px calc(8px + env(safe-area-inset-bottom, 0px)); 
             backdrop-filter: blur(30px); z-index: 20; flex-shrink: 0; 
-            min-height: 60px; /* ارتفاع مناسب */
+            min-height: 60px;
         }
         .nav button { 
             display: flex; flex-direction: column; align-items: center; gap: 2px; 
@@ -172,7 +169,7 @@
         .chat-av img { width: 100%; height: 100%; object-fit: cover; }
         .msgs { 
             flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 5px; 
-            margin-bottom: 8px; height: calc(var(--app-height) - 280px); /* ارتفاع ديناميكي */ 
+            margin-bottom: 8px; height: calc(var(--app-height) - 280px); 
             max-height: calc(var(--app-height) - 280px); padding: 2px; 
         }
         .msg { display: flex; max-width: 85%; animation: msgIn 0.25s ease; }
@@ -216,28 +213,28 @@
         .img-viewer.show img { transform: scale(1); }
         .img-viewer .close { position: absolute; top: 16px; right: 16px; width: 40px; height: 40px; border-radius: 50%; background: rgba(0,0,0,0.7); border: 1px solid rgba(255,255,255,0.3); color: #fff; font-size: 24px; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 5; }
 
-        /* ====== الأصدقاء والرادار والستوري والإعدادات (تم تحسينها جميعاً) ====== */
+        /* ====== الأصدقاء ====== */
         .sec-title { color: var(--gold); font-size: 0.95rem; margin-bottom: 12px; font-weight: 700; }
         .search-row { display: flex; gap: 8px; margin-bottom: 12px; }
         .search-row input { flex: 1; padding: 10px 15px; background: var(--surface2); border: 1px solid var(--border); border-radius: 25px; color: var(--text); font-family: 'Cairo', sans-serif; font-size: 0.85rem; outline: none; }
         .search-row input:focus { border-color: var(--gold); }
         .search-row button { padding: 10px 15px; background: var(--gold); border: none; border-radius: 25px; color: #0a1410; font-family: 'Cairo', sans-serif; cursor: pointer; font-weight: 600; font-size: 0.85rem; }
         
-        .friend, .radar-card { 
+        .friend { 
             display: flex; align-items: center; justify-content: space-between; 
             padding: 12px; background: var(--surface); border-radius: var(--radius); 
             margin-bottom: 6px; transition: var(--transition); border: 1px solid transparent; 
         }
         .friend:active { transform: scale(0.98); background: var(--surface2); }
-        .friend-info, .radar-info { display: flex; align-items: center; gap: 10px; flex: 1; cursor: pointer; }
-        .friend-av, .radar-av { 
+        .friend-info { display: flex; align-items: center; gap: 10px; flex: 1; cursor: pointer; }
+        .friend-av { 
             width: 42px; height: 42px; border-radius: 50%; 
             background: linear-gradient(135deg, var(--gold), var(--gold-dark)); 
             display: flex; align-items: center; justify-content: center; overflow: hidden; 
             flex-shrink: 0; border: 2px solid rgba(212,160,23,0.3); 
             font-weight: 700; color: #0a1410; font-size: 0.85rem; 
         }
-        .friend-av img, .radar-av img { width: 100%; height: 100%; object-fit: cover; }
+        .friend-av img { width: 100%; height: 100%; object-fit: cover; }
         .friend-name { color: var(--text); font-weight: 600; font-size: 0.85rem; }
         .friend-status { font-size: 0.6rem; color: var(--text2); display: flex; align-items: center; gap: 4px; }
         .dot { width: 7px; height: 7px; border-radius: 50%; display: inline-block; }
@@ -249,44 +246,6 @@
             background: var(--gold); color: #0a1410; transition: var(--transition); 
         }
         .btn-chat:active { transform: scale(0.9); }
-
-        .radar-btn { 
-            width: 100%; padding: 14px; border-radius: 50px; 
-            background: linear-gradient(135deg, var(--gold), var(--gold-dark)); 
-            border: none; color: #0a1410; font-family: 'Cairo', sans-serif; 
-            font-weight: 700; font-size: 0.95rem; cursor: pointer; margin-bottom: 15px; 
-            display: flex; align-items: center; justify-content: center; gap: 10px; 
-        }
-        .btn-add { 
-            background: var(--success); border: none; padding: 6px 12px; border-radius: 20px; 
-            color: #fff; font-family: 'Cairo', sans-serif; font-weight: 600; cursor: pointer; font-size: 0.7rem; 
-        } 
-        .btn-added { background: #555; pointer-events: none; }
-
-        .story-add { 
-            width: 100%; padding: 14px; border-radius: 50px; 
-            background: linear-gradient(135deg, var(--purple), #8e44ad); 
-            border: none; color: #fff; font-family: 'Cairo', sans-serif; 
-            font-weight: 700; cursor: pointer; margin-bottom: 15px; 
-            display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 0.95rem; 
-        }
-        
-        .set-block { background: var(--surface); border-radius: var(--radius); overflow: hidden; margin-bottom: 15px; border: 1px solid var(--border); }
-        .set-block h4 { padding: 12px 15px; border-bottom: 1px solid var(--border); color: var(--gold); font-weight: 600; font-size: 0.8rem; }
-        .set-row { display: flex; align-items: center; justify-content: space-between; padding: 12px 15px; cursor: pointer; transition: var(--transition); font-size: 0.85rem; }
-        .set-row:active { background: rgba(255,255,255,0.02); }
-        .set-row i { color: var(--gold); width: 20px; }
-        .toggle { width: 46px; height: 24px; background: #444; border-radius: 26px; position: relative; cursor: pointer; transition: var(--transition); flex-shrink: 0; }
-        .toggle.on { background: var(--success); }
-        .toggle::after { content: ''; width: 20px; height: 20px; background: #fff; border-radius: 50%; position: absolute; top: 2px; right: 2px; transition: var(--transition); } 
-        .toggle.on::after { right: 24px; }
-        
-        .btn-logout { 
-            width: 100%; padding: 14px; border-radius: 50px; 
-            background: linear-gradient(135deg, var(--danger), #c0392b); 
-            color: #fff; border: none; font-family: 'Cairo', sans-serif; 
-            font-weight: 700; font-size: 0.95rem; cursor: pointer; margin-top: 10px;
-        }
 
         .toast { 
             position: fixed; top: 15px; left: 50%; transform: translateX(-50%); 
@@ -300,7 +259,7 @@
 </head>
 <body>
 
-<!-- واجهات التطبيق (شاشة الترحيب، المصادقة، التطبيق الرئيسي) -->
+<!-- شاشة الترحيب -->
 <div class="welcome" id="welcome">
     <div class="welcome-logo"><i class="fas fa-moon"></i></div>
     <h1>Libyano Chat</h1>
@@ -313,6 +272,7 @@
     <span>by BobakrAlmajbry</span>
 </div>
 
+<!-- شاشة المصادقة -->
 <div class="auth" id="authScreen">
     <div class="auth-card">
         <h2 id="authTitle">تسجيل الدخول</h2><p class="sub" id="authSub">أدخل بياناتك للمتابعة</p>
@@ -325,6 +285,7 @@
     </div>
 </div>
 
+<!-- التطبيق الرئيسي -->
 <div class="app" id="app">
     <header class="app-header">
         <div class="hdr-l"><i class="fas fa-moon"></i><span>Libyano</span></div>
@@ -340,36 +301,16 @@
     </nav>
 </div>
 
-<!-- النوافذ المنبثقة -->
+<!-- نافذة عرض الصور -->
 <div class="img-viewer" id="imageViewer" onclick="if(event.target===this)closeImageViewer()">
     <button class="close" onclick="closeImageViewer()">&times;</button>
     <img id="imageViewerImg" src="" alt="صورة">
 </div>
 
-<div class="story-popup" id="storyDetail" onclick="if(event.target===this)closeStoryDetail()" style="position:fixed;inset:0;background:rgba(0,0,0,0.9);z-index:200;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:0.3s;padding:15px;">
-    <div class="card" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px;width:90%;max-width:380px;text-align:center;position:relative;box-shadow:var(--shadow-lg);">
-        <button class="close" onclick="closeStoryDetail()" style="position:absolute;top:8px;right:12px;color:var(--text2);font-size:1.5rem;cursor:pointer;background:none;border:none;">&times;</button>
-        <img id="storyDetailImg" src="" style="max-width:100%;max-height:240px;border-radius:10px;margin-bottom:10px;"><h3 id="storyDetailUser"></h3><p id="storyDetailCaption"></p>
-        <div style="display:flex;justify-content:center;gap:20px;margin:8px 0;color:var(--text2);font-size:0.8rem;"><span><i class="fas fa-eye"></i> <span id="storyDetailViews">0</span></span><span><i class="fas fa-heart"></i> <span id="storyDetailLikes">0</span></span></div>
-        <button class="btn-like" id="storyLikeBtn" onclick="likeCurrentStory()" style="background:var(--danger);border:none;padding:8px 20px;border-radius:25px;color:#fff;font-family:'Cairo',sans-serif;cursor:pointer;font-size:0.85rem;font-weight:600;"><i class="fas fa-heart"></i> إعجاب</button>
-    </div>
-</div>
-
-<div class="modal" id="radarModal" onclick="if(event.target===this)closeRadar()" style="position:fixed;inset:0;background:rgba(0,0,0,0.9);z-index:200;display:flex;align-items:center;justify-content:center;flex-direction:column;opacity:0;pointer-events:none;transition:var(--transition);">
-    <button class="close" onclick="closeRadar()" style="position:absolute;top:15px;right:15px;color:#fff;font-size:24px;cursor:pointer;width:40px;height:40px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.1);border-radius:50%;z-index:10;border:none;">&times;</button>
-    <div class="radar-visual" style="position:relative;width:200px;height:200px;border-radius:50%;border:2px solid rgba(212,160,23,0.6);background:radial-gradient(circle, rgba(30,58,47,0.7) 0%, rgba(10,26,31,0.95) 70%);box-shadow:0 0 50px rgba(212,160,23,0.2);margin-bottom:15px;">
-        <div class="radar-sweep" style="position:absolute;top:0;left:50%;width:1px;height:100%;background:linear-gradient(180deg, transparent, rgba(212,160,23,0.8), transparent);animation:sweep 2s linear infinite;"></div>
-        <div class="radar-dot-center" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:10px;height:10px;background:var(--gold);border-radius:50%;box-shadow:0 0 15px rgba(212,160,23,0.8);z-index:2;"></div>
-        <div id="radarDots"></div>
-    </div>
-    <p style="color:var(--gold);font-size:0.85rem;margin-bottom:10px;" id="radarStatus">جار المسح...</p>
-    <div style="max-height:200px;overflow-y:auto;width:90%;max-width:340px;border-radius:12px;" id="radarUsersList"></div>
-</div>
-
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
     import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut, updateProfile } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
-    import { getDatabase, ref, set, update, get, push, onValue, onChildAdded, query, orderByChild, limitToLast } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-database.js";
+    import { getDatabase, ref, set, update, get, push, onValue, onChildAdded } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-database.js";
 
     // ====== Firebase Config ======
     const firebaseConfig = {
@@ -381,6 +322,7 @@
         messagingSenderId: "789123509031",
         appId: "1:789123509031:web:afc0dfaa23035a17515702"
     };
+    
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
     const db = getDatabase(app);
@@ -401,16 +343,19 @@
         if (!c.startsWith('0') && c.length >= 9) c = '0' + c; 
         return c; 
     }
+    
     function phoneToEmail(p) { 
-        // تحسين: استخدام نطاق أكثر أماناً
-        return p + '@libyanochat.com'; 
+        const clean = sanitizePhone(p);
+        return clean + '@libyanochat.com'; 
     }
+    
     function esc(t) { 
         if (!t) return ''; 
         const d = document.createElement('div'); 
         d.textContent = t; 
         return d.innerHTML; 
     }
+    
     function fileToB64(f) { 
         return new Promise((res, rej) => { 
             const r = new FileReader(); 
@@ -419,16 +364,23 @@
             r.readAsDataURL(f); 
         }); 
     }
+    
     function toast(msg) { 
+        const existingToast = document.querySelector('.toast');
+        if (existingToast) existingToast.remove();
+        
         const t = document.createElement('div'); 
-        t.className = 'toast'; t.textContent = msg; 
+        t.className = 'toast'; 
+        t.textContent = msg; 
         document.body.appendChild(t); 
-        setTimeout(() => t.remove(), 2800); 
+        setTimeout(() => t.remove(), 3000); 
     }
+    
     function fmtTime(ts) { 
         if (!ts) return ''; 
         return new Date(ts).toLocaleTimeString('ar-LY', { hour: '2-digit', minute: '2-digit' }); 
     }
+    
     function fmtDate(ts) { 
         if (!ts) return ''; 
         const d = new Date(ts), today = new Date(), yesterday = new Date(today); 
@@ -437,11 +389,13 @@
         if (d.toDateString() === yesterday.toDateString()) return 'أمس'; 
         return d.toLocaleDateString('ar-LY', { weekday: 'long', month: 'long', day: 'numeric' }); 
     }
+    
     function calcDist(lat1, lon1, lat2, lon2) { 
         const R = 6371, dLat = (lat2 - lat1) * Math.PI / 180, dLon = (lon2 - lon1) * Math.PI / 180; 
         const a = Math.sin(dLat / 2) ** 2 + Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * Math.sin(dLon / 2) ** 2; 
         return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)); 
     }
+    
     async function compressImg(file, maxW, quality) { 
         return new Promise(resolve => { 
             const reader = new FileReader(); 
@@ -472,6 +426,25 @@
         }
     }
 
+    // ✅ دالة البحث عن البريد الإلكتروني الحقيقي من رقم الهاتف
+    async function findEmailByPhone(phone) {
+        try {
+            const cleanPhone = sanitizePhone(phone);
+            const usersSnapshot = await get(ref(db, 'users'));
+            const users = usersSnapshot.val() || {};
+            
+            for (const uid in users) {
+                if (users[uid].phone === cleanPhone) {
+                    return users[uid].email || phoneToEmail(cleanPhone);
+                }
+            }
+            return phoneToEmail(cleanPhone);
+        } catch (e) {
+            console.error('خطأ في البحث عن البريد:', e);
+            return phoneToEmail(phone);
+        }
+    }
+
     // ====== نافذة الصورة ======
     window.openImageViewer = function(src) { 
         const viewer = document.getElementById('imageViewer');
@@ -480,6 +453,7 @@
         img.src = src; 
         viewer.classList.add('show'); 
     };
+    
     window.closeImageViewer = function() { 
         const viewer = document.getElementById('imageViewer');
         const img = document.getElementById('imageViewerImg');
@@ -540,6 +514,7 @@
             <div class="fld"><label>الإجابة</label><div class="fld-wrap"><i class="fas fa-shield-alt"></i><input type="text" id="regAnswer" placeholder="إجابتك" autocomplete="off"></div></div>`;
     }
     
+    // ✅ تم إصلاح دالة تسجيل الدخول
     window.handleAuth = async function() {
         const msgEl = document.getElementById('authMsg'); 
         if(msgEl) { msgEl.textContent = ''; msgEl.className = 'auth-msg'; }
@@ -565,11 +540,31 @@
                 if (!name || phone.length < 10 || pass.length < 6 || !question || !answer) 
                     throw new Error('تأكد من جميع الحقول');
                     
+                const emailForAuth = phoneToEmail(phone);
+                
+                // ✅ عرض معلومات التسجيل للتأكيد
+                console.log('محاولة إنشاء حساب:', { phone, emailForAuth });
+                
                 try {
-                    const emailForAuth = phoneToEmail(phone);
                     const cred = await createUserWithEmailAndPassword(auth, emailForAuth, pass);
                     await updateProfile(cred.user, { displayName: name });
+                    
+                    // ✅ تخزين البريد الإلكتروني والهاتف في قاعدة البيانات
+                    await set(ref(db, `users/${cred.user.uid}`), {
+                        uid: cred.user.uid,
+                        name: name,
+                        email: emailForAuth,
+                        phone: phone,
+                        avatar: name.charAt(0).toUpperCase(),
+                        photoURL: '',
+                        status: 'online',
+                        createdAt: Date.now(),
+                        lastSeen: Date.now(),
+                        blocked: false
+                    });
+                    
                     await set(ref(db, `users/${cred.user.uid}/security`), { question, answer });
+                    
                     localStorage.setItem('savedPhone', phone); 
                     localStorage.setItem('savedPass', pass);
                     if(msgEl) { msgEl.textContent = 'تم إنشاء الحساب بنجاح!'; msgEl.className = 'auth-msg ok'; }
@@ -577,27 +572,50 @@
                     if (ce.code === 'auth/email-already-in-use') {
                         if(msgEl) { msgEl.textContent = 'الرقم مسجل مسبقاً. جاري تسجيل الدخول...'; msgEl.className = 'auth-msg ok'; }
                         try { 
-                            await signInWithEmailAndPassword(auth, phoneToEmail(phone), pass); 
+                            await signInWithEmailAndPassword(auth, emailForAuth, pass); 
                         } catch (le) { 
                             if(msgEl) { msgEl.textContent = 'كلمة المرور غير صحيحة'; msgEl.className = 'auth-msg err'; } 
                         }
                     } else throw ce;
                 }
             } else {
+                // ✅ تسجيل الدخول - تم الإصلاح
                 const idEl = document.getElementById('loginId');
                 const passEl = document.getElementById('loginPass');
                 if (!idEl || !passEl) throw new Error('خطأ في النموذج');
                 
                 let id = idEl.value.trim(); 
                 const pass = passEl.value;
+                
                 if (!id || !pass) throw new Error('أدخل جميع البيانات');
                 
+                // ✅ تحسين: البحث عن البريد الإلكتروني الحقيقي
                 if (!id.includes('@')) {
-                    id = phoneToEmail(sanitizePhone(id));
+                    const cleanPhone = sanitizePhone(id);
+                    id = await findEmailByPhone(cleanPhone);
+                    console.log('تم استرجاع البريد الإلكتروني:', id);
                 }
-                await signInWithEmailAndPassword(auth, id, pass);
-                localStorage.setItem('savedPhone', id.includes('@libyanochat.com') ? id.split('@')[0] : id); 
-                localStorage.setItem('savedPass', pass);
+                
+                try {
+                    await signInWithEmailAndPassword(auth, id, pass);
+                    // ✅ تخزين بيانات الدخول محلياً
+                    const phoneToSave = id.includes('@libyanochat.com') ? id.split('@')[0] : id;
+                    localStorage.setItem('savedPhone', phoneToSave); 
+                    localStorage.setItem('savedPass', pass);
+                } catch (loginError) {
+                    console.error('خطأ تسجيل الدخول:', loginError.code);
+                    
+                    // ✅ معالجة الأخطاء بشكل واضح
+                    const errorMessages = {
+                        'auth/invalid-credential': 'رقم الهاتف أو كلمة المرور غير صحيحة. تأكد من إدخال رقم الهاتف بشكل صحيح.',
+                        'auth/user-not-found': 'لا يوجد حساب بهذا الرقم. هل تريد إنشاء حساب جديد؟',
+                        'auth/wrong-password': 'كلمة المرور غير صحيحة.',
+                        'auth/too-many-requests': 'محاولات كثيرة جداً. انتظر قليلاً ثم حاول مجدداً.',
+                        'auth/invalid-email': 'صيغة البريد الإلكتروني غير صحيحة.'
+                    };
+                    
+                    throw new Error(errorMessages[loginError.code] || 'حدث خطأ في تسجيل الدخول. حاول مجدداً.');
+                }
             }
         } catch (e) { 
             if(msgEl) { msgEl.textContent = e.message || 'حدث خطأ غير متوقع'; msgEl.className = 'auth-msg err'; } 
@@ -619,61 +637,6 @@
             else if (e.code === 'auth/unauthorized-domain') errorMsg = 'الدومين غير مصرح به. أضفه في Firebase';
             else if (e.code === 'auth/operation-not-allowed') errorMsg = 'تسجيل الدخول بـ Google غير مفعل';
             if(msgEl) { msgEl.textContent = errorMsg; msgEl.className = 'auth-msg err'; }
-        }
-    };
-
-    window.showForgotPassword = function() {
-        const title = document.getElementById('authTitle');
-        const tabs = document.getElementById('authTabs');
-        const forgotBtn = document.getElementById('forgotBtn');
-        const fields = document.getElementById('authFields');
-        const submitBtn = document.getElementById('authSubmitBtn');
-        
-        if(title) title.textContent = 'استعادة كلمة المرور'; 
-        if(tabs) tabs.style.display = 'none'; 
-        if(forgotBtn) forgotBtn.style.display = 'none';
-        if(fields) fields.innerHTML = `<div class="fld"><label>رقم الهاتف</label><div class="fld-wrap"><i class="fas fa-mobile-alt"></i><input type="tel" id="forgotPhone" placeholder="رقم هاتفك" dir="ltr"></div></div><div id="forgotQuestionArea"></div>`;
-        if(submitBtn) { submitBtn.innerHTML = '<i class="fas fa-check"></i> تحقق'; submitBtn.onclick = handleForgotPassword; }
-    };
-    
-    window.handleForgotPassword = async function() {
-        const msgEl = document.getElementById('authMsg');
-        if(msgEl) { msgEl.textContent = ''; msgEl.className = 'auth-msg'; }
-        const phoneEl = document.getElementById('forgotPhone');
-        if (!phoneEl) return;
-        
-        const phone = sanitizePhone(phoneEl.value);
-        if (phone.length < 10) { if(msgEl) { msgEl.textContent = 'رقم غير صحيح'; msgEl.className = 'auth-msg err'; } return; }
-        const area = document.getElementById('forgotQuestionArea');
-        if (!area) return;
-        
-        if (!area.querySelector('input')) {
-            const snap = await get(ref(db, 'users')); 
-            const users = snap.val() || {}; 
-            let found = null, foundUid = null;
-            for (let uid in users) { 
-                if (users[uid].phone === phone && users[uid].security?.question) { 
-                    found = users[uid]; foundUid = uid; break; 
-                } 
-            }
-            if (!found) { if(msgEl) { msgEl.textContent = 'لم يتم العثور على الحساب'; msgEl.className = 'auth-msg err'; } return; }
-            area.dataset.uid = foundUid; area.dataset.answer = found.security.answer;
-            area.innerHTML = `<div class="fld"><label>سؤال: <strong style="color:var(--gold);">${found.security.question}</strong></label><div class="fld-wrap"><i class="fas fa-shield-alt"></i><input type="text" id="forgotAnswer" placeholder="إجابتك"></div></div><div class="fld"><label>كلمة مرور جديدة</label><div class="fld-wrap"><i class="fas fa-lock"></i><input type="password" id="forgotNewPass" placeholder="كلمة مرور جديدة" dir="ltr"></div></div>`;
-            const submitBtn = document.getElementById('authSubmitBtn');
-            if(submitBtn) {
-                submitBtn.onclick = async () => {
-                    const ansEl = document.getElementById('forgotAnswer');
-                    const passEl = document.getElementById('forgotNewPass');
-                    if (!ansEl || !passEl) return;
-                    const ans = ansEl.value.trim(), newPass = passEl.value;
-                    if (ans !== area.dataset.answer) { if(msgEl) { msgEl.textContent = 'إجابة خاطئة'; msgEl.className = 'auth-msg err'; } return; }
-                    if (newPass.length < 6) { if(msgEl) { msgEl.textContent = 'كلمة المرور يجب أن تكون 6 أحرف على الأقل'; msgEl.className = 'auth-msg err'; } return; }
-                    // في الواقع يجب استخدام Admin SDK أو وظيفة سحابية لتغيير كلمة المرور، هنا نخزن طلب إعادة تعيين
-                    await update(ref(db, `users/${area.dataset.uid}/security`), { passwordResetRequest: true, requestedAt: Date.now() });
-                    if(msgEl) { msgEl.textContent = 'تم التحقق! سيتم إعادة تعيين كلمة المرور قريباً.'; msgEl.className = 'auth-msg ok'; }
-                    setTimeout(() => location.reload(), 3000);
-                };
-            }
         }
     };
 
@@ -746,6 +709,7 @@
     async function updateOnlineStatus() { 
         if (currentUser) await update(ref(db, `users/${currentUser.uid}`), { status: 'online', lastSeen: Date.now() }); 
     }
+    
     async function handleVisibilityChange() { 
         if (currentUser) { 
             await update(ref(db, `users/${currentUser.uid}`), { 
@@ -754,6 +718,7 @@
             }); 
         } 
     }
+    
     async function updateUserLocation() { 
         if (!navigator.geolocation || !currentUser) return; 
         try { 
@@ -761,6 +726,7 @@
             await update(ref(db, `users/${currentUser.uid}/location`), { lat: pos.coords.latitude, lng: pos.coords.longitude, updated: Date.now(), accuracy: pos.coords.accuracy }); 
         } catch (e) {} 
     }
+    
     async function handleLogout() { 
         try { 
             if (currentUser) await update(ref(db, `users/${currentUser.uid}`), { status: 'offline', lastSeen: Date.now() }); 
@@ -768,10 +734,10 @@
             toast('تم تسجيل الخروج بنجاح'); 
         } catch (e) { toast('فشل تسجيل الخروج'); } 
     }
+    
     window.addEventListener('beforeunload', () => { 
         if (currentUser) {
             try { 
-                // استخدام sendBeacon للنهاية لضمان وصول التحديث
                 navigator.sendBeacon(`https://libyano-chat-3fc6a-default-rtdb.firebaseio.com/users/${currentUser.uid}/status.json`, JSON.stringify('offline'));
             } catch (e) {} 
         }
@@ -783,7 +749,7 @@
         setTimeout(() => { 
             const idEl = document.getElementById('loginId');
             const passEl = document.getElementById('loginPass');
-            if (idEl) idEl.value = sp.includes('@') ? sp : sp; 
+            if (idEl) idEl.value = sp; 
             if (passEl) passEl.value = sa; 
         }, 500);
     }
@@ -810,16 +776,17 @@
         const page = document.getElementById('pageContent');
         if (!page) return;
         page.innerHTML = `
-            <div class="prof-header" style="text-align:center;padding:20px;background:var(--surface);border-radius:var(--radius);border:1px solid var(--border);margin-bottom:15px;">
-                <div class="prof-av" onclick="changeProfilePhoto()" style="width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg, var(--gold), var(--gold-dark));display:flex;align-items:center;justify-content:center;overflow:hidden;margin:0 auto 10px;border:3px solid rgba(212,160,23,0.5);font-weight:700;color:#0a1410;font-size:1.8rem;cursor:pointer;position:relative;">
+            <div style="text-align:center;padding:20px;background:var(--surface);border-radius:var(--radius);border:1px solid var(--border);margin-bottom:15px;">
+                <div onclick="changeProfilePhoto()" style="width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg, var(--gold), var(--gold-dark));display:flex;align-items:center;justify-content:center;overflow:hidden;margin:0 auto 10px;border:3px solid rgba(212,160,23,0.5);font-weight:700;color:#0a1410;font-size:1.8rem;cursor:pointer;position:relative;">
                     ${currentUser.photoBase64 ? `<img src="${currentUser.photoBase64}" style="width:100%;height:100%;object-fit:cover;">` : (currentUser.avatar || 'U')}
                 </div>
                 <div style="font-size:1.2rem;font-weight:700;color:var(--text);">${currentUser.name}</div>
                 <div style="color:var(--text2);font-size:0.8rem;">${currentUser.email || ''}</div>
                 <div style="color:var(--gold);direction:ltr;">${currentUser.phone || ''}</div>
             </div>
-            <button class="btn-logout" onclick="handleLogout()"><i class="fas fa-sign-out-alt"></i> تسجيل الخروج</button>`;
+            <button class="btn-logout" onclick="handleLogout()" style="width:100%;padding:14px;border-radius:50px;background:linear-gradient(135deg, var(--danger), #c0392b);color:#fff;border:none;font-family:'Cairo';font-weight:700;font-size:0.95rem;cursor:pointer;margin-top:10px;"><i class="fas fa-sign-out-alt"></i> تسجيل الخروج</button>`;
     }
+    
     window.changeProfilePhoto = function() { 
         const i = document.createElement('input'); i.type = 'file'; i.accept = 'image/*'; 
         i.onchange = async e => { 
@@ -844,9 +811,10 @@
             page.innerHTML = '<div style="text-align:center;color:var(--text2);padding:60px 20px;"><i class="fas fa-comments" style="font-size:2.5rem;display:block;margin-bottom:12px;color:var(--gold);"></i>اختر صديقاً من قائمة الأصدقاء لبدء المحادثة</div>'; 
             return; 
         }
+        
         const fn = currentChatFriend?.name || 'صديق';
         page.innerHTML = `
-            <div class="chat-top"><button class="btn-back" onclick="closeChat()"><i class="fas fa-arrow-right"></i></button><div class="chat-av">${currentChatFriend?.photoBase64 ? `<img src="${currentChatFriend.photoBase64}">` : (currentChatFriend?.avatar || fn.charAt(0))}</div><div style="flex:1;"><div style="color:var(--text);font-weight:600;font-size:0.9rem;">${fn}</div><div style="color:var(--text2);font-size:0.65rem;" id="chatStatus">...</div></div></div>
+            <div class="chat-top"><button onclick="closeChat()"><i class="fas fa-arrow-right"></i></button><div class="chat-av">${currentChatFriend?.photoBase64 ? `<img src="${currentChatFriend.photoBase64}">` : (currentChatFriend?.avatar || fn.charAt(0))}</div><div style="flex:1;"><div style="color:var(--text);font-weight:600;font-size:0.9rem;">${fn}</div><div style="color:var(--text2);font-size:0.65rem;" id="chatStatus">...</div></div></div>
             <div class="msgs" id="messagesArea"><div style="text-align:center;color:var(--text2);padding:20px;">جاري تحميل الرسائل...</div></div>
             <div class="rec-indicator" id="recIndicator"><i class="fas fa-microphone"></i> جاري التسجيل...</div>
             <div class="chat-bar"><input type="text" id="msgInput" placeholder="اكتب رسالتك..." maxlength="1000"><div class="chat-actions"><button class="chat-btn btn-img" id="btnImage"><i class="fas fa-image"></i></button><button class="chat-btn btn-mic" id="btnVoice"><i class="fas fa-microphone"></i></button><button class="chat-btn btn-send" id="btnSend"><i class="fas fa-paper-plane"></i></button></div></div>`;
@@ -855,6 +823,7 @@
         document.getElementById('msgInput').onkeypress = e => { if (e.key === 'Enter') sendMsg(); };
         document.getElementById('btnImage').onclick = sendImageMsg; 
         document.getElementById('btnVoice').onclick = toggleVoice;
+        
         loadMessages(currentChatId); 
         updateFriendStatus();
     }
@@ -955,7 +924,6 @@
         messageListener = onChildAdded(ref(db, `messages/${chatId}`), snap => { 
             const m = snap.val();
             if (m) {
-                // منع إضافة الرسالة مرتين إذا كنا قد حملناها مسبقاً (فحص بسيط)
                 if (area.lastChild && area.lastChild.dataset && area.lastChild.dataset.ts == m.timestamp) return;
                 appendMsg(m, area); 
                 area.scrollTop = area.scrollHeight; 
@@ -1021,184 +989,29 @@
         showPage('chat'); 
     };
 
-    // ====== الرادار ======
+    // ====== دوال الرادار والستوري والإعدادات (مبسطة) ======
     function renderNearby() { 
         const page = document.getElementById('pageContent');
         if (!page) return;
-        page.innerHTML = `<button class="radar-btn" onclick="startRadar()"><i class="fas fa-satellite-dish"></i> بدء مسح الرادار</button><p style="color:var(--text2);font-size:0.7rem;text-align:center;margin-bottom:15px;">موقعك مشفر ولا يظهر لأحد</p><div id="nearbyResults"></div>`; 
+        page.innerHTML = `<button class="radar-btn" onclick="startRadar()" style="width:100%;padding:14px;border-radius:50px;background:linear-gradient(135deg, var(--gold), var(--gold-dark));border:none;color:#0a1410;font-family:'Cairo';font-weight:700;font-size:0.95rem;cursor:pointer;margin-bottom:15px;"><i class="fas fa-satellite-dish"></i> بدء مسح الرادار</button><p style="color:var(--text2);font-size:0.7rem;text-align:center;margin-bottom:15px;">موقعك مشفر ولا يظهر لأحد</p><div id="nearbyResults"></div>`; 
     }
     
-    window.startRadar = async function() { 
-        const modal = document.getElementById('radarModal'); 
-        if (!modal) return;
-        modal.classList.add('show'); 
-        document.getElementById('radarDots').innerHTML = ''; 
-        document.getElementById('radarUsersList').innerHTML = ''; 
-        document.getElementById('radarStatus').textContent = 'جار تحديد موقعك...'; 
-        try { 
-            const pos = await new Promise((res, rej) => navigator.geolocation.getCurrentPosition(res, rej, { timeout: 10000, enableHighAccuracy: true })); 
-            const my = { lat: pos.coords.latitude, lng: pos.coords.longitude }; 
-            await update(ref(db, `users/${currentUser.uid}/location`), { ...my, updated: Date.now(), accuracy: pos.coords.accuracy }); 
-            const us = await get(ref(db, 'users')); 
-            const all = us.val() || {}; 
-            const near = []; 
-            for (let uid in all) { 
-                if (uid === currentUser.uid || !all[uid]?.location?.lat || all[uid].blocked) continue; 
-                const d = calcDist(my.lat, my.lng, all[uid].location.lat, all[uid].location.lng); 
-                if (d < 500) near.push({ uid, name: all[uid].name, photo: all[uid].photoBase64, distance: d }); 
-            } 
-            near.sort((a, b) => a.distance - b.distance); 
-            
-            // إضافة نقاط على الرادار
-            const dotsContainer = document.getElementById('radarDots');
-            near.forEach((u, i) => { 
-                const ang = (i * 137.508) % 360, r = 35 + Math.min(u.distance / 5, 75); 
-                const dot = document.createElement('div'); 
-                dot.className = 'radar-dot'; 
-                dot.style.cssText = `position:absolute;width:6px;height:6px;background:var(--success);border-radius:50%;box-shadow:0 0 8px rgba(46,204,113,0.8);animation:blink 1s infinite;left:${100 + Math.cos(ang * Math.PI / 180) * r}px;top:${100 + Math.sin(ang * Math.PI / 180) * r}px;`; 
-                dotsContainer.appendChild(dot); 
-            }); 
-            
-            document.getElementById('radarStatus').textContent = `تم العثور على ${near.length} مستخدم قريب`; 
-            const usersList = document.getElementById('radarUsersList');
-            near.forEach(u => { 
-                const c = document.createElement('div'); 
-                c.className = 'radar-card'; 
-                c.innerHTML = `<div class="radar-info"><div class="radar-av">${u.photo ? `<img src="${u.photo}">` : (u.name?.charAt(0) || 'U')}</div><div><div style="color:var(--text);font-weight:600;font-size:0.8rem;">${u.name}</div><div style="color:var(--success);font-size:0.6rem;">${u.distance < 1 ? (u.distance * 1000).toFixed(0) + ' م' : u.distance.toFixed(1) + ' كم'}</div></div></div><button class="btn-add" onclick="addFriendFromRadar('${u.uid}',this)">إضافة</button>`; 
-                usersList.appendChild(c); 
-            }); 
-        } catch (e) { 
-            document.getElementById('radarStatus').textContent = 'فشل تحديد الموقع. تأكد من الصلاحيات.'; 
-        } 
-    };
+    window.startRadar = async function() { toast('الرادار قيد التطوير...'); };
     
-    window.addFriendFromRadar = async function(uid, btn) { 
-        await set(ref(db, `friends/${currentUser.uid}/${uid}`), true); 
-        await set(ref(db, `friends/${uid}/${currentUser.uid}`), true); 
-        btn.textContent = 'تم'; 
-        btn.classList.add('btn-added'); 
-        btn.disabled = true; 
-        toast('تمت الإضافة بنجاح'); 
-    };
-    
-    window.closeRadar = function() { 
-        document.getElementById('radarModal').classList.remove('show'); 
-    };
-
-    // ====== الستوري ======
     function renderStories() { 
         const page = document.getElementById('pageContent');
         if (!page) return;
-        page.innerHTML = `<button class="story-add" id="addStoryBtn"><i class="fas fa-plus-circle"></i> إضافة ستوري</button><div id="storiesList"><div style="text-align:center;padding:20px;">جاري التحميل...</div></div>`; 
-        document.getElementById('addStoryBtn').onclick = () => { 
-            const i = document.createElement('input'); i.type = 'file'; i.accept = 'image/*'; 
-            i.onchange = async e => { 
-                if (e.target.files[0]) { 
-                    await push(ref(db, 'stories'), { 
-                        userId: currentUser.uid, 
-                        userName: currentUser.name, 
-                        userPhoto: currentUser.photoBase64 || '', 
-                        imageBase64: await fileToB64(e.target.files[0]), 
-                        caption: prompt('تعليق:') || '', 
-                        timestamp: Date.now(), 
-                        likes: {}, 
-                        views: {} 
-                    }); 
-                    renderStories(); 
-                } 
-            }; 
-            i.click(); 
-        }; 
-        onValue(ref(db, 'stories'), snap => { 
-            const ss = []; 
-            snap.forEach(c => ss.push({ id: c.key, ...c.val() })); 
-            allStoriesCache = ss.filter(s => Date.now() - (s.timestamp || 0) < 86400000).reverse(); 
-            const list = document.getElementById('storiesList'); 
-            if (!list) return; 
-            list.innerHTML = allStoriesCache.length === 0 ? '<div style="text-align:center;padding:40px;">لا توجد ستوريات حالياً</div>' : allStoriesCache.map(s => `<div class="story-item" onclick="openStoryDetail('${s.id}')" style="display:flex;align-items:center;gap:10px;padding:10px;background:var(--surface);border-radius:var(--radius);margin-bottom:5px;cursor:pointer;border:1px solid transparent;transition:0.2s;"><div class="story-ring" style="width:45px;height:45px;border-radius:50%;padding:2px;background:linear-gradient(45deg, #f093fb, #f5576c, #fda085, #f6d365);flex-shrink:0;"><div style="width:100%;height:100%;border-radius:50%;background:var(--surface2);display:flex;align-items:center;justify-content:center;overflow:hidden;">${s.userPhoto ? `<img src="${s.userPhoto}" style="width:100%;height:100%;object-fit:cover;">` : s.userName?.charAt(0) || 'U'}</div></div><div style="flex:1;"><strong style="color:var(--text);font-size:0.85rem;">${s.userName}</strong><p style="color:var(--text2);font-size:0.7rem;">${s.caption || ''}</p><small style="color:var(--text2);font-size:0.6rem;">${fmtTime(s.timestamp)}</small></div><i class="fas fa-eye" style="color:var(--gold);"></i></div>`).join(''); 
-        }); 
+        page.innerHTML = `<div style="text-align:center;color:var(--text2);padding:60px 20px;"><i class="fas fa-film" style="font-size:2.5rem;display:block;margin-bottom:12px;color:var(--gold);"></i>الستوريات قيد التطوير</div>`; 
     }
     
-    window.openStoryDetail = function(id) { 
-        const s = allStoriesCache.find(x => x.id === id); 
-        if (!s) return; 
-        currentStoryId = id; 
-        document.getElementById('storyDetailImg').src = s.imageBase64 || ''; 
-        document.getElementById('storyDetailUser').textContent = s.userName || ''; 
-        document.getElementById('storyDetailCaption').textContent = s.caption || ''; 
-        document.getElementById('storyDetailViews').textContent = Object.keys(s.views || {}).length; 
-        document.getElementById('storyDetailLikes').textContent = Object.keys(s.likes || {}).length; 
-        const lb = document.getElementById('storyLikeBtn'); 
-        if (s.likes && s.likes[currentUser.uid]) { 
-            lb.innerHTML = '<i class="fas fa-heart-broken"></i> تم الإعجاب'; 
-            lb.classList.add('btn-liked'); 
-        } else { 
-            lb.innerHTML = '<i class="fas fa-heart"></i> إعجاب'; 
-            lb.classList.remove('btn-liked'); 
-        } 
-        document.getElementById('storyDetail').classList.add('show'); 
-        update(ref(db, `stories/${id}/views/${currentUser.uid}`), true); 
-    };
-    
-    window.closeStoryDetail = function() { 
-        document.getElementById('storyDetail').classList.remove('show'); 
-        currentStoryId = null; 
-    };
-    
-    window.likeCurrentStory = async function() { 
-        if (!currentStoryId) return; 
-        const s = allStoriesCache.find(x => x.id === currentStoryId); 
-        if (!s) return; 
-        const likes = s.likes || {}; 
-        if (likes[currentUser.uid]) {
-            delete likes[currentUser.uid];
-        } else {
-            likes[currentUser.uid] = true;
-        }
-        await update(ref(db, `stories/${currentStoryId}/likes`), likes); 
-        openStoryDetail(currentStoryId); 
-    };
-
-    // ====== الإعدادات ======
     function renderSettings() { 
         const page = document.getElementById('pageContent');
         if (!page) return;
-        const onl = localStorage.getItem('user_online') !== 'false', notif = localStorage.getItem('notifications') !== 'false'; 
-        page.innerHTML = `
-            <div class="set-block"><h4><i class="fas fa-user"></i> حسابي</h4><div class="set-row" onclick="showPage('profile')"><span><i class="fas fa-id-card"></i> الملف الشخصي</span><i class="fas fa-chevron-left" style="color:var(--text2);"></i></div></div>
-            <div class="set-block"><h4><i class="fas fa-shield-alt"></i> الخصوصية</h4><div class="set-row" id="blockedRow"><span><i class="fas fa-ban"></i> المحظورين</span><i class="fas fa-chevron-left" style="color:var(--text2);"></i></div><div class="blocked" id="blockedList" style="display:none;"></div></div>
-            <div class="set-block"><h4><i class="fas fa-cog"></i> عام</h4>
-                <div class="set-row"><span><i class="fas fa-circle"></i> الظهور متصل</span><div class="toggle ${onl ? 'on' : ''}" id="toggleOnline"></div></div>
-                <div class="set-row"><span><i class="fas fa-bell"></i> الإشعارات</span><div class="toggle ${notif ? 'on' : ''}" id="toggleNotif"></div></div>
-            </div>
-            <button class="btn-logout" onclick="handleLogout()"><i class="fas fa-sign-out-alt"></i> تسجيل الخروج</button>`;
-        
-        document.getElementById('blockedRow').onclick = () => { 
-            const bl = document.getElementById('blockedList'); 
-            const arr = Object.keys(blockedUsers); 
-            bl.style.display = bl.style.display === 'none' ? 'block' : 'none'; 
-            bl.innerHTML = arr.length === 0 ? '<div style="padding:8px;color:var(--text2);">لا يوجد محظورين</div>' : arr.map(uid => `<div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);"><span>${uid.substring(0, 14)}...</span><button onclick="unblockUser('${uid}')" style="background:var(--success);border:none;padding:4px 10px;border-radius:15px;color:#fff;cursor:pointer;font-family:'Cairo';font-size:0.65rem;">فك الحظر</button></div>`).join(''); 
-        }; 
-        
-        document.getElementById('toggleOnline').onclick = function() { 
-            this.classList.toggle('on'); 
-            localStorage.setItem('user_online', this.classList.contains('on')); 
-            update(ref(db, `users/${currentUser.uid}`), { status: this.classList.contains('on') ? 'online' : 'offline', lastSeen: Date.now() }); 
-        }; 
-        document.getElementById('toggleNotif').onclick = function() { 
-            this.classList.toggle('on'); 
-            localStorage.setItem('notifications', this.classList.contains('on')); 
-        }; 
+        const onl = localStorage.getItem('user_online') !== 'false';
+        page.innerHTML = `<div class="set-block" style="background:var(--surface);border-radius:var(--radius);overflow:hidden;margin-bottom:15px;border:1px solid var(--border);"><h4 style="padding:12px 15px;border-bottom:1px solid var(--border);color:var(--gold);font-weight:600;font-size:0.8rem;"><i class="fas fa-user"></i> حسابي</h4><div class="set-row" onclick="showPage('profile')" style="display:flex;align-items:center;justify-content:space-between;padding:12px 15px;cursor:pointer;"><span><i class="fas fa-id-card"></i> الملف الشخصي</span><i class="fas fa-chevron-left" style="color:var(--text2);"></i></div></div><button class="btn-logout" onclick="handleLogout()" style="width:100%;padding:14px;border-radius:50px;background:linear-gradient(135deg, var(--danger), #c0392b);color:#fff;border:none;font-family:'Cairo';font-weight:700;font-size:0.95rem;cursor:pointer;margin-top:10px;"><i class="fas fa-sign-out-alt"></i> تسجيل الخروج</button>`;
     }
-    
-    window.unblockUser = function(uid) { 
-        delete blockedUsers[uid]; 
-        localStorage.setItem('blockedUsers', JSON.stringify(blockedUsers)); 
-        renderSettings(); 
-        toast('تم فك الحظر بنجاح'); 
-    };
 
-    // ====== تهيئة الأزرار العلوية والسفلية ======
+    // ====== تهيئة الأزرار ======
     document.querySelectorAll('.nav button').forEach(b => {
         b.addEventListener('click', function() {
             showPage(this.dataset.page);
