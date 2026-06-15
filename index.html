@@ -116,16 +116,16 @@
         .nav-item.active { color: var(--gold); background: rgba(212,160,23,0.1); }
         .nav-item.active::before { content: ''; position: absolute; top: -4px; width: 16px; height: 2px; background: var(--gold); border-radius: 2px; box-shadow: 0 0 8px rgba(212,160,23,0.5); }
 
-        /* ========== الدردشة ========== */
-        .chat-header { display: flex; align-items: center; gap: 12px; padding: 14px; background: var(--surface); border-radius: var(--radius-lg); margin-bottom: 12px; border: 1px solid var(--border); }
+        /* ========== صفحة المحادثة الخاصة ========== */
+        .private-chat-header { display: flex; align-items: center; gap: 12px; padding: 14px; background: var(--surface); border-radius: var(--radius-lg); margin-bottom: 12px; border: 1px solid var(--border); }
+        .private-chat-header .back-btn { width: 36px; height: 36px; border-radius: 50%; border: none; background: rgba(255,255,255,0.05); color: var(--text); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1rem; transition: var(--transition); }
+        .private-chat-header .back-btn:active { transform: scale(0.9); background: rgba(255,255,255,0.1); }
         .chat-avatar-lg { width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, var(--gold), var(--gold-dark)); display: flex; align-items: center; justify-content: center; overflow: hidden; flex-shrink: 0; border: 2px solid rgba(212,160,23,0.4); font-weight: 700; color: #0a1410; font-size: 1.1rem; }
         .chat-avatar-lg img { width: 100%; height: 100%; object-fit: cover; }
         .chat-name { color: var(--text); font-weight: 600; font-size: 0.95rem; }
         .chat-status { color: var(--text-secondary); font-size: 0.68rem; }
-        .chat-actions { display: flex; gap: 8px; margin-right: auto; }
-        .btn-chat-action { background: none; border: none; color: var(--text-secondary); cursor: pointer; padding: 8px; border-radius: 50%; transition: var(--transition); font-size: 1rem; }
-        .btn-chat-action:hover { color: var(--danger); background: rgba(231,76,60,0.1); }
-        .messages-area { flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; margin-bottom: 12px; max-height: calc(100vh - 280px); padding: 4px; }
+        .chat-status.online-status { color: var(--success); }
+        .messages-area { flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; margin-bottom: 12px; max-height: calc(100vh - 290px); padding: 4px; }
         .msg-wrapper { display: flex; max-width: 82%; animation: msgIn 0.3s cubic-bezier(0.4,0,0.2,1); }
         @keyframes msgIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
         .msg-wrapper.sent { align-self: flex-end; } .msg-wrapper.received { align-self: flex-start; }
@@ -133,15 +133,16 @@
         .sent .msg-bubble { background: linear-gradient(135deg, var(--gold), var(--gold-dark)); color: #0a1410; border-bottom-right-radius: 4px; }
         .received .msg-bubble { background: var(--surface2); border: 1px solid var(--border); color: var(--text); border-bottom-left-radius: 4px; }
         .msg-bubble img { max-width: 200px; border-radius: 12px; cursor: pointer; display: block; }
-        .msg-bubble audio { max-width: 200px; margin-top: 4px; }
+        .msg-bubble audio { max-width: 200px; margin-top: 4px; height: 35px; }
         .msg-time { font-size: 0.55rem; opacity: 0.7; margin-top: 4px; text-align: left; direction: ltr; }
         .msg-sender-name { font-size: 0.62rem; color: var(--gold); margin-bottom: 2px; font-weight: 600; }
+        .msg-date-separator { text-align: center; color: var(--text-secondary); font-size: 0.7rem; margin: 8px 0; padding: 4px 12px; background: rgba(255,255,255,0.03); border-radius: 15px; display: inline-block; align-self: center; }
         .chat-input-bar { display: flex; gap: 6px; align-items: center; background: var(--surface); border-radius: 50px; padding: 4px; border: 1px solid var(--border); }
         .chat-input-bar input { flex: 1; background: transparent; border: none; padding: 10px 16px; color: var(--text); font-family: 'Cairo', sans-serif; font-size: 0.88rem; outline: none; }
         .chat-input-bar button { width: 38px; height: 38px; border-radius: 50%; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: var(--transition); flex-shrink: 0; background: none; color: var(--gold); font-size: 1.1rem; }
         .chat-input-bar button:active { transform: scale(0.88); background: rgba(212,160,23,0.15); }
         .btn-send { background: var(--gold) !important; color: #0a1410 !important; }
-        .recording-indicator { display: none; align-items: center; gap: 8px; padding: 8px 16px; background: var(--danger); border-radius: 20px; color: white; font-size: 0.8rem; animation: pulse 1s infinite; }
+        .recording-indicator { display: none; align-items: center; gap: 8px; padding: 8px 16px; background: var(--danger); border-radius: 20px; color: white; font-size: 0.8rem; animation: pulse 1s infinite; margin-bottom: 8px; }
         @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
         .recording-indicator.active { display: flex; }
 
@@ -162,9 +163,9 @@
         .status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-left: 4px; }
         .status-dot.online { background: var(--success); box-shadow: 0 0 8px rgba(46,204,113,0.6); } .status-dot.offline { background: #666; }
         .contact-buttons { display: flex; gap: 6px; }
-        .btn-contact-action { width: 36px; height: 36px; border-radius: 50%; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: var(--transition); font-size: 0.85rem; }
-        .btn-contact-chat { background: var(--gold); color: #0a1410; }
+        .btn-contact-chat { width: 38px; height: 38px; border-radius: 50%; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: var(--transition); font-size: 0.9rem; background: var(--gold); color: #0a1410; }
         .btn-contact-chat:active { transform: scale(0.9); }
+        .unread-badge { background: var(--danger); color: white; padding: 2px 8px; border-radius: 12px; font-size: 0.6rem; font-weight: 700; }
 
         /* ========== الرادار ========== */
         .radar-btn { width: 100%; padding: 15px; border-radius: 50px; background: linear-gradient(135deg, var(--gold), var(--gold-dark)); border: none; color: #0a1410; font-family: 'Cairo', sans-serif; font-weight: 700; font-size: 1rem; cursor: pointer; margin-bottom: 16px; display: flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 8px 25px rgba(212,160,23,0.25); transition: var(--transition); }
@@ -305,7 +306,7 @@
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
     import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut, updateProfile } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
-    import { getDatabase, ref, set, update, get, push, onValue, onChildAdded, query, orderByChild, equalTo } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-database.js";
+    import { getDatabase, ref, set, update, get, push, onValue, onChildAdded } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-database.js";
 
     const firebaseConfig = {
         apiKey: "AIzaSyCsO5Og1ZbDd0yimjWSBKTW-3Q_BbuTeQg",
@@ -321,10 +322,17 @@
     const auth = getAuth(app);
     const db = getDatabase(app);
 
-    let currentUser = null, currentChatId = null, messageListener = null;
-    let currentStoryId = null, allStoriesCache = [];
-    let statusUpdateInterval = null, locationUpdateInterval = null;
-    let mediaRecorder = null, audioChunks = [];
+    let currentUser = null;
+    let currentChatId = null;
+    let currentChatUserName = '';
+    let messageListener = null;
+    let currentStoryId = null;
+    let allStoriesCache = [];
+    let statusUpdateInterval = null;
+    let locationUpdateInterval = null;
+    let mediaRecorder = null;
+    let audioChunks = [];
+    let unreadCounts = {};
     const blockedUsers = JSON.parse(localStorage.getItem('blockedUsers') || '{}');
 
     function sanitizePhone(p) { let c = (p || '').replace(/[\s\-\+\(\)]/g, ''); if (c.startsWith('00')) c = c.substring(2); if (c.startsWith('218')) c = '0' + c.substring(3); if (!c.startsWith('0') && c.length >= 9) c = '0' + c; return c; }
@@ -333,6 +341,7 @@
     function fileToBase64(f) { return new Promise((res, rej) => { const r = new FileReader(); r.onload = () => res(r.result); r.onerror = rej; r.readAsDataURL(f); }); }
     function showToast(msg) { const t = document.createElement('div'); t.className = 'toast'; t.textContent = msg; document.body.appendChild(t); setTimeout(() => t.remove(), 2800); }
     function formatTime(ts) { if (!ts) return ''; return new Date(ts).toLocaleTimeString('ar-LY', { hour: '2-digit', minute: '2-digit' }); }
+    function formatDate(ts) { if (!ts) return ''; const d = new Date(ts); const today = new Date(); if (d.toDateString() === today.toDateString()) return 'اليوم'; const yesterday = new Date(today); yesterday.setDate(yesterday.getDate()-1); if (d.toDateString() === yesterday.toDateString()) return 'امس'; return d.toLocaleDateString('ar-LY', { month:'short', day:'numeric' }); }
     function getDistance(lat1, lon1, lat2, lon2) { const R = 6371; const dLat = (lat2-lat1)*Math.PI/180; const dLon = (lon2-lon1)*Math.PI/180; const a = Math.sin(dLat/2)**2 + Math.cos(lat1*Math.PI/180)*Math.cos(lat2*Math.PI/180)*Math.sin(dLon/2)**2; return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); }
 
     // ============ المصادقة ============
@@ -377,7 +386,7 @@
                     successEl.textContent = 'تم انشاء الحساب بنجاح!';
                 } catch (createError) {
                     if (createError.code === 'auth/email-already-in-use') {
-                        successEl.textContent = 'هذا الرقم مسجل مسبقاً. جاري تسجيل الدخول...';
+                        successEl.textContent = 'الرقم مسجل مسبقاً. جاري تسجيل الدخول...';
                         setTimeout(async () => { try { await signInWithEmailAndPassword(auth, phoneToEmail(phone), pass); } catch (loginError) { errEl.textContent = 'كلمة المرور غير صحيحة.'; } }, 1500);
                     } else { throw createError; }
                 }
@@ -392,14 +401,10 @@
         } catch (e) {
             if (e.code === 'auth/invalid-credential') errEl.textContent = 'كلمة المرور غير صحيحة';
             else if (e.code === 'auth/user-not-found') errEl.textContent = 'لا يوجد حساب';
-            else if (e.code === 'auth/too-many-requests') errEl.textContent = 'محاولات كثيرة. انتظر قليلاً.';
             else errEl.textContent = e.message || 'حدث خطأ';
         } finally { btn.disabled = false; }
     };
-    window.signInWithGoogle = async function() {
-        try { await signInWithPopup(auth, new GoogleAuthProvider()); }
-        catch (e) { document.getElementById('authError').textContent = 'فشل تسجيل الدخول. تاكد من تفعيل Google Sign-In'; }
-    };
+    window.signInWithGoogle = async function() { try { await signInWithPopup(auth, new GoogleAuthProvider()); } catch (e) { document.getElementById('authError').textContent = 'فشل تسجيل الدخول'; } };
     window.showForgotPassword = function() {
         document.getElementById('authTitle').textContent = 'استعادة كلمة المرور'; document.getElementById('authSubtitle').textContent = 'ادخل رقم هاتفك';
         document.getElementById('authTabs').style.display = 'none'; document.getElementById('forgotBtn').style.display = 'none';
@@ -446,6 +451,7 @@
             statusUpdateInterval = setInterval(updateOnlineStatus, 30000);
             locationUpdateInterval = setInterval(updateUserLocation, 60000);
             document.addEventListener('visibilitychange', handleVisibilityChange);
+            listenForNewMessages();
         } else {
             document.getElementById('welcomeScreen').classList.remove('hidden'); document.getElementById('authScreen').classList.remove('active'); document.getElementById('appContainer').classList.remove('active');
             currentUser = null; currentChatId = null;
@@ -461,12 +467,32 @@
     async function updateUserLocation() { if (!navigator.geolocation || !currentUser) return; try { const pos = await new Promise((res, rej) => navigator.geolocation.getCurrentPosition(res, rej, { timeout: 5000, enableHighAccuracy: true })); await update(ref(db, `users/${currentUser.uid}/location`), { lat: pos.coords.latitude, lng: pos.coords.longitude, updated: Date.now(), accuracy: pos.coords.accuracy }); } catch (e) {} }
     function updateHeaderUI() { document.getElementById('headerName').textContent = currentUser?.name?.split(' ')[0] || 'مستخدم'; document.getElementById('headerAvatar').innerHTML = currentUser?.photoBase64 ? `<img src="${currentUser.photoBase64}" alt="صورة">` : (currentUser?.avatar || 'U'); }
 
+    // ============ الاستماع للرسائل الجديدة (اشعارات) ============
+    function listenForNewMessages() {
+        if (!currentUser) return;
+        const friendsRef = ref(db, `friends/${currentUser.uid}`);
+        onValue(friendsRef, async (snap) => {
+            const friendIds = Object.keys(snap.val() || {}).filter(f => f !== currentUser.uid);
+            for (const fid of friendIds) {
+                const chatId = [currentUser.uid, fid].sort().join('_');
+                const msgsRef = ref(db, `messages/${chatId}`);
+                onValue(msgsRef, (msgSnap) => {
+                    if (!msgSnap.exists()) return;
+                    const msgs = [];
+                    msgSnap.forEach(c => msgs.push(c.val()));
+                    const newFromOthers = msgs.filter(m => m.senderId !== currentUser.uid && m.timestamp > Date.now() - 5000).length;
+                    if (newFromOthers > 0 && currentChatId !== chatId) {
+                        unreadCounts[fid] = (unreadCounts[fid] || 0) + newFromOthers;
+                        if (currentPage === 'contacts') renderContacts();
+                    }
+                });
+            }
+        });
+    }
+
     async function handleLogout() {
         try {
-            if (currentUser) {
-                await update(ref(db, `users/${currentUser.uid}`), { status: 'offline', lastSeen: Date.now() });
-                if (navigator.sendBeacon) { navigator.sendBeacon(`https://libyano-chat-3fc6a-default-rtdb.firebaseio.com/users/${currentUser.uid}.json`, JSON.stringify({ status: 'offline', lastSeen: Date.now() })); }
-            }
+            if (currentUser) { await update(ref(db, `users/${currentUser.uid}`), { status: 'offline', lastSeen: Date.now() }); }
             await signOut(auth);
             showToast('تم تسجيل الخروج بنجاح');
         } catch (error) { showToast('فشل في تسجيل الخروج'); }
@@ -475,23 +501,24 @@
 
     window.showPage = function(p) {
         document.querySelectorAll('.nav-item').forEach(n => n.classList.toggle('active', n.dataset.page === p));
+        currentPage = p;
         if (p === 'chat') renderChat(); else if (p === 'contacts') renderContacts(); else if (p === 'nearby') renderNearby();
         else if (p === 'stories') renderStories(); else if (p === 'settings') renderSettings(); else if (p === 'profile') renderProfile();
     };
 
-    // ============ الملف الشخصي مع تغيير الصورة ============
+    // ============ الملف الشخصي ============
     function renderProfile() {
         if (!currentUser) return;
         document.getElementById('pageContent').innerHTML = `
             <div class="profile-header">
-                <div class="profile-avatar-lg" id="profileAvatar" onclick="changeProfilePhoto()">${currentUser.photoBase64 ? `<img src="${currentUser.photoBase64}" alt="صورة">` : (currentUser.avatar || currentUser.name?.charAt(0) || 'U')}</div>
+                <div class="profile-avatar-lg" id="profileAvatar" onclick="changeProfilePhoto()">${currentUser.photoBase64 ? `<img src="${currentUser.photoBase64}" alt="صورة">` : (currentUser.avatar || 'U')}</div>
                 <div class="profile-name">${currentUser.name || 'مستخدم'}</div>
                 <div class="profile-email">${currentUser.email || 'غير متوفر'}</div>
                 <div class="profile-phone">${currentUser.phone || ''}</div>
                 <div class="profile-stats-row">
-                    <div class="profile-stat-item"><div class="profile-stat-value" id="profileFriendsCount">-</div><div class="profile-stat-label">الاصدقاء</div></div>
-                    <div class="profile-stat-item"><div class="profile-stat-value" id="profileMessagesCount">-</div><div class="profile-stat-label">الرسائل</div></div>
-                    <div class="profile-stat-item"><div class="profile-stat-value" id="profileStoriesCount">-</div><div class="profile-stat-label">الستوريات</div></div>
+                    <div class="profile-stat-item"><div class="profile-stat-value" id="pfFriends">-</div><div class="profile-stat-label">الاصدقاء</div></div>
+                    <div class="profile-stat-item"><div class="profile-stat-value" id="pfMsgs">-</div><div class="profile-stat-label">الرسائل</div></div>
+                    <div class="profile-stat-item"><div class="profile-stat-value" id="pfStories">-</div><div class="profile-stat-label">الستوريات</div></div>
                 </div>
             </div>
             <div class="profile-section">
@@ -500,62 +527,66 @@
                 <div class="profile-section-row"><span class="profile-section-label">الهاتف</span><span class="profile-section-value" dir="ltr">${currentUser.phone || 'غير متوفر'}</span></div>
                 <div class="profile-section-row"><span class="profile-section-label">البريد</span><span class="profile-section-value" dir="ltr">${currentUser.email || 'غير متوفر'}</span></div>
                 <div class="profile-section-row"><span class="profile-section-label">المعرف</span><span class="profile-section-value" style="font-size:0.7rem;">${currentUser.uid?.substring(0,18)}...</span></div>
-                <div class="profile-section-row"><span class="profile-section-label">الحالة</span><span class="profile-section-value" style="color:var(--success);">متصل</span></div>
             </div>
             <button class="btn-logout" onclick="handleLogout()"><i class="fas fa-sign-out-alt"></i> تسجيل الخروج</button>`;
         setTimeout(async () => {
             try {
                 const fs = await get(ref(db, `friends/${currentUser.uid}`));
-                document.getElementById('profileFriendsCount').textContent = Object.keys(fs.val() || {}).filter(f => f !== currentUser.uid).length;
+                document.getElementById('pfFriends').textContent = Object.keys(fs.val() || {}).filter(f => f !== currentUser.uid).length;
                 let mc = 0; const ms = await get(ref(db, 'messages')); if (ms.exists()) ms.forEach(c => c.forEach(m => { if (m.val().senderId === currentUser.uid) mc++; }));
-                document.getElementById('profileMessagesCount').textContent = mc;
+                document.getElementById('pfMsgs').textContent = mc;
                 let sc = 0; const ss = await get(ref(db, 'stories')); if (ss.exists()) ss.forEach(s => { if (s.val().userId === currentUser.uid) sc++; });
-                document.getElementById('profileStoriesCount').textContent = sc;
+                document.getElementById('pfStories').textContent = sc;
             } catch(e) {}
         }, 100);
     }
     window.changeProfilePhoto = function() {
         const i = document.createElement('input'); i.type = 'file'; i.accept = 'image/*';
-        i.onchange = async e => {
-            if (e.target.files[0]) {
-                const b64 = await fileToBase64(e.target.files[0]);
-                await update(ref(db, `users/${currentUser.uid}`), { photoBase64: b64 });
-                currentUser.photoBase64 = b64;
-                updateHeaderUI();
-                renderProfile();
-                showToast('تم تحديث الصورة الشخصية');
-            }
-        };
+        i.onchange = async e => { if (e.target.files[0]) { const b64 = await fileToBase64(e.target.files[0]); await update(ref(db, `users/${currentUser.uid}`), { photoBase64: b64 }); currentUser.photoBase64 = b64; updateHeaderUI(); renderProfile(); showToast('تم تحديث الصورة'); } };
         i.click();
     };
 
-    // ============ الدردشة مع رسائل صوتية وصور وزر خروج ============
+    // ============ صفحة المحادثة الخاصة ============
     function renderChat() {
+        if (!currentChatId) {
+            document.getElementById('pageContent').innerHTML = '<div style="text-align:center;color:var(--text-secondary);padding:60px 20px;"><i class="fas fa-comments" style="font-size:3rem;display:block;margin-bottom:16px;color:var(--gold);"></i>اختر صديقا من قائمة الاصدقاء لبدء المحادثة</div>';
+            return;
+        }
+        const friendName = currentChatUserName || 'صديق';
         document.getElementById('pageContent').innerHTML = `
-            <div class="chat-header">
-                <div class="chat-avatar-lg" id="chatAvatar">U</div>
-                <div style="flex:1;"><div class="chat-name" id="chatName">اختر صديقا</div><div class="chat-status" id="chatStatus"></div></div>
-                <div class="chat-actions">
-                    <button class="btn-chat-action" onclick="leaveChat()" title="الخروج من المحادثة"><i class="fas fa-sign-out-alt"></i></button>
-                </div>
+            <div class="private-chat-header">
+                <button class="back-btn" onclick="leavePrivateChat()"><i class="fas fa-arrow-right"></i></button>
+                <div class="chat-avatar-lg" id="chatAvatar">${friendName.charAt(0)}</div>
+                <div style="flex:1;"><div class="chat-name">${friendName}</div><div class="chat-status" id="chatStatus">...</div></div>
             </div>
-            <div class="messages-area" id="messagesArea"><div style="text-align:center;color:var(--text-secondary);padding:50px;">اختر صديقا لبدء المحادثة</div></div>
+            <div class="messages-area" id="messagesArea"><div style="text-align:center;color:var(--text-secondary);padding:30px;">بداية المحادثة</div></div>
             <div class="recording-indicator" id="recordingIndicator"><i class="fas fa-microphone"></i> جاري التسجيل...</div>
             <div class="chat-input-bar">
-                <input type="text" id="msgInput" placeholder="اكتب رسالتك..." maxlength="500">
+                <input type="text" id="msgInput" placeholder="اكتب رسالتك..." maxlength="1000">
                 <button id="btnImage" title="ارسال صورة"><i class="fas fa-image"></i></button>
                 <button id="btnVoice" title="تسجيل صوتي"><i class="fas fa-microphone"></i></button>
                 <button class="btn-send" id="btnSend" title="ارسال"><i class="fas fa-paper-plane"></i></button>
             </div>`;
         document.getElementById('btnSend').onclick = sendMsg;
         document.getElementById('msgInput').onkeypress = e => { if (e.key === 'Enter') sendMsg(); };
-        document.getElementById('btnImage').onclick = () => {
-            const i = document.createElement('input'); i.type = 'file'; i.accept = 'image/*';
-            i.onchange = async e => { if (e.target.files[0] && currentChatId) { await push(ref(db, `messages/${currentChatId}`), { type: 'image', imageBase64: await fileToBase64(e.target.files[0]), senderId: currentUser.uid, senderName: currentUser.name, timestamp: Date.now() }); } };
-            i.click();
-        };
+        document.getElementById('btnImage').onclick = sendImage;
         document.getElementById('btnVoice').onclick = toggleVoiceRecording;
-        if (currentChatId) loadMsgs(currentChatId);
+        loadMsgs(currentChatId);
+        updateChatUserStatus();
+    }
+
+    function updateChatUserStatus() {
+        const otherUid = currentChatId?.replace(currentUser.uid, '').replace(/_/g, '');
+        if (!otherUid) return;
+        const statusRef = ref(db, `users/${otherUid}/status`);
+        onValue(statusRef, (snap) => {
+            const status = snap.val();
+            const el = document.getElementById('chatStatus');
+            if (el) {
+                el.textContent = status === 'online' ? 'متصل الان' : 'غير متصل';
+                el.className = 'chat-status' + (status === 'online' ? ' online-status' : '');
+            }
+        });
     }
 
     async function sendMsg() {
@@ -566,6 +597,12 @@
         await set(ref(db, `friends/${currentUser.uid}/${oid}`), true);
         await set(ref(db, `friends/${oid}/${currentUser.uid}`), true);
         inp.value = ''; inp.focus();
+    }
+
+    function sendImage() {
+        const i = document.createElement('input'); i.type = 'file'; i.accept = 'image/*';
+        i.onchange = async e => { if (e.target.files[0] && currentChatId) { await push(ref(db, `messages/${currentChatId}`), { type: 'image', imageBase64: await fileToBase64(e.target.files[0]), senderId: currentUser.uid, senderName: currentUser.name, timestamp: Date.now() }); } };
+        i.click();
     }
 
     function toggleVoiceRecording() {
@@ -579,8 +616,8 @@
                 audioChunks = [];
                 mediaRecorder.ondataavailable = e => audioChunks.push(e.data);
                 mediaRecorder.onstop = async () => {
-                    const audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
-                    const b64 = await new Promise(res => { const r = new FileReader(); r.onload = () => res(r.result); r.readAsDataURL(audioBlob); });
+                    const blob = new Blob(audioChunks, { type: 'audio/webm' });
+                    const b64 = await new Promise(res => { const r = new FileReader(); r.onload = () => res(r.result); r.readAsDataURL(blob); });
                     if (currentChatId) { await push(ref(db, `messages/${currentChatId}`), { type: 'voice', audioBase64: b64, senderId: currentUser.uid, senderName: currentUser.name, timestamp: Date.now() }); }
                 };
                 mediaRecorder.start();
@@ -590,16 +627,44 @@
         }
     }
 
-    function loadMsgs(chatId) { if (messageListener) messageListener(); const area = document.getElementById('messagesArea'); const mref = ref(db, `messages/${chatId}`); get(mref).then(snap => { const ms = []; snap.forEach(c => ms.push({ id: c.key, ...c.val() })); ms.sort((a, b) => (a.timestamp||0)-(b.timestamp||0)); area.innerHTML = ''; ms.forEach(m => appendMsg(m, area)); area.scrollTop = area.scrollHeight; }); messageListener = onChildAdded(mref, snap => { appendMsg(snap.val(), area); area.scrollTop = area.scrollHeight; }); }
-    function appendMsg(m, area) { const me = m.senderId === currentUser.uid; const d = document.createElement('div'); d.className = `msg-wrapper ${me?'sent':'received'}`; let content = '';
-        if (m.type === 'image') content = `<img src="${m.imageBase64}" onclick="window.open('${m.imageBase64}')">`;
+    function loadMsgs(chatId) {
+        if (messageListener) messageListener();
+        const area = document.getElementById('messagesArea'); if (!area) return;
+        const mref = ref(db, `messages/${chatId}`);
+        get(mref).then(snap => {
+            const ms = []; snap.forEach(c => ms.push({ id: c.key, ...c.val() }));
+            ms.sort((a, b) => (a.timestamp||0)-(b.timestamp||0));
+            area.innerHTML = '';
+            let lastDate = '';
+            ms.forEach(m => {
+                const msgDate = formatDate(m.timestamp);
+                if (msgDate !== lastDate) { lastDate = msgDate; const sep = document.createElement('div'); sep.className = 'msg-date-separator'; sep.textContent = msgDate; area.appendChild(sep); }
+                appendMsg(m, area);
+            });
+            area.scrollTop = area.scrollHeight;
+            if (currentChatId) { unreadCounts[currentChatId.replace(currentUser.uid,'').replace(/_/g,'')] = 0; }
+        });
+        messageListener = onChildAdded(mref, snap => { appendMsg(snap.val(), area); area.scrollTop = area.scrollHeight; });
+    }
+
+    function appendMsg(m, area) {
+        const me = m.senderId === currentUser.uid;
+        const d = document.createElement('div');
+        d.className = `msg-wrapper ${me?'sent':'received'}`;
+        let content = '';
+        if (m.type === 'image') content = `<img src="${m.imageBase64}" onclick="window.open('${m.imageBase64}')" loading="lazy">`;
         else if (m.type === 'voice') content = `<audio controls src="${m.audioBase64}"></audio>`;
         else content = escapeHTML(m.text||'');
         d.innerHTML = `<div class="msg-bubble">${!me?`<div class="msg-sender-name">${escapeHTML(m.senderName||'')}</div>`:''}${content}<div class="msg-time">${formatTime(m.timestamp)}</div></div>`;
         area.appendChild(d);
     }
 
-    window.leaveChat = function() { currentChatId = null; document.getElementById('chatName').textContent = 'اختر صديقا'; document.getElementById('chatStatus').textContent = ''; document.getElementById('messagesArea').innerHTML = '<div style="text-align:center;color:var(--text-secondary);padding:50px;">تم الخروج من المحادثة</div>'; };
+    window.leavePrivateChat = function() {
+        currentChatId = null;
+        currentChatUserName = '';
+        if (messageListener) { messageListener(); messageListener = null; }
+        showPage('contacts');
+    };
 
     // ============ جهات الاتصال مع بحث وزر محادثة ============
     async function renderContacts() {
@@ -619,24 +684,35 @@
             const fs = await get(ref(db, `friends/${currentUser.uid}`)), fids = Object.keys(fs.val()||{}).filter(f => f !== currentUser.uid);
             const us = await get(ref(db, 'users')); const all = us.val() || {};
             let friends = fids.map(f => ({ uid: f, ...(all[f]||{}) })).filter(f => f.name && !blockedUsers[f.uid]);
-            if (filterText) {
-                const q = filterText.toLowerCase();
-                friends = friends.filter(f => (f.name||'').toLowerCase().includes(q) || f.uid.toLowerCase().includes(q) || (f.phone||'').includes(q));
-            }
-            list.innerHTML = friends.length === 0 ? '<div style="text-align:center;padding:40px;">لا يوجد اصدقاء</div>' : friends.map(f => `
+            if (filterText) { const q = filterText.toLowerCase(); friends = friends.filter(f => (f.name||'').toLowerCase().includes(q) || f.uid.toLowerCase().includes(q) || (f.phone||'').includes(q)); }
+            list.innerHTML = friends.length === 0 ? '<div style="text-align:center;padding:40px;">لا يوجد اصدقاء</div>' : friends.map(f => {
+                const unread = unreadCounts[f.uid] || 0;
+                return `
                 <div class="contact-item">
-                    <div class="contact-info" onclick="openChatWith('${f.uid}','${f.name||'مستخدم'}')">
+                    <div class="contact-info" style="flex:1;">
                         <div class="contact-avatar-sm">${f.photoBase64?`<img src="${f.photoBase64}">`:(f.avatar||f.name?.charAt(0)||'U')}</div>
-                        <div><div class="contact-name">${f.name}</div><div class="contact-status-text"><span class="status-dot ${f.status==='online'?'online':'offline'}"></span>${f.status==='online'?'متصل الان':'اخر ظهور: '+(f.lastSeen?new Date(f.lastSeen).toLocaleDateString('ar'):'غير معروف')}</div></div>
+                        <div>
+                            <div class="contact-name">${f.name} ${unread>0?`<span class="unread-badge">${unread}</span>`:''}</div>
+                            <div class="contact-status-text"><span class="status-dot ${f.status==='online'?'online':'offline'}"></span>${f.status==='online'?'متصل الان':'اخر ظهور: '+(f.lastSeen?new Date(f.lastSeen).toLocaleDateString('ar'):'غير معروف')}</div>
+                        </div>
                     </div>
                     <div class="contact-buttons">
-                        <button class="btn-contact-chat btn-contact-action" onclick="event.stopPropagation(); openChatWith('${f.uid}','${f.name||'مستخدم'}')" title="بدء محادثة"><i class="fas fa-comment-dots"></i></button>
+                        <button class="btn-contact-chat" onclick="event.stopPropagation(); openPrivateChat('${f.uid}','${(f.name||'مستخدم').replace(/'/g,"\\'")}')" title="فتح المحادثة"><i class="fas fa-comment-dots"></i></button>
                     </div>
-                </div>`).join('');
+                </div>`;
+            }).join('');
         } catch (e) { list.innerHTML = '<div style="text-align:center;color:var(--danger);">خطا في التحميل</div>'; }
     }
-    window.searchContacts = function() { const q = document.getElementById('searchContactsInput')?.value || ''; loadContactsList(q); };
-    window.openChatWith = function(uid, name) { currentChatId = [currentUser.uid, uid].sort().join('_'); document.getElementById('chatName').textContent = name; showPage('chat'); };
+
+    window.searchContacts = function() { loadContactsList(document.getElementById('searchContactsInput')?.value || ''); };
+
+    window.openPrivateChat = function(uid, name) {
+        currentChatId = [currentUser.uid, uid].sort().join('_');
+        currentChatUserName = name;
+        unreadCounts[uid] = 0;
+        if (messageListener) { messageListener(); messageListener = null; }
+        showPage('chat');
+    };
 
     // ============ الرادار ============
     function renderNearby() { document.getElementById('pageContent').innerHTML = `<button class="radar-btn" onclick="startRadar()"><i class="fas fa-satellite-dish"></i> بدء مسح الرادار</button><p class="radar-info-text">موقعك مشفر ولا يظهر لاحد</p><div id="nearbyResults"></div>`; }
@@ -650,8 +726,7 @@
             const us = await get(ref(db, 'users')); const all = us.val() || {}; const near = [];
             for (let uid in all) { if (uid === currentUser.uid || !all[uid]?.location?.lat || all[uid].blocked) continue; const d = getDistance(my.lat, my.lng, all[uid].location.lat, all[uid].location.lng); if (d < 500) near.push({ uid, name: all[uid].name, photo: all[uid].photoBase64, distance: d }); }
             near.sort((a, b) => a.distance - b.distance);
-            const maxD = Math.max(...near.map(u => u.distance), 1);
-            near.forEach((u, i) => { const ang = (i*137.508)%360, r = 40+(u.distance/maxD)*80; const dot = document.createElement('div'); dot.className = 'radar-point'; dot.style.left = (130+Math.cos(ang*Math.PI/180)*r)+'px'; dot.style.top = (130+Math.sin(ang*Math.PI/180)*r)+'px'; document.getElementById('radarDots').appendChild(dot); });
+            near.forEach((u, i) => { const ang = (i*137.508)%360, r = 40+Math.min(u.distance/5,80); const dot = document.createElement('div'); dot.className = 'radar-point'; dot.style.left = (130+Math.cos(ang*Math.PI/180)*r)+'px'; dot.style.top = (130+Math.sin(ang*Math.PI/180)*r)+'px'; document.getElementById('radarDots').appendChild(dot); });
             document.getElementById('radarStatus').textContent = `تم العثور على ${near.length} مستخدم`;
             near.forEach(u => { const c = document.createElement('div'); c.className = 'radar-user-card'; c.innerHTML = `<div class="radar-user-info"><div class="radar-user-avatar">${u.photo?`<img src="${u.photo}">`:(u.name?.charAt(0)||'U')}</div><div><div class="radar-user-name">${u.name}</div><div class="radar-user-distance">${u.distance<1?(u.distance*1000).toFixed(0)+' م':u.distance.toFixed(1)+' كم'}</div></div></div><button class="btn-add" onclick="addFriendFromRadar('${u.uid}',this)">اضافة</button>`; document.getElementById('radarUsersList').appendChild(c); });
         } catch (e) { document.getElementById('radarStatus').textContent = 'فشل تحديد الموقع'; }
