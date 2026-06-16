@@ -51,6 +51,7 @@
             -moz-osx-font-smoothing: grayscale;
         }
         
+        /* ====== شاشة الترحيب ====== */
         .welcome {
             position: fixed;
             inset: 0;
@@ -151,6 +152,7 @@
             opacity: 0.7;
         }
         
+        /* ====== المصادقة ====== */
         .auth {
             position: fixed;
             inset: 0;
@@ -341,6 +343,7 @@
             text-decoration: underline;
         }
         
+        /* ====== التطبيق الرئيسي ====== */
         .app {
             width: 100%;
             height: var(--app-height);
@@ -498,6 +501,7 @@
             border-radius: 3px;
         }
         
+        /* ====== الدردشة ====== */
         .chat-top {
             display: flex;
             align-items: center;
@@ -823,6 +827,11 @@
             cursor: pointer;
             font-weight: 600;
             font-size: 0.85rem;
+        }
+
+        /* ✅ إصلاح لون أيقونة البحث */
+        .search-row button i {
+            color: #0a1410 !important;
         }
         
         .friend {
@@ -1262,7 +1271,7 @@
             font-size: 1rem;
             font-weight: 700;
             color: #FFFFFF;
-            margin-bottom: 16px;
+            margin-bottom: 6px;
         }
         
         .story-viewer-caption {
@@ -1313,7 +1322,8 @@
         }
         
         .story-btn-like.liked { background: #555; }
-        
+
+        /* ✅ إصلاح ألوان الردود - تغيير الأسود إلى أبيض */
         .story-replies {
             width: 90%;
             max-width: 400px;
@@ -1329,10 +1339,11 @@
             margin-bottom: 6px;
             font-size: 0.78rem;
             border: 1px solid var(--border);
+            color: #FFFFFF !important;
         }
         
         .story-reply-user {
-            color: #FFFFFF;
+            color: var(--gold) !important;
             font-weight: 600;
             font-size: 0.7rem;
         }
@@ -1370,6 +1381,86 @@
             cursor: pointer;
             font-size: 0.8rem;
         }
+
+        /* ✅ نافذة المشاهدين والمعجبين */
+        .viewers-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.9);
+            z-index: 230;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: 0.3s;
+            padding: 20px;
+        }
+        
+        .viewers-modal.show {
+            opacity: 1;
+            pointer-events: all;
+        }
+        
+        .viewers-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 20px;
+            width: 90%;
+            max-width: 400px;
+            max-height: 70vh;
+            overflow-y: auto;
+            position: relative;
+        }
+        
+        .viewers-close {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .viewers-title {
+            color: var(--gold);
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .viewer-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            border-bottom: 1px solid var(--border);
+            color: #FFFFFF;
+        }
+        
+        .viewer-av {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: #0a1410;
+            font-size: 0.75rem;
+            flex-shrink: 0;
+        }
         
         .toast {
             position: fixed;
@@ -1406,7 +1497,6 @@
             margin-top: 10px;
         }
         
-        /* ====== شاشة التحميل ====== */
         .loading-overlay {
             position: fixed;
             inset: 0;
@@ -1437,256 +1527,10 @@
             font-size: 0.9rem;
             font-weight: 600;
         }
-        
-        /* ====== الملف الشخصي ====== */
-        .profile-card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 20px;
-            margin-bottom: 15px;
-            text-align: center;
-        }
-        
-        .profile-avatar-large {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            margin: 0 auto 10px;
-            border: 3px solid rgba(212,160,23,0.5);
-            font-weight: 700;
+
+        /* ✅ أيقونة البحث */
+        .search-row button i {
             color: #0a1410;
-            font-size: 1.8rem;
-            cursor: pointer;
-            position: relative;
-        }
-        
-        .profile-avatar-large img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .profile-avatar-large:hover::after {
-            content: '📷 تغيير';
-            position: absolute;
-            inset: 0;
-            background: rgba(0,0,0,0.8);
-            color: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.7rem;
-            border-radius: 50%;
-        }
-        
-        .profile-name {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--text);
-            margin-bottom: 4px;
-        }
-        
-        .profile-detail {
-            color: var(--text2);
-            font-size: 0.8rem;
-            margin-bottom: 2px;
-        }
-        
-        .profile-info-section {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            overflow: hidden;
-            margin-bottom: 15px;
-        }
-        
-        .profile-info-header {
-            padding: 12px 15px;
-            border-bottom: 1px solid var(--border);
-            color: var(--gold);
-            font-weight: 600;
-            font-size: 0.8rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .profile-info-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 12px 15px;
-            border-bottom: 1px solid rgba(255,255,255,0.02);
-        }
-        
-        .profile-info-row:last-child {
-            border-bottom: none;
-        }
-        
-        .profile-label {
-            color: var(--text2);
-            font-size: 0.78rem;
-        }
-        
-        .profile-value {
-            color: var(--text);
-            font-weight: 500;
-            font-size: 0.82rem;
-            direction: ltr;
-        }
-        
-        /* ====== الإعدادات ====== */
-        .settings-section {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            overflow: hidden;
-            margin-bottom: 15px;
-        }
-        
-        .settings-header {
-            padding: 12px 15px;
-            border-bottom: 1px solid var(--border);
-            color: var(--gold);
-            font-weight: 600;
-            font-size: 0.8rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .settings-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 12px 15px;
-            cursor: pointer;
-            transition: var(--transition);
-            border-bottom: 1px solid rgba(255,255,255,0.02);
-        }
-        
-        .settings-row:last-child {
-            border-bottom: none;
-        }
-        
-        .settings-row:active {
-            background: rgba(255,255,255,0.02);
-        }
-        
-        .settings-row-left {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            color: var(--text);
-            font-size: 0.85rem;
-        }
-        
-        .settings-row-left i {
-            color: var(--gold);
-            width: 20px;
-            text-align: center;
-        }
-        
-        .settings-row-right {
-            color: var(--text2);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .toggle-switch {
-            width: 46px;
-            height: 24px;
-            background: #444;
-            border-radius: 26px;
-            position: relative;
-            cursor: pointer;
-            transition: var(--transition);
-            flex-shrink: 0;
-        }
-        
-        .toggle-switch.on {
-            background: var(--success);
-        }
-        
-        .toggle-switch::after {
-            content: '';
-            width: 20px;
-            height: 20px;
-            background: #fff;
-            border-radius: 50%;
-            position: absolute;
-            top: 2px;
-            right: 2px;
-            transition: var(--transition);
-        }
-        
-        .toggle-switch.on::after {
-            right: 24px;
-        }
-        
-        /* مؤشر التحميل في جهات الاتصال */
-        .contacts-loading {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            padding: 30px;
-            color: var(--text2);
-        }
-        
-        .loading-dots {
-            display: flex;
-            gap: 4px;
-        }
-        
-        .loading-dots span {
-            width: 6px;
-            height: 6px;
-            background: var(--gold);
-            border-radius: 50%;
-            animation: dotBounce 1.4s infinite;
-        }
-        
-        .loading-dots span:nth-child(2) { animation-delay: 0.2s; }
-        .loading-dots span:nth-child(3) { animation-delay: 0.4s; }
-        
-        @keyframes dotBounce {
-            0%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-10px); }
-        }
-        
-        /* ====== زر حذف الصديق ====== */
-        .btn-remove-friend {
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            border: none;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.9rem;
-            background: var(--danger);
-            color: #fff;
-            transition: var(--transition);
-            margin-right: 6px;
-        }
-        
-        .btn-remove-friend:active {
-            transform: scale(0.9);
-        }
-        
-        .friend-actions {
-            display: flex;
-            gap: 6px;
-            align-items: center;
         }
     </style>
 </head>
@@ -1696,6 +1540,15 @@
 <div class="loading-overlay" id="loadingOverlay" style="display:none;">
     <div class="loading-spinner"></div>
     <div class="loading-text">جاري التحميل...</div>
+</div>
+
+<!-- ====== نافذة المشاهدين والمعجبين ====== -->
+<div class="viewers-modal" id="viewersModal">
+    <div class="viewers-card">
+        <button class="viewers-close" onclick="closeViewersModal()">&times;</button>
+        <div class="viewers-title" id="viewersTitle">المشاهدون</div>
+        <div id="viewersList"></div>
+    </div>
 </div>
 
 <!-- ====== شاشة الترحيب ====== -->
@@ -1777,8 +1630,8 @@
     <img id="storyViewerImg" src="" alt="ستوري">
     <div class="story-viewer-caption" id="storyViewerCaption"></div>
     <div class="story-viewer-stats">
-        <span><i class="fas fa-eye"></i> <span id="storyViewerViews">0</span> مشاهدة</span>
-        <span><i class="fas fa-heart"></i> <span id="storyViewerLikes">0</span> إعجاب</span>
+        <span style="cursor:pointer;" onclick="showStoryViewers()"><i class="fas fa-eye"></i> <span id="storyViewerViews">0</span> مشاهدة</span>
+        <span style="cursor:pointer;" onclick="showStoryLikers()"><i class="fas fa-heart"></i> <span id="storyViewerLikes">0</span> إعجاب</span>
         <span><i class="fas fa-comment"></i> <span id="storyViewerReplies">0</span> رد</span>
     </div>
     <div class="story-viewer-actions">
@@ -1787,7 +1640,7 @@
         </button>
     </div>
     <div class="story-replies" id="storyReplies">
-        <div style="color:var(--text2);text-align:center;font-size:0.7rem;">لا توجد ردود</div>
+        <div style="color:#FFFFFF;text-align:center;font-size:0.7rem;">لا توجد ردود</div>
     </div>
     <div class="story-reply-form">
         <input type="text" id="storyReplyInput" placeholder="اكتب رداً..." maxlength="300" onkeypress="if(event.key==='Enter')sendStoryReply()">
@@ -1795,7 +1648,6 @@
     </div>
 </div>
 
-<!-- ====== السكريبت الرئيسي ====== -->
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
     import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut, updateProfile } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
@@ -1820,6 +1672,11 @@
     let statusInterval = null, locationInterval = null;
     let mediaRecorder = null, audioChunks = [];
     const blockedUsers = JSON.parse(localStorage.getItem('blockedUsers') || '{}');
+    
+    // ✅ تحميل جميع المستخدمين من localStorage
+    let cachedAllUsers = JSON.parse(localStorage.getItem('cachedAllUsers') || '{}');
+    // ✅ تحميل جهات الاتصال المحفوظة محلياً
+    let localContacts = JSON.parse(localStorage.getItem('localContacts') || '{}');
 
     function showLoading() { document.getElementById('loadingOverlay').style.display = 'flex'; }
     function hideLoading() { document.getElementById('loadingOverlay').style.display = 'none'; }
@@ -1834,7 +1691,6 @@
     }
 
     function phoneToEmail(p) { return sanitizePhone(p) + '@libyanochat.com'; }
-    
     function esc(t) { if (!t) return ''; const d = document.createElement('div'); d.textContent = t; return d.innerHTML; }
 
     function fileToB64(f) {
@@ -1906,6 +1762,9 @@
             const cleanPhone = sanitizePhone(phone);
             const usersSnapshot = await get(ref(db, 'users'));
             const users = usersSnapshot.val() || {};
+            // ✅ حفظ جميع المستخدمين في localStorage
+            localStorage.setItem('cachedAllUsers', JSON.stringify(users));
+            cachedAllUsers = users;
             for (const uid in users) {
                 if (users[uid].phone === cleanPhone) return users[uid].email || phoneToEmail(cleanPhone);
             }
@@ -1923,6 +1782,53 @@
     };
     window.closeRadar = function() { document.getElementById('radarModal').classList.remove('show'); };
     window.closeStoryViewer = function() { document.getElementById('storyViewer').classList.remove('show'); currentStoryId = null; };
+
+    // ✅ دوال عرض المشاهدين والمعجبين
+    window.closeViewersModal = function() {
+        document.getElementById('viewersModal').classList.remove('show');
+    };
+
+    window.showStoryViewers = function() {
+        if (!currentStoryId) return;
+        const story = allStoriesCache.find(s => s.id === currentStoryId);
+        if (!story) return;
+        const viewers = story.views || {};
+        const viewerIds = Object.keys(viewers);
+        document.getElementById('viewersTitle').textContent = `👁️ المشاهدون (${viewerIds.length})`;
+        const list = document.getElementById('viewersList');
+        if (viewerIds.length === 0) {
+            list.innerHTML = '<div style="color:#FFFFFF;text-align:center;padding:20px;">لا يوجد مشاهدون</div>';
+        } else {
+            list.innerHTML = viewerIds.map(vid => {
+                const user = cachedAllUsers[vid] || {};
+                const name = user.name || vid.substring(0, 10) + '...';
+                const av = user.photoBase64 ? `<img src="${user.photoBase64}" style="width:100%;height:100%;object-fit:cover;">` : (user.avatar || name.charAt(0));
+                return `<div class="viewer-item"><div class="viewer-av">${av}</div><span>${name}</span></div>`;
+            }).join('');
+        }
+        document.getElementById('viewersModal').classList.add('show');
+    };
+
+    window.showStoryLikers = function() {
+        if (!currentStoryId) return;
+        const story = allStoriesCache.find(s => s.id === currentStoryId);
+        if (!story) return;
+        const likes = story.likes || {};
+        const likerIds = Object.keys(likes);
+        document.getElementById('viewersTitle').textContent = `❤️ المعجبون (${likerIds.length})`;
+        const list = document.getElementById('viewersList');
+        if (likerIds.length === 0) {
+            list.innerHTML = '<div style="color:#FFFFFF;text-align:center;padding:20px;">لا يوجد معجبون</div>';
+        } else {
+            list.innerHTML = likerIds.map(lid => {
+                const user = cachedAllUsers[lid] || {};
+                const name = user.name || lid.substring(0, 10) + '...';
+                const av = user.photoBase64 ? `<img src="${user.photoBase64}" style="width:100%;height:100%;object-fit:cover;">` : (user.avatar || name.charAt(0));
+                return `<div class="viewer-item"><div class="viewer-av">${av}</div><span>${name}</span></div>`;
+            }).join('');
+        }
+        document.getElementById('viewersModal').classList.add('show');
+    };
 
     let authMode = 'login';
     window.showAuth = function(m) { authMode = m; document.getElementById('welcome').classList.add('hidden'); document.getElementById('authScreen').classList.add('active'); switchAuthMode(m); };
@@ -2035,6 +1941,12 @@
                 avatar: uData.avatar || 'U', photoURL: user.photoURL || uData.photoURL || '',
                 photoBase64: uData.photoBase64 || ''
             };
+            
+            // ✅ تحميل جميع المستخدمين إلى الذاكرة المحلية
+            const allUsersSnap = await get(ref(db, 'users'));
+            cachedAllUsers = allUsersSnap.val() || {};
+            localStorage.setItem('cachedAllUsers', JSON.stringify(cachedAllUsers));
+            
             document.getElementById('welcome').classList.add('hidden');
             document.getElementById('authScreen').classList.remove('active');
             document.getElementById('app').classList.add('active');
@@ -2085,21 +1997,13 @@
         const page = document.getElementById('pageContent');
         if (!page) return;
         page.innerHTML = `
-            <div class="profile-card">
-                <div class="profile-avatar-large" onclick="changeProfilePhoto()">
-                    ${currentUser.photoBase64 ? `<img src="${currentUser.photoBase64}" alt="Profile">` : (currentUser.avatar || 'U')}
+            <div style="text-align:center;padding:20px;background:var(--surface);border-radius:var(--radius);border:1px solid var(--border);margin-bottom:15px;">
+                <div onclick="changeProfilePhoto()" style="width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg, var(--gold), var(--gold-dark));display:flex;align-items:center;justify-content:center;overflow:hidden;margin:0 auto 10px;border:3px solid rgba(212,160,23,0.5);font-weight:700;color:#0a1410;font-size:1.8rem;cursor:pointer;">
+                    ${currentUser.photoBase64 ? `<img src="${currentUser.photoBase64}" style="width:100%;height:100%;object-fit:cover;">` : (currentUser.avatar || 'U')}
                 </div>
-                <div class="profile-name">${currentUser.name}</div>
-                <div class="profile-detail">${currentUser.email || 'لا يوجد بريد'}</div>
-                <div class="profile-detail" dir="ltr">${currentUser.phone || 'لا يوجد هاتف'}</div>
-            </div>
-            <div class="profile-info-section">
-                <div class="profile-info-header"><i class="fas fa-info-circle"></i> معلومات الحساب</div>
-                <div class="profile-info-row"><span class="profile-label">الاسم</span><span class="profile-value">${currentUser.name}</span></div>
-                <div class="profile-info-row"><span class="profile-label">الهاتف</span><span class="profile-value" dir="ltr">${currentUser.phone || '-'}</span></div>
-                <div class="profile-info-row"><span class="profile-label">البريد</span><span class="profile-value" dir="ltr">${currentUser.email || '-'}</span></div>
-                <div class="profile-info-row"><span class="profile-label">المعرف</span><span class="profile-value" style="font-size:0.65rem;">${currentUser.uid.substring(0, 16)}...</span></div>
-                <div class="profile-info-row"><span class="profile-label">تاريخ التسجيل</span><span class="profile-value">${new Date(currentUser.createdAt || Date.now()).toLocaleDateString('ar')}</span></div>
+                <div style="font-size:1.2rem;font-weight:700;color:var(--text);">${currentUser.name}</div>
+                <div style="color:var(--text2);font-size:0.8rem;">${currentUser.email || ''}</div>
+                <div style="color:var(--gold);direction:ltr;">${currentUser.phone || ''}</div>
             </div>
             <button class="btn-logout" onclick="handleLogout()"><i class="fas fa-sign-out-alt"></i> تسجيل الخروج</button>`;
     }
@@ -2129,7 +2033,7 @@
                 <div class="chat-av">${currentChatFriend?.photoBase64 ? `<img src="${currentChatFriend.photoBase64}">` : (currentChatFriend?.avatar || fn.charAt(0))}</div>
                 <div style="flex:1;"><div style="color:var(--text);font-weight:600;font-size:0.9rem;">${fn}</div><div style="color:var(--text2);font-size:0.65rem;" id="chatStatus">...</div></div>
             </div>
-            <div class="msgs" id="messagesArea"><div class="contacts-loading"><div class="loading-dots"><span></span><span></span><span></span></div> جاري تحميل الرسائل...</div></div>
+            <div class="msgs" id="messagesArea"></div>
             <div class="rec-indicator" id="recIndicator"><i class="fas fa-microphone"></i> جاري التسجيل...</div>
             <div class="chat-bar">
                 <input type="text" id="msgInput" placeholder="اكتب رسالتك..." maxlength="1000" onkeypress="if(event.key==='Enter')sendMsg()">
@@ -2217,24 +2121,130 @@
 
     window.closeChat = function() { currentChatId = null; currentChatFriend = null; if (messageListener) { messageListener(); messageListener = null; } showPage('contacts'); };
 
+    // ✅ البحث عن أصدقاء جدد وحفظهم
     function renderContacts() {
         const page = document.getElementById('pageContent'); if (!page) return;
         page.innerHTML = `
             <h3 class="sec-title"><i class="fas fa-address-book"></i> جهات اتصالي</h3>
-            <div class="search-row"><input type="text" id="searchInput" placeholder="بحث بالاسم..." oninput="searchFriends()"><button onclick="searchFriends()"><i class="fas fa-search"></i> بحث</button></div>
-            <div id="contactsList"><div class="contacts-loading"><div class="loading-dots"><span></span><span></span><span></span></div> جاري تحميل جهات الاتصال...</div></div>`;
+            <div class="search-row">
+                <input type="text" id="searchInput" placeholder="ابحث عن أصدقاء جدد بالاسم..." oninput="searchAllUsers()">
+                <button onclick="searchAllUsers()"><i class="fas fa-search"></i> بحث</button>
+            </div>
+            <div id="searchResults" style="margin-bottom:15px;"></div>
+            <h4 style="color:var(--gold);font-size:0.8rem;margin-bottom:8px;">📋 قائمة أصدقائي</h4>
+            <div id="contactsList"></div>`;
         loadFriends();
     }
+
+    // ✅ البحث في جميع المستخدمين (وليس فقط الأصدقاء)
+    window.searchAllUsers = function() {
+        const query = (document.getElementById('searchInput')?.value || '').toLowerCase().trim();
+        const resultsDiv = document.getElementById('searchResults');
+        if (!resultsDiv) return;
+        
+        if (!query || query.length < 2) {
+            resultsDiv.innerHTML = '';
+            return;
+        }
+        
+        // البحث في cachedAllUsers
+        const allUsers = cachedAllUsers || {};
+        const results = [];
+        
+        for (const uid in allUsers) {
+            if (uid === currentUser?.uid) continue;
+            const user = allUsers[uid];
+            if (!user || !user.name) continue;
+            if (user.name.toLowerCase().includes(query) || (user.phone || '').includes(query)) {
+                results.push({ uid, ...user });
+            }
+        }
+        
+        if (results.length === 0) {
+            resultsDiv.innerHTML = '<div style="text-align:center;padding:15px;color:var(--text2);">لم يتم العثور على مستخدمين</div>';
+            return;
+        }
+        
+        resultsDiv.innerHTML = `
+            <h4 style="color:var(--gold);font-size:0.75rem;margin-bottom:8px;">🔍 نتائج البحث (${results.length})</h4>
+            ${results.map(u => `
+                <div class="friend" style="border:1px solid var(--gold);">
+                    <div class="friend-info">
+                        <div class="friend-av">${u.photoBase64 ? `<img src="${u.photoBase64}">` : (u.avatar || u.name?.charAt(0) || 'U')}</div>
+                        <div>
+                            <div class="friend-name">${u.name}</div>
+                            <div class="friend-status">${u.phone || u.email || ''}</div>
+                        </div>
+                    </div>
+                    <button class="btn-add-sm" onclick="addContact('${u.uid}','${(u.name || '').replace(/'/g, "\\'")}','${u.photoBase64 || ''}','${u.avatar || ''}', this)">➕ إضافة</button>
+                </div>
+            `).join('')}
+        `;
+    };
+
+    // ✅ إضافة جهة اتصال وحفظها محلياً وفي Firebase
+    window.addContact = async function(uid, name, photo, avatar, btn) {
+        if (!currentUser) return;
+        
+        // حفظ في Firebase
+        await set(ref(db, `friends/${currentUser.uid}/${uid}`), true);
+        await set(ref(db, `friends/${uid}/${currentUser.uid}`), true);
+        
+        // ✅ حفظ في localStorage للاستمرارية
+        if (!localContacts[currentUser.uid]) localContacts[currentUser.uid] = {};
+        localContacts[currentUser.uid][uid] = { name, photoBase64: photo, avatar, addedAt: Date.now() };
+        localStorage.setItem('localContacts', JSON.stringify(localContacts));
+        
+        // ✅ حفظ بيانات المستخدم المضاف في الذاكرة المحلية
+        if (!cachedAllUsers[uid]) {
+            cachedAllUsers[uid] = { name, photoBase64: photo, avatar };
+            localStorage.setItem('cachedAllUsers', JSON.stringify(cachedAllUsers));
+        }
+        
+        btn.textContent = '✓ تم';
+        btn.classList.add('added');
+        btn.disabled = true;
+        toast(`تمت إضافة ${name} إلى جهات الاتصال`);
+        
+        // تحديث قائمة الأصدقاء
+        setTimeout(() => loadFriends(), 500);
+    };
 
     async function loadFriends(filter = '') {
         const list = document.getElementById('contactsList'); if (!list) return;
         try {
+            // ✅ دمج جهات الاتصال من Firebase و localStorage
             const fs = await get(ref(db, `friends/${currentUser.uid}`));
-            const fids = Object.keys(fs.val() || {}).filter(f => f !== currentUser.uid);
+            const firebaseFriends = fs.val() || {};
+            const localFriends = localContacts[currentUser.uid] || {};
+            
+            // دمج القائمتين
+            const allFriendIds = [...new Set([...Object.keys(firebaseFriends), ...Object.keys(localFriends)])];
+            const fids = allFriendIds.filter(f => f !== currentUser.uid);
+            
             const usersSnap = await get(ref(db, 'users'));
             const allUsers = usersSnap.val() || {};
-            let friends = fids.map(f => ({ uid: f, ...(allUsers[f] || {}) })).filter(f => f.name && !blockedUsers[f.uid]);
+            
+            // ✅ تحديث الذاكرة المحلية
+            cachedAllUsers = {...cachedAllUsers, ...allUsers};
+            localStorage.setItem('cachedAllUsers', JSON.stringify(cachedAllUsers));
+            
+            let friends = fids.map(f => {
+                const fbData = allUsers[f] || {};
+                const localData = localFriends[f] || {};
+                return {
+                    uid: f,
+                    name: fbData.name || localData.name || 'مستخدم',
+                    photoBase64: fbData.photoBase64 || localData.photoBase64 || '',
+                    avatar: fbData.avatar || localData.avatar || 'U',
+                    status: fbData.status || 'offline',
+                    lastSeen: fbData.lastSeen || 0,
+                    ...fbData
+                };
+            }).filter(f => f.name && !blockedUsers[f.uid]);
+            
             if (filter) { const q = filter.toLowerCase(); friends = friends.filter(f => (f.name || '').toLowerCase().includes(q)); }
+            
             list.innerHTML = friends.length === 0 ? '<div style="text-align:center;padding:40px;">لا يوجد أصدقاء بعد</div>' : friends.map(f => `
                 <div class="friend">
                     <div class="friend-info" onclick="openChat('${f.uid}','${(f.name || '').replace(/'/g, "\\'")}','${f.photoBase64 || ''}','${f.avatar || ''}')">
@@ -2249,7 +2259,6 @@
         } catch (e) { list.innerHTML = '<div style="text-align:center;color:var(--danger);">خطأ في تحميل الأصدقاء</div>'; }
     }
 
-    window.searchFriends = () => loadFriends(document.getElementById('searchInput')?.value || '');
     window.openChat = function(uid, name, photo, avatar) { currentChatId = [currentUser.uid, uid].sort().join('_'); currentChatFriend = { uid, name, photoBase64: photo, avatar }; if (messageListener) { messageListener(); messageListener = null; } showPage('chat'); };
     
     window.removeFriend = async function(uid) {
@@ -2258,6 +2267,11 @@
         try {
             await remove(ref(db, `friends/${currentUser.uid}/${uid}`));
             await remove(ref(db, `friends/${uid}/${currentUser.uid}`));
+            // ✅ حذف من localStorage أيضاً
+            if (localContacts[currentUser.uid]) {
+                delete localContacts[currentUser.uid][uid];
+                localStorage.setItem('localContacts', JSON.stringify(localContacts));
+            }
             hideLoading();
             toast('تم حذف الصديق بنجاح');
             loadFriends();
@@ -2313,8 +2327,15 @@
         if (!currentUser) return;
         await set(ref(db, `friends/${currentUser.uid}/${uid}`), true);
         await set(ref(db, `friends/${uid}/${currentUser.uid}`), true);
+        
+        // ✅ حفظ في localStorage
+        if (!localContacts[currentUser.uid]) localContacts[currentUser.uid] = {};
+        const user = cachedAllUsers[uid] || {};
+        localContacts[currentUser.uid][uid] = { name: user.name || '', photoBase64: user.photoBase64 || '', avatar: user.avatar || '', addedAt: Date.now() };
+        localStorage.setItem('localContacts', JSON.stringify(localContacts));
+        
         btn.textContent = '✓ تم'; btn.classList.add('added'); btn.disabled = true;
-        toast('تمت الإضافة بنجاح');
+        toast('تمت الإضافة بنجاح وحفظها في جهات الاتصال');
     };
 
     function renderStories() {
@@ -2372,7 +2393,7 @@
         const repliesContainer = document.getElementById('storyReplies');
         const repliesData = story.replies || {};
         const repliesArray = Object.entries(repliesData).sort((a, b) => (a[1].timestamp || 0) - (b[1].timestamp || 0));
-        repliesContainer.innerHTML = repliesArray.length === 0 ? '<div style="color:var(--text2);text-align:center;font-size:0.7rem;">لا توجد ردود</div>' : repliesArray.map(([rid, r]) => `<div class="story-reply"><span class="story-reply-user">${r.userName || 'مستخدم'}:</span> ${r.text || ''}</div>`).join('');
+        repliesContainer.innerHTML = repliesArray.length === 0 ? '<div style="color:#FFFFFF;text-align:center;font-size:0.7rem;">لا توجد ردود</div>' : repliesArray.map(([rid, r]) => `<div class="story-reply"><span class="story-reply-user">${r.userName || 'مستخدم'}:</span> ${r.text || ''}</div>`).join('');
         document.getElementById('storyViewer').classList.add('show');
         if (story.userId !== currentUser.uid) update(ref(db, `stories/${id}/views/${currentUser.uid}`), true);
     };
@@ -2404,10 +2425,6 @@
                     <div class="settings-row-left"><i class="fas fa-id-card"></i> الملف الشخصي</div>
                     <div class="settings-row-right"><i class="fas fa-chevron-left"></i></div>
                 </div>
-                <div class="settings-row" onclick="changeProfilePhoto()">
-                    <div class="settings-row-left"><i class="fas fa-camera"></i> تغيير الصورة الشخصية</div>
-                    <div class="settings-row-right"><i class="fas fa-chevron-left"></i></div>
-                </div>
             </div>
             <div class="settings-section">
                 <div class="settings-header"><i class="fas fa-shield-alt"></i> الخصوصية</div>
@@ -2419,18 +2436,6 @@
                     <div class="settings-row-left"><i class="fas fa-ban"></i> المستخدمين المحظورين</div>
                     <div class="settings-row-right"><span id="blockedCount" style="font-size:0.7rem;">${Object.keys(blockedUsers).length}</span> <i class="fas fa-chevron-left"></i></div>
                 </div>
-            </div>
-            <div class="settings-section">
-                <div class="settings-header"><i class="fas fa-bell"></i> الإشعارات</div>
-                <div class="settings-row" onclick="toggleSetting('notifications')">
-                    <div class="settings-row-left"><i class="fas fa-bell"></i> تفعيل الإشعارات</div>
-                    <div class="toggle-switch ${notifications ? 'on' : ''}" id="toggleNotifications"></div>
-                </div>
-            </div>
-            <div class="settings-section">
-                <div class="settings-header"><i class="fas fa-info-circle"></i> حول</div>
-                <div class="settings-row"><div class="settings-row-left"><i class="fas fa-code"></i> الإصدار</div><div class="settings-row-right">1.0.0</div></div>
-                <div class="settings-row"><div class="settings-row-left"><i class="fas fa-user"></i> المطور</div><div class="settings-row-right">BobakrAlmajbry</div></div>
             </div>
             <button class="btn-logout" onclick="handleLogout()"><i class="fas fa-sign-out-alt"></i> تسجيل الخروج</button>`;
     }
