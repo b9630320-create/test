@@ -124,9 +124,7 @@
             gap: 10px;
         }
         
-        .btn:active {
-            transform: scale(0.96);
-        }
+        .btn:active { transform: scale(0.96); }
         
         .btn-gold {
             background: linear-gradient(135deg, var(--gold), var(--gold-dark));
@@ -300,13 +298,8 @@
             margin-top: 4px;
         }
         
-        .auth-submit:active {
-            transform: scale(0.96);
-        }
-        
-        .auth-submit:disabled {
-            opacity: 0.5;
-        }
+        .auth-submit:active { transform: scale(0.96); }
+        .auth-submit:disabled { opacity: 0.5; }
         
         .auth-msg {
             font-size: 0.76rem;
@@ -315,13 +308,8 @@
             min-height: 18px;
         }
         
-        .auth-msg.err {
-            color: var(--danger);
-        }
-        
-        .auth-msg.ok {
-            color: var(--success);
-        }
+        .auth-msg.err { color: var(--danger); }
+        .auth-msg.ok { color: var(--success); }
         
         .auth-link {
             display: block;
@@ -376,10 +364,7 @@
             gap: 8px;
         }
         
-        .hdr-l i {
-            color: var(--gold);
-            font-size: 1.2rem;
-        }
+        .hdr-l i { color: var(--gold); font-size: 1.2rem; }
         
         .hdr-l span {
             font-size: 1.1rem;
@@ -440,10 +425,7 @@
             -webkit-overflow-scrolling: touch;
         }
         
-        .page::-webkit-scrollbar {
-            width: 3px;
-        }
-        
+        .page::-webkit-scrollbar { width: 3px; }
         .page::-webkit-scrollbar-thumb {
             background: rgba(212,160,23,0.2);
             border-radius: 10px;
@@ -480,13 +462,9 @@
             position: relative;
         }
         
-        .nav button span {
-            font-size: clamp(0.45rem, 1.5vw, 0.55rem);
-        }
+        .nav button span { font-size: clamp(0.45rem, 1.5vw, 0.55rem); }
         
-        .nav button.active {
-            color: var(--gold);
-        }
+        .nav button.active { color: var(--gold); }
         
         .nav button.active::before {
             content: '';
@@ -660,10 +638,7 @@
             opacity: 0.6;
         }
         
-        .chat-actions {
-            display: flex;
-            gap: 4px;
-        }
+        .chat-actions { display: flex; gap: 4px; }
         
         .chat-btn {
             width: 36px;
@@ -679,19 +654,11 @@
             font-size: 1rem;
         }
         
-        .chat-btn:active {
-            transform: scale(0.88);
-        }
+        .chat-btn:active { transform: scale(0.88); }
         
-        .btn-img {
-            background: rgba(79,195,247,0.15);
-            color: #4fc3f7;
-        }
+        .btn-img { background: rgba(79,195,247,0.15); color: #4fc3f7; }
         
-        .btn-mic {
-            background: rgba(239,83,80,0.15);
-            color: #ef5350;
-        }
+        .btn-mic { background: rgba(239,83,80,0.15); color: #ef5350; }
         
         .btn-mic.rec {
             color: #ff1744;
@@ -728,9 +695,7 @@
             50% { opacity: 0.4; }
         }
         
-        .rec-indicator.on {
-            display: flex;
-        }
+        .rec-indicator.on { display: flex; }
         
         .img-viewer {
             position: fixed;
@@ -746,10 +711,7 @@
             padding: 10px;
         }
         
-        .img-viewer.show {
-            opacity: 1;
-            pointer-events: all;
-        }
+        .img-viewer.show { opacity: 1; pointer-events: all; }
         
         .img-viewer img {
             max-width: 95%;
@@ -762,9 +724,7 @@
             cursor: zoom-out;
         }
         
-        .img-viewer.show img {
-            transform: scale(1);
-        }
+        .img-viewer.show img { transform: scale(1); }
         
         .img-viewer .close {
             position: absolute;
@@ -809,9 +769,7 @@
             outline: none;
         }
         
-        .search-row input:focus {
-            border-color: var(--gold);
-        }
+        .search-row input:focus { border-color: var(--gold); }
         
         .search-row button {
             padding: 10px 15px;
@@ -898,9 +856,7 @@
             box-shadow: 0 0 8px rgba(46,204,113,0.6);
         }
         
-        .dot.off {
-            background: #666;
-        }
+        .dot.off { background: #666; }
         
         .btn-chat {
             width: 38px;
@@ -917,9 +873,7 @@
             transition: var(--transition);
         }
         
-        .btn-chat:active {
-            transform: scale(0.9);
-        }
+        .btn-chat:active { transform: scale(0.9); }
         
         .radar-btn {
             width: 100%;
@@ -954,10 +908,7 @@
             padding: 20px;
         }
         
-        .radar-modal.show {
-            opacity: 1;
-            pointer-events: all;
-        }
+        .radar-modal.show { opacity: 1; pointer-events: all; }
         
         .radar-container {
             position: relative;
@@ -988,9 +939,7 @@
             box-shadow: 0 0 20px rgba(212,160,23,0.5);
         }
         
-        @keyframes radarSweep {
-            100% { transform: rotate(360deg); }
-        }
+        @keyframes radarSweep { 100% { transform: rotate(360deg); } }
         
         .radar-center {
             position: absolute;
@@ -1028,10 +977,7 @@
             z-index: 4;
         }
         
-        .radar-dot:hover {
-            transform: scale(2.5);
-            z-index: 5;
-        }
+        .radar-dot:hover { transform: scale(2.5); z-index: 5; }
         
         @keyframes radarBlink {
             0%, 100% { opacity: 1; box-shadow: 0 0 15px rgba(46,204,113,0.9); }
@@ -1054,9 +1000,7 @@
             transition: 0.3s;
         }
         
-        .radar-dot:hover .radar-dot-label {
-            opacity: 1;
-        }
+        .radar-dot:hover .radar-dot-label { opacity: 1; }
         
         .radar-close {
             position: absolute;
@@ -1162,11 +1106,7 @@
             font-size: 0.95rem;
         }
         
-        .story-list {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
+        .story-list { display: flex; flex-direction: column; gap: 8px; }
         
         .story-card {
             display: flex;
@@ -1226,10 +1166,7 @@
             padding: 20px;
         }
         
-        .story-viewer.show {
-            opacity: 1;
-            pointer-events: all;
-        }
+        .story-viewer.show { opacity: 1; pointer-events: all; }
         
         .story-viewer-close {
             position: absolute;
@@ -1281,9 +1218,7 @@
             margin-bottom: 20px;
         }
         
-        .story-viewer-stats i {
-            margin-left: 6px;
-        }
+        .story-viewer-stats i { margin-left: 6px; }
         
         .story-viewer-actions {
             display: flex;
@@ -1427,9 +1362,7 @@
             animation: spin 0.8s linear infinite;
         }
         
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
+        @keyframes spin { to { transform: rotate(360deg); } }
         
         .loading-text {
             color: var(--gold);
@@ -1523,14 +1456,9 @@
             border-bottom: 1px solid rgba(255,255,255,0.02);
         }
         
-        .profile-info-row:last-child {
-            border-bottom: none;
-        }
+        .profile-info-row:last-child { border-bottom: none; }
         
-        .profile-label {
-            color: var(--text2);
-            font-size: 0.78rem;
-        }
+        .profile-label { color: var(--text2); font-size: 0.78rem; }
         
         .profile-value {
             color: var(--text);
@@ -1568,13 +1496,8 @@
             border-bottom: 1px solid rgba(255,255,255,0.02);
         }
         
-        .settings-row:last-child {
-            border-bottom: none;
-        }
-        
-        .settings-row:active {
-            background: rgba(255,255,255,0.02);
-        }
+        .settings-row:last-child { border-bottom: none; }
+        .settings-row:active { background: rgba(255,255,255,0.02); }
         
         .settings-row-left {
             display: flex;
@@ -1608,9 +1531,7 @@
             flex-shrink: 0;
         }
         
-        .toggle-switch.on {
-            background: var(--success);
-        }
+        .toggle-switch.on { background: var(--success); }
         
         .toggle-switch::after {
             content: '';
@@ -1624,9 +1545,7 @@
             transition: var(--transition);
         }
         
-        .toggle-switch.on::after {
-            right: 24px;
-        }
+        .toggle-switch.on::after { right: 24px; }
         
         .contacts-loading {
             display: flex;
@@ -1637,10 +1556,7 @@
             color: var(--text2);
         }
         
-        .loading-dots {
-            display: flex;
-            gap: 4px;
-        }
+        .loading-dots { display: flex; gap: 4px; }
         
         .loading-dots span {
             width: 6px;
@@ -1674,9 +1590,7 @@
             margin-right: 6px;
         }
         
-        .btn-remove-friend:active {
-            transform: scale(0.9);
-        }
+        .btn-remove-friend:active { transform: scale(0.9); }
         
         .friend-actions {
             display: flex;
@@ -1786,7 +1700,7 @@
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
     import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut, updateProfile } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
-    import { getDatabase, ref, set, update, get, push, onValue, onChildAdded, remove, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-database.js";
+    import { getDatabase, ref, set, update, get, push, onValue, onChildAdded, remove } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-database.js";
 
     const firebaseConfig = {
         apiKey: "AIzaSyCsO5Og1ZbDd0yimjWSBKTW-3Q_BbuTeQg",
@@ -1885,32 +1799,23 @@
             const friendsSnap = await get(ref(db, `friends/${currentUser.uid}`));
             const friends = friendsSnap.val() || {};
             const cutoff = Date.now() - (MESSAGE_EXPIRY_DAYS * 24 * 60 * 60 * 1000);
-            
             for (const friendId in friends) {
                 if (friendId === currentUser.uid) continue;
                 const chatId = [currentUser.uid, friendId].sort().join('_');
                 const msgsSnap = await get(ref(db, `messages/${chatId}`));
                 const msgs = msgsSnap.val() || {};
-                
                 for (const msgId in msgs) {
-                    if (msgs[msgId].timestamp < cutoff) {
-                        await remove(ref(db, `messages/${chatId}/${msgId}`));
-                    }
+                    if (msgs[msgId].timestamp < cutoff) await remove(ref(db, `messages/${chatId}/${msgId}`));
                 }
             }
-        } catch (e) {
-            console.error('Cleanup error:', e);
-        }
+        } catch (e) { console.error('Cleanup error:', e); }
     }
 
     function updateHeaderUI() {
         const el = document.getElementById('headerAvatar');
         if (!el) return;
-        if (currentUser?.photoBase64) {
-            el.innerHTML = `<img src="${currentUser.photoBase64}" alt="User">`;
-        } else {
-            el.innerHTML = currentUser?.avatar || 'U';
-        }
+        if (currentUser?.photoBase64) el.innerHTML = `<img src="${currentUser.photoBase64}" alt="User">`;
+        else el.innerHTML = currentUser?.avatar || 'U';
     }
 
     async function findEmailByPhone(phone) {
@@ -2038,12 +1943,8 @@
                             const answer = prompt(`سؤال الأمان: ${sec.question}`);
                             if (answer && answer.trim() === sec.answer) {
                                 const newPass = prompt('أدخل كلمة المرور الجديدة (6 أحرف فأكثر):');
-                                if (newPass && newPass.length >= 6) {
-                                    toast('يرجى استخدام إعادة تعيين كلمة المرور من Firebase Console');
-                                }
-                            } else {
-                                toast('الإجابة غير صحيحة');
-                            }
+                                if (newPass && newPass.length >= 6) toast('يرجى استخدام إعادة تعيين كلمة المرور من Firebase Console');
+                            } else toast('الإجابة غير صحيحة');
                         }
                     });
                     return;
@@ -2080,15 +1981,12 @@
             document.getElementById('authScreen').classList.remove('active');
             document.getElementById('app').classList.add('active');
             updateHeaderUI(); showPage('chat'); updateUserLocation();
-            
             if (statusInterval) clearInterval(statusInterval);
             if (locationInterval) clearInterval(locationInterval);
             if (cleanupInterval) clearInterval(cleanupInterval);
-            
             statusInterval = setInterval(updateOnlineStatus, 30000);
             locationInterval = setInterval(updateUserLocation, 120000);
             cleanupInterval = setInterval(cleanupOldMessages, 3600000);
-            
             document.addEventListener('visibilitychange', handleVisibilityChange);
             await cleanupOldMessages();
             hideLoading();
@@ -2109,20 +2007,9 @@
     async function handleVisibilityChange() { if (currentUser) { const s = document.visibilityState === 'visible' ? 'online' : 'offline'; await update(ref(db, `users/${currentUser.uid}`), { status: s, lastSeen: Date.now() }); } }
     async function updateUserLocation() { if (!navigator.geolocation || !currentUser) return; try { const pos = await new Promise((res, rej) => navigator.geolocation.getCurrentPosition(res, rej, { timeout: 5000, enableHighAccuracy: true })); await update(ref(db, `users/${currentUser.uid}/location`), { lat: pos.coords.latitude, lng: pos.coords.longitude, updated: Date.now(), accuracy: pos.coords.accuracy }); } catch (e) {} }
     
-    async function handleLogout() { 
-        try { 
-            if (currentUser) await update(ref(db, `users/${currentUser.uid}`), { status: 'offline', lastSeen: Date.now() }); 
-            await signOut(auth); toast('تم تسجيل الخروج بنجاح'); 
-        } catch (e) { toast('فشل تسجيل الخروج'); } 
-    }
-    
+    async function handleLogout() { try { if (currentUser) await update(ref(db, `users/${currentUser.uid}`), { status: 'offline', lastSeen: Date.now() }); await signOut(auth); toast('تم تسجيل الخروج بنجاح'); } catch (e) { toast('فشل تسجيل الخروج'); } }
     window.handleLogout = handleLogout;
-    window.addEventListener('beforeunload', () => { 
-        if (currentUser) {
-            set(ref(db, `users/${currentUser.uid}/status`), 'offline');
-            set(ref(db, `users/${currentUser.uid}/lastSeen`), Date.now());
-        }
-    });
+    window.addEventListener('beforeunload', () => { if (currentUser) { set(ref(db, `users/${currentUser.uid}/status`), 'offline'); set(ref(db, `users/${currentUser.uid}/lastSeen`), Date.now()); } });
 
     const sp = localStorage.getItem('savedPhone'), sa = localStorage.getItem('savedPass');
     if (sp && sa && !auth.currentUser) setTimeout(() => { const idEl = document.getElementById('loginId'), passEl = document.getElementById('loginPass'); if (idEl) idEl.value = sp; if (passEl) passEl.value = sa; }, 500);
@@ -2213,11 +2100,7 @@
     window.sendMsg = async function() {
         const inp = document.getElementById('msgInput'), txt = inp?.value.trim();
         if (!txt || !currentChatId || !currentUser) return;
-        const timestamp = Date.now();
-        await push(ref(db, `messages/${currentChatId}`), { 
-            type: 'text', text: txt, senderId: currentUser.uid, 
-            senderName: currentUser.name, timestamp: timestamp 
-        });
+        await push(ref(db, `messages/${currentChatId}`), { type: 'text', text: txt, senderId: currentUser.uid, senderName: currentUser.name, timestamp: Date.now() });
         if (inp) inp.value = '';
     };
 
@@ -2227,11 +2110,7 @@
             if (e.target.files[0] && currentChatId && currentUser) {
                 showLoading();
                 const b64 = e.target.files[0].size > 500000 ? await compressImg(e.target.files[0], 800, 0.7) : await fileToB64(e.target.files[0]);
-                const timestamp = Date.now();
-                await push(ref(db, `messages/${currentChatId}`), { 
-                    type: 'image', imageBase64: b64, senderId: currentUser.uid, 
-                    senderName: currentUser.name, timestamp: timestamp 
-                });
+                await push(ref(db, `messages/${currentChatId}`), { type: 'image', imageBase64: b64, senderId: currentUser.uid, senderName: currentUser.name, timestamp: Date.now() });
                 hideLoading();
             }
         };
@@ -2239,32 +2118,19 @@
     };
 
     window.toggleVoice = function() {
-        if (mediaRecorder && mediaRecorder.state === 'recording') { 
-            mediaRecorder.stop(); 
-            document.getElementById('recIndicator').classList.remove('on'); 
-            document.getElementById('btnVoice').classList.remove('rec'); 
-        }
+        if (mediaRecorder && mediaRecorder.state === 'recording') { mediaRecorder.stop(); document.getElementById('recIndicator').classList.remove('on'); document.getElementById('btnVoice').classList.remove('rec'); }
         else {
             navigator.mediaDevices.getUserMedia({ audio: true }).then(stream => {
                 const mt = MediaRecorder.isTypeSupported('audio/webm;codecs=opus') ? 'audio/webm;codecs=opus' : 'audio/webm';
-                mediaRecorder = new MediaRecorder(stream, { mimeType: mt, audioBitsPerSecond: 16000 }); 
-                audioChunks = [];
+                mediaRecorder = new MediaRecorder(stream, { mimeType: mt, audioBitsPerSecond: 16000 }); audioChunks = [];
                 mediaRecorder.ondataavailable = e => { if (e.data.size > 0) audioChunks.push(e.data); };
                 mediaRecorder.onstop = async () => {
                     const blob = new Blob(audioChunks, { type: 'audio/webm' });
                     const b64 = await new Promise(res => { const r = new FileReader(); r.onload = () => res(r.result); r.readAsDataURL(blob); });
-                    if (currentChatId && b64.length > 100 && currentUser) {
-                        const timestamp = Date.now();
-                        await push(ref(db, `messages/${currentChatId}`), { 
-                            type: 'voice', audioBase64: b64, senderId: currentUser.uid, 
-                            senderName: currentUser.name, timestamp: timestamp 
-                        });
-                    }
+                    if (currentChatId && b64.length > 100 && currentUser) await push(ref(db, `messages/${currentChatId}`), { type: 'voice', audioBase64: b64, senderId: currentUser.uid, senderName: currentUser.name, timestamp: Date.now() });
                     stream.getTracks().forEach(t => t.stop());
                 };
-                mediaRecorder.start(1000); 
-                document.getElementById('recIndicator').classList.add('on'); 
-                document.getElementById('btnVoice').classList.add('rec');
+                mediaRecorder.start(1000); document.getElementById('recIndicator').classList.add('on'); document.getElementById('btnVoice').classList.add('rec');
             }).catch(() => toast('لا يمكن الوصول إلى الميكروفون'));
         }
     };
@@ -2272,55 +2138,23 @@
     function loadMessages(chatId) {
         if (messageListener) { messageListener(); messageListener = null; }
         const area = document.getElementById('messagesArea'); if (!area) return;
-        
         const cutoff = Date.now() - (MESSAGE_EXPIRY_DAYS * 24 * 60 * 60 * 1000);
-        
         get(ref(db, `messages/${chatId}`)).then(snap => {
-            const ms = []; 
-            snap.forEach(c => {
-                const msg = c.val();
-                if (msg.timestamp > cutoff) ms.push(msg);
-            });
+            const ms = []; snap.forEach(c => { const msg = c.val(); if (msg.timestamp > cutoff) ms.push(msg); });
             ms.sort((a, b) => (a.timestamp || 0) - (b.timestamp || 0));
-            area.innerHTML = ''; 
-            let ld = '';
+            area.innerHTML = ''; let ld = '';
             if (ms.length === 0) area.innerHTML = '<div style="text-align:center;color:var(--text2);padding:30px;">ابدأ المحادثة!</div>';
-            else ms.forEach(m => { 
-                const md = fmtDate(m.timestamp); 
-                if (md !== ld) { 
-                    ld = md; 
-                    const sep = document.createElement('div'); 
-                    sep.className = 'date-sep'; 
-                    sep.textContent = md; 
-                    area.appendChild(sep); 
-                } 
-                appendMsg(m, area); 
-            });
+            else ms.forEach(m => { const md = fmtDate(m.timestamp); if (md !== ld) { ld = md; const sep = document.createElement('div'); sep.className = 'date-sep'; sep.textContent = md; area.appendChild(sep); } appendMsg(m, area); });
             area.scrollTop = area.scrollHeight;
         }).catch(() => { area.innerHTML = '<div style="text-align:center;color:var(--danger);padding:20px;">فشل تحميل الرسائل</div>'; });
-        
         messageListener = onChildAdded(ref(db, `messages/${chatId}`), snap => {
-            const m = snap.val(); 
-            if (m && m.timestamp > cutoff) { 
-                const existingMsgs = area.querySelectorAll('.msg');
-                let isDuplicate = false;
-                existingMsgs.forEach(existing => {
-                    if (existing.dataset.ts == m.timestamp && existing.dataset.sender == m.senderId) isDuplicate = true;
-                });
-                if (!isDuplicate) {
-                    appendMsg(m, area); 
-                    area.scrollTop = area.scrollHeight; 
-                }
-            }
+            const m = snap.val(); if (m && m.timestamp > cutoff) { appendMsg(m, area); area.scrollTop = area.scrollHeight; }
         });
     }
 
     function appendMsg(m, area) {
         const me = m.senderId === currentUser.uid;
-        const d = document.createElement('div'); 
-        d.className = `msg ${me ? 'me' : 'you'}`; 
-        d.dataset.ts = m.timestamp;
-        d.dataset.sender = m.senderId;
+        const d = document.createElement('div'); d.className = `msg ${me ? 'me' : 'you'}`; d.dataset.ts = m.timestamp; d.dataset.sender = m.senderId;
         let c = '';
         if (m.type === 'image') c = `<img src="${m.imageBase64}" loading="lazy" onclick="openImageViewer('${m.imageBase64.replace(/'/g, "\\'")}')">`;
         else if (m.type === 'voice') c = `<audio controls preload="metadata" src="${m.audioBase64}"></audio>`;
@@ -2333,10 +2167,7 @@
 
     function renderContacts() {
         const page = document.getElementById('pageContent'); if (!page) return;
-        page.innerHTML = `
-            <h3 class="sec-title"><i class="fas fa-address-book"></i> جهات اتصالي</h3>
-            <div class="search-row"><input type="text" id="searchInput" placeholder="بحث بالاسم..." oninput="searchFriends()"><button onclick="searchFriends()"><i class="fas fa-search"></i> بحث</button></div>
-            <div id="contactsList"><div class="contacts-loading"><div class="loading-dots"><span></span><span></span><span></span></div> جاري تحميل جهات الاتصال...</div></div>`;
+        page.innerHTML = `<h3 class="sec-title"><i class="fas fa-address-book"></i> جهات اتصالي</h3><div class="search-row"><input type="text" id="searchInput" placeholder="بحث بالاسم..." oninput="searchFriends()"><button onclick="searchFriends()"><i class="fas fa-search"></i> بحث</button></div><div id="contactsList"><div class="contacts-loading"><div class="loading-dots"><span></span><span></span><span></span></div> جاري تحميل جهات الاتصال...</div></div>`;
         loadFriends();
     }
 
@@ -2346,59 +2177,28 @@
             const fs = await get(ref(db, `friends/${currentUser.uid}`));
             const friendsData = fs.val() || {};
             const fids = Object.keys(friendsData).filter(f => f !== currentUser.uid && friendsData[f] === true);
-            
-            if (fids.length === 0) {
-                list.innerHTML = '<div style="text-align:center;padding:40px;color:var(--text2);">لا يوجد أصدقاء بعد. استخدم الرادار لإضافة أصدقاء!</div>';
-                return;
-            }
-            
+            if (fids.length === 0) { list.innerHTML = '<div style="text-align:center;padding:40px;color:var(--text2);">لا يوجد أصدقاء بعد</div>'; return; }
             const usersSnap = await get(ref(db, 'users'));
             const allUsers = usersSnap.val() || {};
-            
             let friends = fids.map(f => ({ uid: f, ...(allUsers[f] || {}) })).filter(f => f.name && !blockedUsers[f.uid]);
-            
-            if (filter) { 
-                const q = filter.toLowerCase(); 
-                friends = friends.filter(f => (f.name || '').toLowerCase().includes(q)); 
-            }
-            
-            if (friends.length === 0) {
-                list.innerHTML = '<div style="text-align:center;padding:40px;color:var(--text2);">لا توجد نتائج للبحث</div>';
-                return;
-            }
-            
+            if (filter) { const q = filter.toLowerCase(); friends = friends.filter(f => (f.name || '').toLowerCase().includes(q)); }
+            if (friends.length === 0) { list.innerHTML = '<div style="text-align:center;padding:40px;color:var(--text2);">لا توجد نتائج</div>'; return; }
             list.innerHTML = friends.map(f => `
                 <div class="friend">
                     <div class="friend-info" onclick="openChat('${f.uid}','${(f.name || '').replace(/'/g, "\\'")}','${f.photoBase64 || ''}','${f.avatar || ''}')">
                         <div class="friend-av">${f.photoBase64 ? `<img src="${f.photoBase64}">` : (f.avatar || f.name?.charAt(0) || 'U')}</div>
-                        <div>
-                            <div class="friend-name">${esc(f.name || '')}</div>
-                            <div class="friend-status">
-                                <span class="dot ${f.status === 'online' ? 'on' : 'off'}"></span>
-                                ${f.status === 'online' ? 'متصل' : 'آخر ظهور: ' + (f.lastSeen ? new Date(f.lastSeen).toLocaleDateString('ar') : '?')}
-                            </div>
-                        </div>
+                        <div><div class="friend-name">${esc(f.name || '')}</div><div class="friend-status"><span class="dot ${f.status === 'online' ? 'on' : 'off'}"></span>${f.status === 'online' ? 'متصل' : 'آخر ظهور: ' + (f.lastSeen ? new Date(f.lastSeen).toLocaleDateString('ar') : '?')}</div></div>
                     </div>
                     <div class="friend-actions">
                         <button class="btn-chat" onclick="event.stopPropagation(); openChat('${f.uid}','${(f.name || '').replace(/'/g, "\\'")}','${f.photoBase64 || ''}','${f.avatar || ''}')"><i class="fas fa-comment-dots"></i></button>
                         <button class="btn-remove-friend" onclick="event.stopPropagation(); removeFriend('${f.uid}')"><i class="fas fa-user-times"></i></button>
                     </div>
                 </div>`).join('');
-        } catch (e) { 
-            console.error('Error loading friends:', e);
-            list.innerHTML = '<div style="text-align:center;color:var(--danger);">خطأ في تحميل الأصدقاء. تأكد من اتصالك بالإنترنت.</div>'; 
-        }
+        } catch (e) { list.innerHTML = '<div style="text-align:center;color:var(--danger);">خطأ في تحميل الأصدقاء</div>'; }
     }
 
     window.searchFriends = () => loadFriends(document.getElementById('searchInput')?.value || '');
-    
-    window.openChat = function(uid, name, photo, avatar) { 
-        if (!currentUser) return;
-        currentChatId = [currentUser.uid, uid].sort().join('_'); 
-        currentChatFriend = { uid, name, photoBase64: photo, avatar }; 
-        if (messageListener) { messageListener(); messageListener = null; } 
-        showPage('chat'); 
-    };
+    window.openChat = function(uid, name, photo, avatar) { if (!currentUser) return; currentChatId = [currentUser.uid, uid].sort().join('_'); currentChatFriend = { uid, name, photoBase64: photo, avatar }; if (messageListener) { messageListener(); messageListener = null; } showPage('chat'); };
     
     window.removeFriend = async function(uid) {
         if (!confirm('هل أنت متأكد من حذف هذا الصديق؟')) return;
@@ -2407,132 +2207,36 @@
         try {
             await remove(ref(db, `friends/${currentUser.uid}/${uid}`));
             await remove(ref(db, `friends/${uid}/${currentUser.uid}`));
-            
-            // تحديث الستوريات لإزالة الصديق من قائمة المسموح لهم
-            const storiesSnap = await get(ref(db, 'stories'));
-            const stories = storiesSnap.val() || {};
-            for (const storyId in stories) {
-                const story = stories[storyId];
-                if (story.userId === currentUser.uid && story.allowedViewers && story.allowedViewers.includes(uid)) {
-                    story.allowedViewers = story.allowedViewers.filter(id => id !== uid);
-                    await update(ref(db, `stories/${storyId}`), { allowedViewers: story.allowedViewers });
-                }
-                if (story.userId === uid && story.allowedViewers && story.allowedViewers.includes(currentUser.uid)) {
-                    story.allowedViewers = story.allowedViewers.filter(id => id !== currentUser.uid);
-                    await update(ref(db, `stories/${storyId}`), { allowedViewers: story.allowedViewers });
-                }
-            }
-            
-            hideLoading();
-            toast('تم حذف الصديق بنجاح');
-            loadFriends();
-        } catch (e) {
-            hideLoading();
-            toast('فشل حذف الصديق: ' + e.message);
-        }
+            hideLoading(); toast('تم حذف الصديق بنجاح'); loadFriends();
+        } catch (e) { hideLoading(); toast('فشل حذف الصديق'); }
     };
 
     function renderNearby() {
-        document.getElementById('pageContent').innerHTML = `
-            <button class="radar-btn" onclick="startRadar()"><i class="fas fa-satellite-dish"></i> بدء مسح الرادار</button>
-            <p style="color:var(--text2);font-size:0.7rem;text-align:center;margin-bottom:15px;">موقعك مشفر ولا يظهر لأحد</p>
-            <div id="nearbyResults"></div>`;
+        document.getElementById('pageContent').innerHTML = `<button class="radar-btn" onclick="startRadar()"><i class="fas fa-satellite-dish"></i> بدء مسح الرادار</button><p style="color:var(--text2);font-size:0.7rem;text-align:center;margin-bottom:15px;">موقعك مشفر ولا يظهر لأحد</p><div id="nearbyResults"></div>`;
     }
 
     window.startRadar = async function() {
         if (!currentUser) { toast('يجب تسجيل الدخول أولاً'); return; }
-        const modal = document.getElementById('radarModal'); 
-        modal.classList.add('show');
+        document.getElementById('radarModal').classList.add('show');
         document.getElementById('radarDotsContainer').innerHTML = '';
         document.getElementById('radarUsersList').innerHTML = '';
         document.getElementById('radarStatus').textContent = 'جار تحديد موقعك...';
-        
-        if (!navigator.geolocation) { 
-            document.getElementById('radarStatus').textContent = 'متصفحك لا يدعم تحديد الموقع'; 
-            return; 
-        }
-        
+        if (!navigator.geolocation) { document.getElementById('radarStatus').textContent = 'متصفحك لا يدعم تحديد الموقع'; return; }
         try {
-            const pos = await new Promise((res, rej) => 
-                navigator.geolocation.getCurrentPosition(res, rej, { 
-                    timeout: 10000, 
-                    enableHighAccuracy: true 
-                })
-            );
-            
+            const pos = await new Promise((res, rej) => navigator.geolocation.getCurrentPosition(res, rej, { timeout: 10000, enableHighAccuracy: true }));
             const my = { lat: pos.coords.latitude, lng: pos.coords.longitude };
-            await update(ref(db, `users/${currentUser.uid}/location`), { 
-                ...my, 
-                updated: Date.now(), 
-                accuracy: pos.coords.accuracy 
-            });
-            
-            const usersSnap = await get(ref(db, 'users')); 
-            const allUsers = usersSnap.val() || {};
+            await update(ref(db, `users/${currentUser.uid}/location`), { ...my, updated: Date.now(), accuracy: pos.coords.accuracy });
+            const usersSnap = await get(ref(db, 'users')); const allUsers = usersSnap.val() || {};
             const nearUsers = [];
-            
             for (let uid in allUsers) {
-                if (uid === currentUser.uid) continue;
-                if (!allUsers[uid]?.location?.lat) continue;
-                if (allUsers[uid].blocked) continue;
-                
+                if (uid === currentUser.uid || !allUsers[uid]?.location?.lat || allUsers[uid].blocked) continue;
                 const dist = calcDist(my.lat, my.lng, allUsers[uid].location.lat, allUsers[uid].location.lng);
-                if (dist < 500) {
-                    nearUsers.push({ 
-                        uid, 
-                        name: allUsers[uid].name, 
-                        photo: allUsers[uid].photoBase64, 
-                        avatar: allUsers[uid].avatar, 
-                        distance: dist, 
-                        lat: allUsers[uid].location.lat, 
-                        lng: allUsers[uid].location.lng 
-                    });
-                }
+                if (dist < 500) nearUsers.push({ uid, name: allUsers[uid].name, photo: allUsers[uid].photoBase64, avatar: allUsers[uid].avatar, distance: dist });
             }
-            
             nearUsers.sort((a, b) => a.distance - b.distance);
-            
-            const container = document.getElementById('radarDotsContainer');
-            const radarSize = 300, centerX = radarSize / 2, centerY = radarSize / 2, maxRadius = 120;
-            
-            nearUsers.slice(0, 10).forEach((u, i) => {
-                const angle = (i * 2.399) % (Math.PI * 2);
-                const radius = Math.min(u.distance / 4, maxRadius);
-                const x = centerX + Math.cos(angle) * radius;
-                const y = centerY + Math.sin(angle) * radius;
-                const dot = document.createElement('div'); 
-                dot.className = 'radar-dot';
-                dot.style.cssText = `left:${x - 5}px;top:${y - 5}px;`;
-                dot.innerHTML = `<div class="radar-dot-label">${u.name} (${u.distance < 1 ? (u.distance * 1000).toFixed(0) + 'م' : u.distance.toFixed(1) + 'كم'})</div>`;
-                container.appendChild(dot);
-            });
-            
-            document.getElementById('radarStatus').textContent = nearUsers.length > 0 ? 
-                `تم العثور على ${nearUsers.length} مستخدمين قريبين` : 
-                'لم يتم العثور على مستخدمين قريبين';
-            
-            const usersList = document.getElementById('radarUsersList');
-            if (nearUsers.length === 0) {
-                usersList.innerHTML = '<div style="text-align:center;padding:20px;color:var(--text2);">لا يوجد مستخدمين في النطاق (500 كم)</div>';
-            } else {
-                usersList.innerHTML = nearUsers.map(u => `
-                    <div class="radar-user-card">
-                        <div class="radar-user-info">
-                            <div class="radar-user-av">${u.photo ? `<img src="${u.photo}">` : (u.avatar || u.name?.charAt(0) || 'U')}</div>
-                            <div>
-                                <div style="color:var(--text);font-weight:600;font-size:0.8rem;">${esc(u.name)}</div>
-                                <div style="color:var(--success);font-size:0.6rem;">
-                                    ${u.distance < 1 ? (u.distance * 1000).toFixed(0) + ' متر' : u.distance.toFixed(1) + ' كم'}
-                                </div>
-                            </div>
-                        </div>
-                        <button class="btn-add-sm" id="addBtn_${u.uid}" onclick="addRadarFriend('${u.uid}', this)">إضافة</button>
-                    </div>`).join('');
-            }
-        } catch (e) { 
-            console.error('Radar error:', e);
-            document.getElementById('radarStatus').textContent = 'فشل تحديد الموقع. تأكد من صلاحيات GPS واتصال الإنترنت'; 
-        }
+            document.getElementById('radarStatus').textContent = nearUsers.length > 0 ? `تم العثور على ${nearUsers.length} مستخدمين قريبين` : 'لم يتم العثور على مستخدمين قريبين';
+            document.getElementById('radarUsersList').innerHTML = nearUsers.length === 0 ? '<div style="text-align:center;padding:20px;color:var(--text2);">لا يوجد مستخدمين في النطاق</div>' : nearUsers.map(u => `<div class="radar-user-card"><div class="radar-user-info"><div class="radar-user-av">${u.photo ? `<img src="${u.photo}">` : (u.avatar || u.name?.charAt(0) || 'U')}</div><div><div style="color:var(--text);font-weight:600;font-size:0.8rem;">${esc(u.name)}</div><div style="color:var(--success);font-size:0.6rem;">${u.distance < 1 ? (u.distance * 1000).toFixed(0) + ' متر' : u.distance.toFixed(1) + ' كم'}</div></div></div><button class="btn-add-sm" onclick="addRadarFriend('${u.uid}', this)">إضافة</button></div>`).join('');
+        } catch (e) { document.getElementById('radarStatus').textContent = 'فشل تحديد الموقع'; }
     };
 
     window.addRadarFriend = async function(uid, btn) {
@@ -2540,42 +2244,17 @@
         try {
             await set(ref(db, `friends/${currentUser.uid}/${uid}`), true);
             await set(ref(db, `friends/${uid}/${currentUser.uid}`), true);
-            
-            // تحديث الستوريات القديمة لتشمل الصديق الجديد
-            const storiesSnap = await get(ref(db, 'stories'));
-            const stories = storiesSnap.val() || {};
-            
-            for (const storyId in stories) {
-                const story = stories[storyId];
-                if (story.userId === currentUser.uid && story.allowedViewers) {
-                    if (!story.allowedViewers.includes(uid)) {
-                        story.allowedViewers.push(uid);
-                        await update(ref(db, `stories/${storyId}`), { allowedViewers: story.allowedViewers });
-                    }
-                }
-                if (story.userId === uid && story.allowedViewers) {
-                    if (!story.allowedViewers.includes(currentUser.uid)) {
-                        story.allowedViewers.push(currentUser.uid);
-                        await update(ref(db, `stories/${storyId}`), { allowedViewers: story.allowedViewers });
-                    }
-                }
-            }
-            
-            btn.textContent = '✓ تم'; 
-            btn.classList.add('added'); 
-            btn.disabled = true;
-            toast('تمت الإضافة بنجاح! يمكنكم الآن مشاهدة ستوريات بعضكم البعض');
-            loadFriends();
-        } catch (e) {
-            toast('فشل الإضافة: ' + e.message);
-        }
+            btn.textContent = '✓ تم'; btn.classList.add('added'); btn.disabled = true;
+            toast('تمت الإضافة بنجاح!'); loadFriends();
+        } catch (e) { toast('فشل الإضافة'); }
     };
 
+    // ==================== دالة الستوري المعدلة ====================
     function renderStories() {
         const page = document.getElementById('pageContent');
         if (!page) return;
         page.innerHTML = `
-            <button class="story-add-btn" id="addStoryBtn"><i class="fas fa-plus-circle"></i> إضافة ستوري للأصدقاء</button>
+            <button class="story-add-btn" id="addStoryBtn"><i class="fas fa-plus-circle"></i> إضافة ستوري</button>
             <p style="color:var(--text2);font-size:0.65rem;text-align:center;margin-bottom:12px;">
                 <i class="fas fa-lock"></i> ستورياتك تظهر لك ولأصدقائك فقط
             </p>
@@ -2589,58 +2268,66 @@
         document.getElementById('addStoryBtn').onclick = async () => {
             if (!currentUser) return;
             
+            // الحصول على قائمة الأصدقاء
             const friendsSnap = await get(ref(db, `friends/${currentUser.uid}`));
             const friendsData = friendsSnap.val() || {};
-            const allowedViewers = [currentUser.uid];
+            const allowedViewers = [currentUser.uid]; // المستخدم نفسه أولاً
             
+            // إضافة الأصدقاء
             for (const friendId in friendsData) {
                 if (friendId !== currentUser.uid && friendsData[friendId] === true) {
                     allowedViewers.push(friendId);
                 }
             }
             
-            if (allowedViewers.length === 1) {
-                toast('ليس لديك أصدقاء بعد. أضف أصدقاء أولاً ليتمكنوا من مشاهدة ستورياتك!');
-            }
-            
             const i = document.createElement('input'); i.type = 'file'; i.accept = 'image/*';
             i.onchange = async e => {
                 if (e.target.files.length > 0 && currentUser) {
                     showLoading();
-                    for (const file of e.target.files) {
-                        const caption = prompt(`تعليق للصورة (${file.name}):`) || '';
-                        const b64 = await fileToB64(file);
-                        await push(ref(db, 'stories'), {
-                            userId: currentUser.uid, 
-                            userName: currentUser.name,
-                            userPhoto: currentUser.photoBase64 || '',
-                            imageBase64: b64,
-                            caption: caption, 
-                            timestamp: Date.now(),
-                            likes: {}, 
-                            views: {}, 
-                            replies: {},
-                            allowedViewers: allowedViewers
-                        });
-                    }
+                    const file = e.target.files[0];
+                    const caption = prompt('تعليق للصورة:') || '';
+                    const b64 = await fileToB64(file);
+                    
+                    // حفظ الستوري مع قائمة المشاهدين
+                    await push(ref(db, 'stories'), {
+                        userId: currentUser.uid, 
+                        userName: currentUser.name,
+                        userPhoto: currentUser.photoBase64 || '',
+                        imageBase64: b64,
+                        caption: caption, 
+                        timestamp: Date.now(),
+                        likes: {}, 
+                        views: {}, 
+                        replies: {},
+                        allowedViewers: allowedViewers
+                    });
+                    
                     hideLoading();
-                    const friendCount = allowedViewers.length - 1;
-                    toast(`تم إضافة ${e.target.files.length} ستوري بنجاح! ${friendCount > 0 ? `يمكن لـ ${friendCount} من أصدقائك مشاهدته` : 'ستظهر لك فقط حتى تضيف أصدقاء'}`);
+                    toast('تم نشر الستوري بنجاح! 🎉');
                 }
             };
             i.click();
         };
         
-        onValue(ref(db, 'stories'), snap => {
-            const stories = []; 
-            snap.forEach(c => stories.push({ id: c.key, ...c.val() }));
+        // مراقبة الستوريات من قاعدة البيانات
+        onValue(ref(db, 'stories'), (snap) => {
+            const allStories = []; 
+            snap.forEach(c => {
+                allStories.push({ id: c.key, ...c.val() });
+            });
             
-            allStoriesCache = stories.filter(s => {
-                const isRecent = Date.now() - (s.timestamp || 0) < 86400000;
-                if (!s.allowedViewers) return isRecent;
-                const isAllowed = s.allowedViewers.includes(currentUser.uid);
-                return isRecent && isAllowed;
-            }).reverse();
+            // فلترة الستوريات: حديثة + مصرح للمستخدم
+            allStoriesCache = allStories.filter(s => {
+                const isRecent = (Date.now() - s.timestamp) < 86400000; // 24 ساعة
+                
+                // إذا لم تكن هناك قائمة allowedViewers (قديمة)، نعرض للجميع
+                if (!s.allowedViewers || s.allowedViewers.length === 0) {
+                    return isRecent;
+                }
+                
+                // إذا كان المستخدم هو صاحب الستوري أو موجود في قائمة المشاهدين
+                return isRecent && s.allowedViewers.includes(currentUser.uid);
+            }).sort((a, b) => b.timestamp - a.timestamp); // ترتيب من الأحدث للأقدم
             
             const list = document.getElementById('storiesList'); 
             if (!list) return;
@@ -2648,18 +2335,19 @@
             if (allStoriesCache.length === 0) { 
                 list.innerHTML = `
                     <div style="text-align:center;padding:40px;color:var(--text2);">
-                        <i class="fas fa-lock" style="font-size:2rem;display:block;margin-bottom:12px;color:var(--gold);"></i>
-                        لا توجد ستوريات من أصدقائك حالياً
-                        <br><small style="font-size:0.65rem;">أضف أصدقاء لتتمكن من مشاهدة ستورياتهم</small>
+                        <i class="fas fa-camera-retro" style="font-size:3rem;display:block;margin-bottom:12px;color:var(--gold);"></i>
+                        لا توجد ستوريات حالياً
+                        <br><small style="font-size:0.7rem;">اضغط على زر الإضافة لنشر ستوري!</small>
                     </div>`; 
                 return; 
             }
             
             list.innerHTML = allStoriesCache.map(s => {
                 const isOwner = s.userId === currentUser.uid;
+                const viewerCount = (s.allowedViewers?.length || 1);
                 return `
-                    <div class="story-card" onclick="openStoryViewer('${s.id}')" style="${isOwner ? 'border: 1px solid var(--gold);' : ''}">
-                        <div class="story-ring" style="${isOwner ? 'background: linear-gradient(45deg, var(--gold), var(--gold-light));' : ''}">
+                    <div class="story-card" onclick="openStoryViewer('${s.id}')" style="${isOwner ? 'border: 2px solid var(--gold);background:var(--surface2);' : ''}">
+                        <div class="story-ring" style="${isOwner ? 'background: linear-gradient(45deg, var(--gold), var(--gold-light), var(--gold));' : ''}">
                             <div class="story-ring-inner">
                                 ${s.userPhoto ? `<img src="${s.userPhoto}" alt="">` : (s.userName?.charAt(0) || 'U')}
                             </div>
@@ -2667,18 +2355,18 @@
                         <div style="flex:1;">
                             <strong style="color:var(--text);font-size:0.85rem;">
                                 ${esc(s.userName || 'مستخدم')}
-                                ${isOwner ? '<span style="color:var(--gold);font-size:0.7rem;">⭐ ستوريك</span>' : ''}
+                                ${isOwner ? '<span style="color:var(--gold);font-size:0.7rem;font-weight:bold;"> ⭐ ستوريك</span>' : ''}
                             </strong>
-                            <p style="color:var(--text2);font-size:0.7rem;">${esc(s.caption || '')}</p>
+                            <p style="color:var(--text2);font-size:0.7rem;">${esc(s.caption || 'بدون تعليق')}</p>
                             <small style="color:var(--text2);font-size:0.6rem;">
                                 ${fmtTime(s.timestamp)} · 
-                                ${Object.keys(s.views||{}).length} مشاهدة · 
-                                ${Object.keys(s.likes||{}).length} إعجاب · 
-                                ${Object.keys(s.replies||{}).length} رد
-                                ${isOwner ? ` · ${(s.allowedViewers?.length || 1) - 1} أصدقاء` : ''}
+                                ${Object.keys(s.views||{}).length} 👁️ · 
+                                ${Object.keys(s.likes||{}).length} ❤️ · 
+                                ${Object.keys(s.replies||{}).length} 💬
+                                ${isOwner ? ` · ${viewerCount - 1} صديق` : ''}
                             </small>
                         </div>
-                        <i class="fas fa-eye" style="color:var(--gold);"></i>
+                        <i class="fas fa-chevron-left" style="color:var(--gold);"></i>
                     </div>`;
             }).join('');
         });
@@ -2727,11 +2415,8 @@
         if (!story) return;
         
         const likes = story.likes || {};
-        if (likes[currentUser.uid]) {
-            delete likes[currentUser.uid];
-        } else {
-            likes[currentUser.uid] = true;
-        }
+        if (likes[currentUser.uid]) delete likes[currentUser.uid];
+        else likes[currentUser.uid] = true;
         
         await update(ref(db, `stories/${currentStoryId}/likes`), likes);
         const storyIndex = allStoriesCache.findIndex(s => s.id === currentStoryId);
@@ -2744,14 +2429,7 @@
         const input = document.getElementById('storyReplyInput');
         const text = input?.value.trim(); 
         if (!text) return;
-        
-        await push(ref(db, `stories/${currentStoryId}/replies`), { 
-            userId: currentUser.uid, 
-            userName: currentUser.name, 
-            text: text, 
-            timestamp: Date.now() 
-        });
-        
+        await push(ref(db, `stories/${currentStoryId}/replies`), { userId: currentUser.uid, userName: currentUser.name, text: text, timestamp: Date.now() });
         input.value = ''; 
         toast('تم إرسال الرد');
     };
@@ -2763,50 +2441,32 @@
         page.innerHTML = `
             <div class="settings-section">
                 <div class="settings-header"><i class="fas fa-user"></i> حسابي</div>
-                <div class="settings-row" onclick="showPage('profile')">
-                    <div class="settings-row-left"><i class="fas fa-id-card"></i> الملف الشخصي</div>
-                    <div class="settings-row-right"><i class="fas fa-chevron-left"></i></div>
-                </div>
-                <div class="settings-row" onclick="changeProfilePhoto()">
-                    <div class="settings-row-left"><i class="fas fa-camera"></i> تغيير الصورة الشخصية</div>
-                    <div class="settings-row-right"><i class="fas fa-chevron-left"></i></div>
-                </div>
+                <div class="settings-row" onclick="showPage('profile')"><div class="settings-row-left"><i class="fas fa-id-card"></i> الملف الشخصي</div><div class="settings-row-right"><i class="fas fa-chevron-left"></i></div></div>
+                <div class="settings-row" onclick="changeProfilePhoto()"><div class="settings-row-left"><i class="fas fa-camera"></i> تغيير الصورة الشخصية</div><div class="settings-row-right"><i class="fas fa-chevron-left"></i></div></div>
             </div>
             <div class="settings-section">
                 <div class="settings-header"><i class="fas fa-shield-alt"></i> الخصوصية</div>
-                <div class="settings-row" onclick="toggleSetting('showOnline')">
-                    <div class="settings-row-left"><i class="fas fa-circle"></i> الظهور متصل</div>
-                    <div class="toggle-switch ${showOnline ? 'on' : ''}" id="toggleShowOnline"></div>
-                </div>
-                <div class="settings-row" onclick="showBlockedUsers()">
-                    <div class="settings-row-left"><i class="fas fa-ban"></i> المستخدمين المحظورين</div>
-                    <div class="settings-row-right"><span id="blockedCount" style="font-size:0.7rem;">${Object.keys(blockedUsers).length}</span> <i class="fas fa-chevron-left"></i></div>
-                </div>
+                <div class="settings-row" onclick="toggleSetting('showOnline')"><div class="settings-row-left"><i class="fas fa-circle"></i> الظهور متصل</div><div class="toggle-switch ${showOnline ? 'on' : ''}" id="toggleShowOnline"></div></div>
+                <div class="settings-row" onclick="showBlockedUsers()"><div class="settings-row-left"><i class="fas fa-ban"></i> المستخدمين المحظورين</div><div class="settings-row-right"><span id="blockedCount">${Object.keys(blockedUsers).length}</span> <i class="fas fa-chevron-left"></i></div></div>
             </div>
             <div class="settings-section">
                 <div class="settings-header"><i class="fas fa-bell"></i> الإشعارات</div>
-                <div class="settings-row" onclick="toggleSetting('notifications')">
-                    <div class="settings-row-left"><i class="fas fa-bell"></i> تفعيل الإشعارات</div>
-                    <div class="toggle-switch ${notifications ? 'on' : ''}" id="toggleNotifications"></div>
-                </div>
+                <div class="settings-row" onclick="toggleSetting('notifications')"><div class="settings-row-left"><i class="fas fa-bell"></i> تفعيل الإشعارات</div><div class="toggle-switch ${notifications ? 'on' : ''}" id="toggleNotifications"></div></div>
             </div>
             <div class="settings-section">
                 <div class="settings-header"><i class="fas fa-trash"></i> البيانات</div>
-                <div class="settings-row" onclick="clearAllMessages()">
-                    <div class="settings-row-left"><i class="fas fa-eraser"></i> مسح جميع المحادثات</div>
-                    <div class="settings-row-right"><i class="fas fa-chevron-left"></i></div>
-                </div>
+                <div class="settings-row" onclick="clearAllMessages()"><div class="settings-row-left"><i class="fas fa-eraser"></i> مسح جميع المحادثات</div><div class="settings-row-right"><i class="fas fa-chevron-left"></i></div></div>
             </div>
             <div class="settings-section">
                 <div class="settings-header"><i class="fas fa-info-circle"></i> حول</div>
-                <div class="settings-row"><div class="settings-row-left"><i class="fas fa-code"></i> الإصدار</div><div class="settings-row-right">1.2.0</div></div>
+                <div class="settings-row"><div class="settings-row-left"><i class="fas fa-code"></i> الإصدار</div><div class="settings-row-right">1.3.0</div></div>
                 <div class="settings-row"><div class="settings-row-left"><i class="fas fa-user"></i> المطور</div><div class="settings-row-right">BobakrAlmajbry</div></div>
             </div>
             <button class="btn-logout" onclick="handleLogout()"><i class="fas fa-sign-out-alt"></i> تسجيل الخروج</button>`;
     }
 
     window.clearAllMessages = async function() {
-        if (!confirm('هل أنت متأكد من مسح جميع المحادثات؟ لا يمكن التراجع عن هذا.')) return;
+        if (!confirm('هل أنت متأكد؟')) return;
         if (!currentUser) return;
         showLoading();
         try {
@@ -2814,15 +2474,10 @@
             const friends = friendsSnap.val() || {};
             for (const friendId in friends) {
                 if (friendId === currentUser.uid) continue;
-                const chatId = [currentUser.uid, friendId].sort().join('_');
-                await remove(ref(db, `messages/${chatId}`));
+                await remove(ref(db, `messages/${[currentUser.uid, friendId].sort().join('_')}`));
             }
-            hideLoading();
-            toast('تم مسح جميع المحادثات بنجاح');
-        } catch (e) {
-            hideLoading();
-            toast('فشل مسح المحادثات: ' + e.message);
-        }
+            hideLoading(); toast('تم المسح');
+        } catch (e) { hideLoading(); toast('فشل المسح'); }
     };
 
     window.toggleSetting = function(setting) {
@@ -2831,20 +2486,14 @@
         localStorage.setItem(setting, newValue);
         const toggleEl = document.getElementById('toggle' + setting.charAt(0).toUpperCase() + setting.slice(1));
         if (toggleEl) toggleEl.classList.toggle('on', newValue);
-        if (setting === 'showOnline' && currentUser) {
-            update(ref(db, `users/${currentUser.uid}`), { status: newValue ? 'online' : 'offline', lastSeen: Date.now() });
-        }
+        if (setting === 'showOnline' && currentUser) update(ref(db, `users/${currentUser.uid}`), { status: newValue ? 'online' : 'offline', lastSeen: Date.now() });
         toast(newValue ? 'تم التفعيل' : 'تم التعطيل');
     };
 
     window.showBlockedUsers = function() {
         const blockedList = Object.keys(blockedUsers);
-        if (blockedList.length === 0) { toast('لا يوجد مستخدمين محظورين'); return; }
-        const page = document.getElementById('pageContent');
-        page.innerHTML = `
-            <h3 class="sec-title"><i class="fas fa-ban"></i> المستخدمين المحظورين</h3>
-            ${blockedList.map(uid => `<div class="friend"><div class="friend-info"><div class="friend-av">🚫</div><div><div class="friend-name">${uid.substring(0, 14)}...</div></div></div><button class="btn-chat" style="background:var(--success);" onclick="unblockUser('${uid}')"><i class="fas fa-unlock"></i></button></div>`).join('')}
-            <button class="btn" style="width:100%;margin-top:10px;background:var(--surface);color:var(--text);" onclick="renderSettings()">العودة للإعدادات</button>`;
+        if (blockedList.length === 0) { toast('لا يوجد محظورين'); return; }
+        document.getElementById('pageContent').innerHTML = `<h3 class="sec-title"><i class="fas fa-ban"></i> المحظورين</h3>${blockedList.map(uid => `<div class="friend"><div class="friend-info"><div class="friend-av">🚫</div><div><div class="friend-name">${uid.substring(0,14)}...</div></div></div><button class="btn-chat" style="background:var(--success);" onclick="unblockUser('${uid}')"><i class="fas fa-unlock"></i></button></div>`).join('')}<button class="btn" style="width:100%;margin-top:10px;background:var(--surface);color:var(--text);" onclick="renderSettings()">عودة</button>`;
     };
 
     window.unblockUser = function(uid) {
