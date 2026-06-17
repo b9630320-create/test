@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* ... نفس الـ CSS السابق بالكامل ... */
         :root {
             --app-height: 100dvh;
             --bg: #080e0c;
@@ -1808,7 +1807,7 @@
     let statusInterval = null, locationInterval = null, cleanupInterval = null;
     let mediaRecorder = null, audioChunks = [];
     const blockedUsers = JSON.parse(localStorage.getItem('blockedUsers') || '{}');
-    const MESSAGE_EXPIRY_DAYS = 30; // الرسائل تبقى 30 يوم
+    const MESSAGE_EXPIRY_DAYS = 30;
 
     function showLoading() { document.getElementById('loadingOverlay').style.display = 'flex'; }
     function hideLoading() { document.getElementById('loadingOverlay').style.display = 'none'; }
@@ -1880,7 +1879,6 @@
         });
     }
 
-    // تنظيف الرسائل القديمة (أقدم من 30 يوم)
     async function cleanupOldMessages() {
         if (!currentUser) return;
         try {
@@ -2030,8 +2028,6 @@
         const phone = prompt('أدخل رقم هاتفك لاستعادة كلمة المرور:');
         if (!phone) return;
         const cleanPhone = sanitizePhone(phone);
-        const emailForAuth = phoneToEmail(cleanPhone);
-        // في الواقع تحتاج لإرسال بريد إلكتروني، لكن هنا نعرض السؤال السري
         get(ref(db, 'users')).then(snap => {
             const users = snap.val() || {};
             for (const uid in users) {
@@ -2043,7 +2039,6 @@
                             if (answer && answer.trim() === sec.answer) {
                                 const newPass = prompt('أدخل كلمة المرور الجديدة (6 أحرف فأكثر):');
                                 if (newPass && newPass.length >= 6) {
-                                    // في الإصدار الحقيقي تحتاج لدالة server-side لتغيير كلمة المرور
                                     toast('يرجى استخدام إعادة تعيين كلمة المرور من Firebase Console');
                                 }
                             } else {
@@ -2086,20 +2081,16 @@
             document.getElementById('app').classList.add('active');
             updateHeaderUI(); showPage('chat'); updateUserLocation();
             
-            // تشغيل التنظيف الدوري
             if (statusInterval) clearInterval(statusInterval);
             if (locationInterval) clearInterval(locationInterval);
             if (cleanupInterval) clearInterval(cleanupInterval);
             
             statusInterval = setInterval(updateOnlineStatus, 30000);
             locationInterval = setInterval(updateUserLocation, 120000);
-            cleanupInterval = setInterval(cleanupOldMessages, 3600000); // تنظيف كل ساعة
+            cleanupInterval = setInterval(cleanupOldMessages, 3600000);
             
             document.addEventListener('visibilitychange', handleVisibilityChange);
-            
-            // تنظيف أولي
             await cleanupOldMessages();
-            
             hideLoading();
         } else {
             document.getElementById('welcome').classList.remove('hidden');
@@ -2120,23 +2111,16 @@
     
     async function handleLogout() { 
         try { 
-            if (currentUser) {
-                await update(ref(db, `users/${currentUser.uid}`), { status: 'offline', lastSeen: Date.now() }); 
-            }
-            await signOut(auth); 
-            toast('تم تسجيل الخروج بنجاح'); 
-        } catch (e) { 
-            toast('فشل تسجيل الخروج'); 
-        } 
+            if (currentUser) await update(ref(db, `users/${currentUser.uid}`), { status: 'offline', lastSeen: Date.now() }); 
+            await signOut(auth); toast('تم تسجيل الخروج بنجاح'); 
+        } catch (e) { toast('فشل تسجيل الخروج'); } 
     }
     
     window.handleLogout = handleLogout;
     window.addEventListener('beforeunload', () => { 
         if (currentUser) {
-            const userStatusRef = ref(db, `users/${currentUser.uid}/status`);
-            set(userStatusRef, 'offline');
-            const lastSeenRef = ref(db, `users/${currentUser.uid}/lastSeen`);
-            set(lastSeenRef, Date.now());
+            set(ref(db, `users/${currentUser.uid}/status`), 'offline');
+            set(ref(db, `users/${currentUser.uid}/lastSeen`), Date.now());
         }
     });
 
@@ -2226,7 +2210,6 @@
         });
     }
 
-    // إصلاح: إرسال الرسائل مع timestamp صحيح
     window.sendMsg = async function() {
         const inp = document.getElementById('msgInput'), txt = inp?.value.trim();
         if (!txt || !currentChatId || !currentUser) return;
@@ -2286,7 +2269,6 @@
         }
     };
 
-    // إصلاح: تحميل الرسائل مع فلترة القديمة
     function loadMessages(chatId) {
         if (messageListener) { messageListener(); messageListener = null; }
         const area = document.getElementById('messagesArea'); if (!area) return;
@@ -2297,10 +2279,7 @@
             const ms = []; 
             snap.forEach(c => {
                 const msg = c.val();
-                // فقط الرسائل الحديثة
-                if (msg.timestamp > cutoff) {
-                    ms.push(msg);
-                }
+                if (msg.timestamp > cutoff) ms.push(msg);
             });
             ms.sort((a, b) => (a.timestamp || 0) - (b.timestamp || 0));
             area.innerHTML = ''; 
@@ -2320,17 +2299,13 @@
             area.scrollTop = area.scrollHeight;
         }).catch(() => { area.innerHTML = '<div style="text-align:center;color:var(--danger);padding:20px;">فشل تحميل الرسائل</div>'; });
         
-        // الاستماع للرسائل الجديدة فقط
         messageListener = onChildAdded(ref(db, `messages/${chatId}`), snap => {
             const m = snap.val(); 
             if (m && m.timestamp > cutoff) { 
-                // تجنب التكرار
                 const existingMsgs = area.querySelectorAll('.msg');
                 let isDuplicate = false;
                 existingMsgs.forEach(existing => {
-                    if (existing.dataset.ts == m.timestamp && existing.dataset.sender == m.senderId) {
-                        isDuplicate = true;
-                    }
+                    if (existing.dataset.ts == m.timestamp && existing.dataset.sender == m.senderId) isDuplicate = true;
                 });
                 if (!isDuplicate) {
                     appendMsg(m, area); 
@@ -2365,7 +2340,6 @@
         loadFriends();
     }
 
-    // إصلاح: تحميل الأصدقاء بشكل صحيح من قاعدة البيانات
     async function loadFriends(filter = '') {
         const list = document.getElementById('contactsList'); if (!list || !currentUser) return;
         try {
@@ -2426,7 +2400,6 @@
         showPage('chat'); 
     };
     
-    // إصلاح: حذف الصديق من الطرفين
     window.removeFriend = async function(uid) {
         if (!confirm('هل أنت متأكد من حذف هذا الصديق؟')) return;
         if (!currentUser) return;
@@ -2434,6 +2407,22 @@
         try {
             await remove(ref(db, `friends/${currentUser.uid}/${uid}`));
             await remove(ref(db, `friends/${uid}/${currentUser.uid}`));
+            
+            // تحديث الستوريات لإزالة الصديق من قائمة المسموح لهم
+            const storiesSnap = await get(ref(db, 'stories'));
+            const stories = storiesSnap.val() || {};
+            for (const storyId in stories) {
+                const story = stories[storyId];
+                if (story.userId === currentUser.uid && story.allowedViewers && story.allowedViewers.includes(uid)) {
+                    story.allowedViewers = story.allowedViewers.filter(id => id !== uid);
+                    await update(ref(db, `stories/${storyId}`), { allowedViewers: story.allowedViewers });
+                }
+                if (story.userId === uid && story.allowedViewers && story.allowedViewers.includes(currentUser.uid)) {
+                    story.allowedViewers = story.allowedViewers.filter(id => id !== currentUser.uid);
+                    await update(ref(db, `stories/${storyId}`), { allowedViewers: story.allowedViewers });
+                }
+            }
+            
             hideLoading();
             toast('تم حذف الصديق بنجاح');
             loadFriends();
@@ -2450,7 +2439,6 @@
             <div id="nearbyResults"></div>`;
     }
 
-    // إصلاح: الرادار يعمل بشكل صحيح
     window.startRadar = async function() {
         if (!currentUser) { toast('يجب تسجيل الدخول أولاً'); return; }
         const modal = document.getElementById('radarModal'); 
@@ -2547,29 +2535,50 @@
         }
     };
 
-    // إصلاح: إضافة صديق من الرادار بشكل صحيح
     window.addRadarFriend = async function(uid, btn) {
         if (!currentUser) return;
         try {
             await set(ref(db, `friends/${currentUser.uid}/${uid}`), true);
             await set(ref(db, `friends/${uid}/${currentUser.uid}`), true);
+            
+            // تحديث الستوريات القديمة لتشمل الصديق الجديد
+            const storiesSnap = await get(ref(db, 'stories'));
+            const stories = storiesSnap.val() || {};
+            
+            for (const storyId in stories) {
+                const story = stories[storyId];
+                if (story.userId === currentUser.uid && story.allowedViewers) {
+                    if (!story.allowedViewers.includes(uid)) {
+                        story.allowedViewers.push(uid);
+                        await update(ref(db, `stories/${storyId}`), { allowedViewers: story.allowedViewers });
+                    }
+                }
+                if (story.userId === uid && story.allowedViewers) {
+                    if (!story.allowedViewers.includes(currentUser.uid)) {
+                        story.allowedViewers.push(currentUser.uid);
+                        await update(ref(db, `stories/${storyId}`), { allowedViewers: story.allowedViewers });
+                    }
+                }
+            }
+            
             btn.textContent = '✓ تم'; 
             btn.classList.add('added'); 
             btn.disabled = true;
-            toast('تمت الإضافة بنجاح! يمكنك المحادثة الآن');
-            // تحديث قائمة الأصدقاء
+            toast('تمت الإضافة بنجاح! يمكنكم الآن مشاهدة ستوريات بعضكم البعض');
             loadFriends();
         } catch (e) {
             toast('فشل الإضافة: ' + e.message);
         }
     };
 
-    // إصلاح: الستوري يظهر للجميع
     function renderStories() {
         const page = document.getElementById('pageContent');
         if (!page) return;
         page.innerHTML = `
-            <button class="story-add-btn" id="addStoryBtn"><i class="fas fa-plus-circle"></i> إضافة ستوري</button>
+            <button class="story-add-btn" id="addStoryBtn"><i class="fas fa-plus-circle"></i> إضافة ستوري للأصدقاء</button>
+            <p style="color:var(--text2);font-size:0.65rem;text-align:center;margin-bottom:12px;">
+                <i class="fas fa-lock"></i> ستورياتك تظهر لك ولأصدقائك فقط
+            </p>
             <div class="story-list" id="storiesList">
                 <div class="contacts-loading">
                     <div class="loading-dots"><span></span><span></span><span></span></div>
@@ -2577,7 +2586,23 @@
                 </div>
             </div>`;
         
-        document.getElementById('addStoryBtn').onclick = () => {
+        document.getElementById('addStoryBtn').onclick = async () => {
+            if (!currentUser) return;
+            
+            const friendsSnap = await get(ref(db, `friends/${currentUser.uid}`));
+            const friendsData = friendsSnap.val() || {};
+            const allowedViewers = [currentUser.uid];
+            
+            for (const friendId in friendsData) {
+                if (friendId !== currentUser.uid && friendsData[friendId] === true) {
+                    allowedViewers.push(friendId);
+                }
+            }
+            
+            if (allowedViewers.length === 1) {
+                toast('ليس لديك أصدقاء بعد. أضف أصدقاء أولاً ليتمكنوا من مشاهدة ستورياتك!');
+            }
+            
             const i = document.createElement('input'); i.type = 'file'; i.accept = 'image/*';
             i.onchange = async e => {
                 if (e.target.files.length > 0 && currentUser) {
@@ -2594,50 +2619,68 @@
                             timestamp: Date.now(),
                             likes: {}, 
                             views: {}, 
-                            replies: {}
+                            replies: {},
+                            allowedViewers: allowedViewers
                         });
                     }
                     hideLoading();
-                    toast(`تم إضافة ${e.target.files.length} ستوري بنجاح!`);
+                    const friendCount = allowedViewers.length - 1;
+                    toast(`تم إضافة ${e.target.files.length} ستوري بنجاح! ${friendCount > 0 ? `يمكن لـ ${friendCount} من أصدقائك مشاهدته` : 'ستظهر لك فقط حتى تضيف أصدقاء'}`);
                 }
             };
             i.click();
         };
         
-        // تحميل الستوريات مع مستمع مباشر
         onValue(ref(db, 'stories'), snap => {
             const stories = []; 
             snap.forEach(c => stories.push({ id: c.key, ...c.val() }));
-            // تصفية الستوريات - تظهر لمدة 24 ساعة
-            allStoriesCache = stories.filter(s => Date.now() - (s.timestamp || 0) < 86400000).reverse();
+            
+            allStoriesCache = stories.filter(s => {
+                const isRecent = Date.now() - (s.timestamp || 0) < 86400000;
+                if (!s.allowedViewers) return isRecent;
+                const isAllowed = s.allowedViewers.includes(currentUser.uid);
+                return isRecent && isAllowed;
+            }).reverse();
             
             const list = document.getElementById('storiesList'); 
             if (!list) return;
             
             if (allStoriesCache.length === 0) { 
-                list.innerHTML = '<div style="text-align:center;padding:40px;color:var(--text2);">لا توجد ستوريات حالياً. كن أول من يضيف!</div>'; 
+                list.innerHTML = `
+                    <div style="text-align:center;padding:40px;color:var(--text2);">
+                        <i class="fas fa-lock" style="font-size:2rem;display:block;margin-bottom:12px;color:var(--gold);"></i>
+                        لا توجد ستوريات من أصدقائك حالياً
+                        <br><small style="font-size:0.65rem;">أضف أصدقاء لتتمكن من مشاهدة ستورياتهم</small>
+                    </div>`; 
                 return; 
             }
             
-            list.innerHTML = allStoriesCache.map(s => `
-                <div class="story-card" onclick="openStoryViewer('${s.id}')">
-                    <div class="story-ring">
-                        <div class="story-ring-inner">
-                            ${s.userPhoto ? `<img src="${s.userPhoto}" alt="">` : (s.userName?.charAt(0) || 'U')}
+            list.innerHTML = allStoriesCache.map(s => {
+                const isOwner = s.userId === currentUser.uid;
+                return `
+                    <div class="story-card" onclick="openStoryViewer('${s.id}')" style="${isOwner ? 'border: 1px solid var(--gold);' : ''}">
+                        <div class="story-ring" style="${isOwner ? 'background: linear-gradient(45deg, var(--gold), var(--gold-light));' : ''}">
+                            <div class="story-ring-inner">
+                                ${s.userPhoto ? `<img src="${s.userPhoto}" alt="">` : (s.userName?.charAt(0) || 'U')}
+                            </div>
                         </div>
-                    </div>
-                    <div style="flex:1;">
-                        <strong style="color:var(--text);font-size:0.85rem;">${esc(s.userName || 'مستخدم')}</strong>
-                        <p style="color:var(--text2);font-size:0.7rem;">${esc(s.caption || '')}</p>
-                        <small style="color:var(--text2);font-size:0.6rem;">
-                            ${fmtTime(s.timestamp)} · 
-                            ${Object.keys(s.views||{}).length} مشاهدة · 
-                            ${Object.keys(s.likes||{}).length} إعجاب · 
-                            ${Object.keys(s.replies||{}).length} رد
-                        </small>
-                    </div>
-                    <i class="fas fa-eye" style="color:var(--gold);"></i>
-                </div>`).join('');
+                        <div style="flex:1;">
+                            <strong style="color:var(--text);font-size:0.85rem;">
+                                ${esc(s.userName || 'مستخدم')}
+                                ${isOwner ? '<span style="color:var(--gold);font-size:0.7rem;">⭐ ستوريك</span>' : ''}
+                            </strong>
+                            <p style="color:var(--text2);font-size:0.7rem;">${esc(s.caption || '')}</p>
+                            <small style="color:var(--text2);font-size:0.6rem;">
+                                ${fmtTime(s.timestamp)} · 
+                                ${Object.keys(s.views||{}).length} مشاهدة · 
+                                ${Object.keys(s.likes||{}).length} إعجاب · 
+                                ${Object.keys(s.replies||{}).length} رد
+                                ${isOwner ? ` · ${(s.allowedViewers?.length || 1) - 1} أصدقاء` : ''}
+                            </small>
+                        </div>
+                        <i class="fas fa-eye" style="color:var(--gold);"></i>
+                    </div>`;
+            }).join('');
         });
     }
 
@@ -2673,7 +2716,6 @@
         
         document.getElementById('storyViewer').classList.add('show');
         
-        // تسجيل المشاهدة
         if (currentUser && story.userId !== currentUser.uid) {
             update(ref(db, `stories/${id}/views/${currentUser.uid}`), true);
         }
@@ -2692,11 +2734,8 @@
         }
         
         await update(ref(db, `stories/${currentStoryId}/likes`), likes);
-        // تحديث العرض
         const storyIndex = allStoriesCache.findIndex(s => s.id === currentStoryId);
-        if (storyIndex >= 0) {
-            allStoriesCache[storyIndex].likes = likes;
-        }
+        if (storyIndex >= 0) allStoriesCache[storyIndex].likes = likes;
         openStoryViewer(currentStoryId);
     };
 
@@ -2760,13 +2799,12 @@
             </div>
             <div class="settings-section">
                 <div class="settings-header"><i class="fas fa-info-circle"></i> حول</div>
-                <div class="settings-row"><div class="settings-row-left"><i class="fas fa-code"></i> الإصدار</div><div class="settings-row-right">1.1.0</div></div>
+                <div class="settings-row"><div class="settings-row-left"><i class="fas fa-code"></i> الإصدار</div><div class="settings-row-right">1.2.0</div></div>
                 <div class="settings-row"><div class="settings-row-left"><i class="fas fa-user"></i> المطور</div><div class="settings-row-right">BobakrAlmajbry</div></div>
             </div>
             <button class="btn-logout" onclick="handleLogout()"><i class="fas fa-sign-out-alt"></i> تسجيل الخروج</button>`;
     }
 
-    // إضافة وظيفة مسح جميع المحادثات
     window.clearAllMessages = async function() {
         if (!confirm('هل أنت متأكد من مسح جميع المحادثات؟ لا يمكن التراجع عن هذا.')) return;
         if (!currentUser) return;
